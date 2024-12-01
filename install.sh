@@ -107,12 +107,16 @@ EOF
        [[ $? == 0 ]] && { echo "Snippets configurado com sucesso"; }
 
      }
+
+     menu_principal
+
 }
 
 instalar_dependencias() {
     echo "Instalando dependências..."
     sudo apt update && sudo apt install -y neovim git curl nodejs npm python3 python3-pip
     pip3 install pynvim
+    menu_principal
 }
 
 corrigir_erro_tema() {
@@ -121,12 +125,14 @@ corrigir_erro_tema() {
     echo "Baixando o repositório vim-airline-themes..."
     git clone https://github.com/dracula/vim.git "$autoload/dracula"
     git clone https://github.com/vim-airline/vim-airline-themes.git "$plugged/vim-airline-themes"
+    menu_principal
 }
 
 limpar_plugins() {
     echo "Limpando plugins antigos para garantir uma instalação limpa..."
     rm -rf ~/.vim/plugged/*
     rm -rf ~/.local/share/nvim/site/plugged/*
+    menu_principal
 }
 
 backup_configuracoes() {
@@ -135,6 +141,9 @@ backup_configuracoes() {
     mkdir -p ~/.config_backup/vim_$timestamp
     mv ~/.vimrc ~/.config_backup/vim_$timestamp/ 2>/dev/null
     mv ~/.config/nvim/init.vim ~/.config_backup/vim_$timestamp/ 2>/dev/null
+
+    menu_principal
+
 }
 
 menu_principal() {
@@ -159,6 +168,7 @@ menu_principal() {
         6) echo "Saindo..."; exit 0 ;;
         *) echo "Opção inválida!"; menu_principal ;;
     esac
+
 }
 
 # Execução principal
