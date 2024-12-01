@@ -61,7 +61,8 @@ colorscheme dracula
 " Melhor visualização
 set cursorline
 set termguicolors
-highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
+" highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
+highlight CursorLine cterm=bold ctermbg=235 guibg=#1e1e1e
 
 " Configurações do Coc
 set hidden
@@ -81,11 +82,17 @@ inoremap <C-e> <Esc>A
 " Ctrl+a: Vai para o início da linha e continua editando
 inoremap <C-a> <Esc>I
 
+" Ctrl+l: Vai pra linha de baixo
+inoremap <C-j> <Esc>o
+
+" Ctrl+k: Vai pra linha de cima
+inoremap <C-k> <Esc>k
+
 " Ctrl+t: Abre o terminal na vertical
 inoremap <C-t> <Esc>:vsp term://$SHELL<CR>
 
 " Ctrl+n: Abre o NERDTree
-inoremap <C-n> <Esc>:NERDTreeToggle<CR>
+inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
 EOF
 
     cp ~/.vimrc ~/.config/nvim/init.vim
@@ -101,12 +108,15 @@ EOF
        [[ $? == 0 ]] && { echo "Snippets configurado com sucesso"; }
 
      }
+
+
 }
 
 instalar_dependencias() {
     echo "Instalando dependências..."
     sudo apt update && sudo apt install -y neovim git curl nodejs npm python3 python3-pip
     pip3 install pynvim
+    menu_principal
 }
 
 corrigir_erro_tema() {
@@ -115,12 +125,14 @@ corrigir_erro_tema() {
     echo "Baixando o repositório vim-airline-themes..."
     git clone https://github.com/dracula/vim.git "$autoload/dracula"
     git clone https://github.com/vim-airline/vim-airline-themes.git "$plugged/vim-airline-themes"
+    menu_principal
 }
 
 limpar_plugins() {
     echo "Limpando plugins antigos para garantir uma instalação limpa..."
     rm -rf ~/.vim/plugged/*
     rm -rf ~/.local/share/nvim/site/plugged/*
+    menu_principal
 }
 
 backup_configuracoes() {
@@ -129,9 +141,13 @@ backup_configuracoes() {
     mkdir -p ~/.config_backup/vim_$timestamp
     mv ~/.vimrc ~/.config_backup/vim_$timestamp/ 2>/dev/null
     mv ~/.config/nvim/init.vim ~/.config_backup/vim_$timestamp/ 2>/dev/null
+
+    menu_principal
+
 }
 
 menu_principal() {
+    clear
     echo "========================"
     echo " Configurador de Vim "
     echo "========================"
@@ -153,6 +169,7 @@ menu_principal() {
         6) echo "Saindo..."; exit 0 ;;
         *) echo "Opção inválida!"; menu_principal ;;
     esac
+
 }
 
 # Execução principal
