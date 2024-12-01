@@ -1,11 +1,16 @@
 #!/bin/bash
 # instalando o editor vim
 
+git clone https://github.com/mauvadao4g/maudovim.git
+cd maudovim
+
 # verificando se o install está na pasta
 [[ -f "install.sh" ]] && {
 bash install.sh
 }
 
+echo
+echo "Instalação concluida"
 
 
 
