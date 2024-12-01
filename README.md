@@ -9,7 +9,7 @@
 
 2️⃣ Execute **um dos comandos abaixo** para instalar rapidamente:
 
-# Comandos
+### Comandos
 curl -sL "https://raw.githubusercontent.com/mauvadao4g/maudovim/refs/heads/main/instalador" | bash
 
 OU
