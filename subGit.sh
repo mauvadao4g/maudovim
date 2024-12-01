@@ -41,7 +41,9 @@ git commit -m "$commit_msg" || { msg red "Erro ao realizar commit."; exit 1; }
 
 # Enviando alterações
 msg green "Enviando alterações para o repositório remoto..."
-git push || { msg red "Erro ao enviar alterações."; exit 1; }
+DIR="$(pwd)"
+git config --global --add safe.directory "$DIR" && git push || { msg red "Erro ao enviar alterações."; exit 1; }
 
 # Mensagem de sucesso
 msg green "Processo concluído com sucesso!"
+
