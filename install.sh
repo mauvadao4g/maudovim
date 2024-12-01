@@ -61,7 +61,8 @@ colorscheme dracula
 " Melhor visualização
 set cursorline
 set termguicolors
-highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
+" highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
+highlight CursorLine cterm=bold ctermbg=235 guibg=#1e1e1e
 
 " Configurações do Coc
 set hidden
