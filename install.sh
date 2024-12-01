@@ -108,7 +108,6 @@ EOF
 
      }
 
-     menu_principal
 
 }
 
@@ -147,6 +146,7 @@ backup_configuracoes() {
 }
 
 menu_principal() {
+    clear
     echo "========================"
     echo " Configurador de Vim "
     echo "========================"
