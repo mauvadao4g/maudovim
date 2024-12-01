@@ -91,7 +91,7 @@ inoremap <C-k> <Esc>k
 inoremap <C-t> <Esc>:vsp term://$SHELL<CR>
 
 " Ctrl+n: Abre o NERDTree
-inoremap <C-n> <Esc>:NERDTreeToggle<CR>
+inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
 EOF
 
     cp ~/.vimrc ~/.config/nvim/init.vim
