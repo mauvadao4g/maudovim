@@ -1,0 +1,11 @@
+#!/bin/bash
+# instalando o editor vim
+
+# verificando se o install está na pasta
+[[ -f "install.sh" ]] && {
+bash install.sh
+}
+
+
+
+
