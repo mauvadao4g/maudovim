@@ -82,7 +82,7 @@ inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
 " Ctrl+l: Vai pra linha de baixo
-inoremap <C-j> <Esc>j
+inoremap <C-j> <Esc>o
 
 " Ctrl+k: Vai pra linha de cima
 inoremap <C-k> <Esc>k
