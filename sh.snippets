@@ -211,7 +211,7 @@ endsnippet
 
 
 snippet vazio "Verificar se parâmetro está vazio" b
-[[ -z "\$1" ]] && { echo "Uso: \$0 <parametros>"; exit 0; }
+[[ -z "${1:\$1}" ]] && { echo "Uso: ${2:\$0 <parametros>}"; exit 0; }
 endsnippet
 
 
