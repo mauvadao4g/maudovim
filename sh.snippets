@@ -26,6 +26,11 @@ endglobal
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
+snippet # "Adiciona um comentario"
+# ${1:COMENTARIO}
+
+endsnippet
+
 snippet #! "#!/usr/bin/env (!env)" b
 `!p snip.rv = '#!/usr/bin/env ' + getShell() + "\n" `
 endsnippet
@@ -211,7 +216,7 @@ endsnippet
 
 
 snippet vazio "Verificar se parâmetro está vazio" b
-[[ -z "${1:\$1}" ]] && { echo "Uso: ${2:\$0 <parametros>}"; exit 0; }
+[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
 endsnippet
 
 
