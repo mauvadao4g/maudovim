@@ -88,6 +88,10 @@ inoremap <C-j> <Esc>o
 " Ctrl+k: Vai pra linha de cima
 inoremap <C-k> <Esc>k
 
+" Ctrl+L: Apaga a próxima palavra no modo de inserção
+inoremap <C-l> <Esc>S
+
+
 " Ctrl+t: Abre o terminal na vertical
 inoremap <C-t> <Esc>:vsp term://$SHELL<CR>
 
