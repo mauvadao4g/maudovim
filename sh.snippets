@@ -1,3 +1,4 @@
+# VER: 1.0.1
 priority -50
 
 global !p
@@ -26,6 +27,23 @@ endglobal
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
+
+snippet timea "20241202_173015 - data para backup" b
+# Backup de arquivos.
+            timestamp=$(date +%Y%m%d_%H%M%S)
+
+endsnippet
+
+snippet bkpa "20241202_173015 - data para backup" b
+# Backup de arquivos.
+            timestamp=$(date +%Y%m%d_%H%M%S)
+    mkdir -p ~/backup_${1:file}_$timestamp
+endsnippet
+
+snippet timestamp "20241202_173015 - Data para backup" b
+        timestamp=$(date +%Y%m%d_%H%M%S)
+endsnippet
+
 snippet ext "Mostra somente a extencao do arquivo"
 ${1:arquivo}="file.txt"
 extensao="\${${1:arquivo}##*.\}"  # Apenas a extensão
@@ -914,7 +932,6 @@ snippet tempfile
  temp=$(mktemp "${1:~/tmp/tempdir.XXXXXX}")
 endsnippet
 
-
 snippet /fex?/ "if file exists" rb
 if [[ -e ${1:filename} ]]; then
     echo "O arquivo '${1:filename}' existe."
@@ -923,6 +940,119 @@ else
 fi
 endsnippet
 
+snippet read "read -p" b
+        read -p ${1:MENSAGEM_PRINT}
+endsnippet
+
+
+snippet uninstall "Deslinstalar aplicativos" b
+        #!/bin/bash
+
+_uninstall() {
+    local package_name=\$1
+
+    if [[ -z "$package_name" ]]; then
+        echo "Erro: Nenhum nome de pacote fornecido."
+        echo "Uso: _uninstall <nome_do_pacote>"
+        return 1
+    fi
+
+    echo "Iniciando a desinstalação do pacote: $package_name"
+
+    # Removendo o pacote usando gerenciadores de pacotes comuns
+    if command -v apt &>/dev/null; then
+        sudo apt remove --purge -y "$package_name" && sudo apt autoremove -y
+    elif command -v yum &>/dev/null; then
+        sudo yum remove -y "$package_name"
+    elif command -v pacman &>/dev/null; then
+        sudo pacman -Rns "$package_name" --noconfirm
+    elif command -v dnf &>/dev/null; then
+        sudo dnf remove -y "$package_name"
+    elif command -v zypper &>/dev/null; then
+        sudo zypper remove -y "$package_name"
+    else
+        echo "Gerenciador de pacotes não suportado ou não encontrado."
+        return 2
+    fi
+
+    # Removendo arquivos de configuração no diretório padrão
+    echo "Removendo arquivos de configuração..."
+    config_dirs=("/etc/$package_name" "$HOME/.config/$package_name" "$HOME/.$package_name")
+    for dir in "${config_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            echo "Removendo $dir"
+            rm -rf "$dir"
+        fi
+    done
+
+    echo "Removendo cache e logs..."
+    cache_dirs=("/var/cache/$package_name" "/var/log/$package_name")
+    for dir in "${cache_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            echo "Removendo $dir"
+            sudo rm -rf "$dir"
+        fi
+    done
+
+    echo "Pacote $package_name desinstalado com sucesso!"
+}
+
+# Exemplo de uso
+# _uninstall nginx
+
+endsnippet
+
+snippet remove "remover programas" b
+        #!/bin/bash
+
+_uninstall() {
+    local package_name=\$1
+
+    if [[ -z "$package_name" ]]; then
+        echo "Erro: Nenhum nome de pacote fornecido."
+        echo "Uso: _uninstall <nome_do_pacote>"
+        return 1
+    fi
+
+    echo "Iniciando a desinstalação do pacote: $package_name"
+
+    # Verifica se está usando apt
+    if command -v apt &>/dev/null; then
+        echo "Usando apt para remover o pacote..."
+        sudo apt remove --purge -y "$package_name" && sudo apt autoremove -y
+    # Verifica se está usando pkg (usado no Termux)
+    elif command -v pkg &>/dev/null; then
+        echo "Usando pkg para remover o pacote..."
+        pkg uninstall -y "$package_name"
+    else
+        echo "Gerenciador de pacotes não suportado ou não encontrado (apt ou pkg)."
+        return 2
+    fi
+
+    echo "Removendo arquivos de configuração e cache relacionados..."
+    config_dirs=("/etc/$package_name" "$HOME/.config/$package_name" "$HOME/.$package_name")
+    for dir in "${config_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            echo "Removendo $dir"
+            rm -rf "$dir"
+        fi
+    done
+
+    echo "Removendo cache e logs..."
+    cache_dirs=("/var/cache/$package_name" "/var/log/$package_name")
+    for dir in "${cache_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            echo "Removendo $dir"
+            sudo rm -rf "$dir"
+        fi
+    done
+
+    echo "Pacote $package_name desinstalado com sucesso!"
+}
+
+# Exemplo de uso
+# _uninstall nginx
+endsnippet
 
 
 ####################################################

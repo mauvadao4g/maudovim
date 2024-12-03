@@ -1,9 +1,31 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.0
+# VER: 3.0.1
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
+
+_uninstall(){
+echo "Desinstalando o vim+nvim"
+echo
+
+# deletando pastas e arquivos do vim+nvim
+rm -rf $HOME/.config/vim >/dev/null 2>&1
+rm -rf $HOME/.config/nvim >/dev/null 2>&1
+rm -rf $HOME/.vim
+rm -f $HOME/.vimrc >/dev/null 2>&1
+rm -f $HOME/.init.vim >/dev/null 2>&1
+
+pacote="vim nvim"
+# desinstalando o vim+nvim do sistema
+# sudo apt remove --purge purple vim && sudo apt autoremove && sudo apt clean
+ apt remove --purge purple $pacote
+ apt autoremove
+ apt clean
+echo "Vim removido do sistema"
+
+}
+
 
 configurar_vim_neovim() {
     echo "Criando diretórios de configuração do Vim e Neovim..."
@@ -120,8 +142,30 @@ instalar_dependencias() {
     echo "Instalando dependências..."
     sudo apt update && sudo apt install -y neovim git curl nodejs npm python3 python3-pip
     pip3 install pynvim
+    verPython
     menu_principal
+    
 }
+
+verPython(){
+    echo "Verificando suporte ao Python3 no Vim..."
+    if vim --version | grep -q "+python3"; then
+        echo "O Vim já suporta Python3."
+        
+    else
+        echo "O Vim não suporta Python3. Instalando uma versão compatível..."
+
+        [ -f verificar_vim.sh ] && {
+        bash verificar_vim.sh
+        } || {
+        echo "verificar_vim.sh: nao encontrado"
+        sleep 3
+        }
+    fi
+
+}
+
+
 
 corrigir_erro_tema() {
     autolad="$HOME/.vim/autoload/plug/start"
@@ -160,7 +204,8 @@ menu_principal() {
     echo "3. Corrigir erro do tema Dracula"
     echo "4. Limpar plugins antigos"
     echo "5. Fazer backup das configurações atuais"
-    echo "6. Sair"
+    echo "6. Desinstalar  vim+nvim"
+    echo "0. Sair"
     echo "========================"
     read -p "Escolha uma opção: " opcao
 
@@ -170,7 +215,8 @@ menu_principal() {
         3) corrigir_erro_tema ;;
         4) limpar_plugins ;;
         5) backup_configuracoes ;;
-        6) echo "Saindo..."; exit 0 ;;
+        6) _uninstall ;;
+        0) echo "Saindo..."; exit 0 ;;
         *) echo "Opção inválida!"; menu_principal ;;
     esac
 
