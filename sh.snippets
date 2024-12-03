@@ -942,12 +942,15 @@ endsnippet
 
 snippet read "read -p" b
         read -p ${1:MENSAGEM_PRINT}
+
+
+
 endsnippet
 
 
-snippet uninstall "Deslinstalar aplicativos" b
-        #!/bin/bash
 
+snippet uninstall "Deslinstalar aplicativos" b
+# Removendo aplicação
 _uninstall() {
     local package_name=\$1
 
@@ -1003,8 +1006,7 @@ _uninstall() {
 endsnippet
 
 snippet remove "remover programas" b
-        #!/bin/bash
-
+# Removendo aplicação
 _uninstall() {
     local package_name=\$1
 
@@ -1052,6 +1054,8 @@ _uninstall() {
 
 # Exemplo de uso
 # _uninstall nginx
+
+
 endsnippet
 
 
