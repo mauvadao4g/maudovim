@@ -28,6 +28,17 @@ endglobal
 #                            TextMate Snippets                            #
 ###########################################################################
 
+
+
+snippet snip "Create Snippet"
+snippet ${1:nome} "${2:COMENTARIO}"
+${3:COMANDOS_SNIPPETS}
+endsnipet
+
+endsnippet
+
+
+
 snippet timea "20241202_173015 - data para backup" b
 # Backup de arquivos.
             timestamp=$(date +%Y%m%d_%H%M%S)
@@ -1050,7 +1061,7 @@ _uninstall() {
     done
 
     echo "Pacote $package_name desinstalado com sucesso!"
-}
+
 
 # Exemplo de uso
 # _uninstall nginx
@@ -1058,7 +1069,49 @@ _uninstall() {
 
 endsnippet
 
+snippet menu "Cria um menu"
+    echo "===== MENU ====="
+    echo "1. ${1:opção 1}"
+    echo "2. ${2:opção 2}"
+    echo "3. ${3: opcao 3}"
+    echo "4. ${4: opção 4}"
+    echo "5. ${5: Sair}"
+    echo "================"
+    read -p "Escolha uma opção: " opcao
 
+endsnippet
+
+snippet casemenu "Cria um case pro menu"
+case $opcao in
+        1) ${1:funcao1} ;;
+        2) ${2:funcao2};;
+        3) ${3:funcao3};;
+        4) ${4:funcao4};;
+        5) echo "Saindo..."; exit 0 ;;
+        *) echo "❌ Opção inválida. Tente novamente." ;;
+    esac
+
+endsnippet
+
+snippet opcao  "Escolha uma opção"
+read -p "Escolha uma opção: " opcao
+
+endsnippet
+
+snippet error "❌ ERROR"
+echo -e "\e[1;31m[❌]${1:ERROR}[❌]\e[0m"
+endsnippet
+
+snippet sucess "✔️ Sucesso"
+echo -e "\e[1;32m[✔️]${1:Sucesso[✔️]}\e[0m"
+endsnippet
+
+snippet true "while true; do  ....; done"
+while true; do
+${1:COMANDOS}
+
+done
+endsnippet
 ####################################################
 # vim:ft=snippets:
 
