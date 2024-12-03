@@ -26,6 +26,20 @@ endglobal
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
+snippet ext "Mostra somente a extencao do arquivo"
+${1:arquivo}="file.txt"
+extensao="\${${1:arquivo}##*.\}"  # Apenas a extensão
+
+endsnippet
+
+snippet nome "Mostra somente o nome do arquivo"
+nome="file.txt"
+${1:arquivo}="$\{${1:nome}%.*\}"    # Nome sem extensão
+
+endsnippet
+
+
+
 snippet # "Adiciona um comentario"
 # ${1:COMENTARIO}
 
