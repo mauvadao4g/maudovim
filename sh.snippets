@@ -1171,6 +1171,43 @@ declare -A PAYLOADS=(
 )
 endsnippet
 
+
+snippet mkd "Cria o diretorio de destino"
+# Cria o diretório de destino, se não existir
+DESTINO="${1:diretorio/destino}"
+DATA=$(date +'%Y-%m-%d_%H-%M-%S')
+if [ ! -d "${1:$DESTINO}" ]; then
+    echo -e "\e[1;33mCriando o diretório de destino '$DESTINO'...\e[0m"
+    mkdir -p "${1:$DESTINO}"
+fi
+endsnippet
+
+
+snippet tar "tar -czf <DESTINO> -C <ORIGEM>"
+tar -czf "${1:$DESTINO}" -C "${2:$ORIGEM}" .
+if [ $? -eq 0 ]; then
+    echo "✔️ Backup concluído com sucesso!"
+    echo "Arquivo de backup: ${1:$DESTINO}"
+else
+    echo "❌ Falha ao realizar o backup."
+    exit 1
+fi
+
+endsnippet
+
+
+snippet filebkp "Cria um arquivo de backup"
+${1:fileBkp}_$DATA.txt
+endsnippet
+
+snippet dir? "Verifica se o diretório de origem existe"
+# Verifica se o diretório de origem existe
+if [ ! -d "${1:ORIGEM}" ]; then
+    echo "❌ O diretório de origem '${1:ORIGEM}' não existe."
+    exit 1
+fi
+endsnippet
+
 ####################################################
 # vim:ft=snippets:
 
