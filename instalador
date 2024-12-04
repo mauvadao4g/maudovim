@@ -1,6 +1,11 @@
 #!/bin/bash
 # instalando o editor vim
 
+# Logo MauDaVpn
+echo -e '\e[1;33m'
+figlet MauDaVpn
+echo -e '\e[0m'
+
 cd "$HOME"
 git clone https://github.com/mauvadao4g/maudovim.git
 cd maudovim
