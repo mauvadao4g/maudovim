@@ -1,0 +1,151 @@
+# Função básica com parâmetros
+snippet 'func' 'Função básica'
+function ${1:func_name} {
+    ${2:# Corpo da função aqui}
+}
+endsnippet
+
+# Estrutura if-else
+snippet 'ifelse' 'Estrutura if-else'
+if [[ ${1:condicao} ]]; then
+    ${2:# Comandos se verdadeiro}
+else
+    ${3:# Comandos se falso}
+fi
+endsnippet
+
+# Estrutura case
+snippet 'case' 'Estrutura case'
+case ${1:variavel} in
+    ${2:opcao1})
+        ${3:# Comandos para opcao1}
+        ;;
+    ${4:opcao2})
+        ${5:# Comandos para opcao2}
+        ;;
+    *)
+        ${6:# Comandos para caso padrão}
+        ;;
+esac
+endsnippet
+
+# Loop for
+snippet 'for' 'Estrutura de loop for'
+for ${1:var} in ${2:lista}; do
+    ${3:# Comandos para cada item da lista}
+done
+endsnippet
+
+# Loop while
+snippet 'while' 'Estrutura de loop while'
+while [[ ${1:condicao} ]]; do
+    ${2:# Comandos enquanto a condição for verdadeira}
+done
+endsnippet
+
+# Ler entrada do usuário
+snippet 'read' 'Ler entrada do usuário'
+read -p "${1:Digite algo: }" ${2:variavel}
+endsnippet
+
+# Verificar se arquivo existe
+snippet 'filecheck' 'Verificar se arquivo existe'
+if [[ -f ${1:/caminho/do/arquivo} ]]; then
+    ${2:# Comandos se o arquivo existir}
+else
+    ${3:# Comandos se o arquivo não existir}
+fi
+endsnippet
+
+# Verificar se diretório existe
+snippet 'dircheck' 'Verificar se diretório existe'
+if [[ -d ${1:/caminho/do/diretorio} ]]; then
+    ${2:# Comandos se o diretório existir}
+else
+    ${3:# Comandos se o diretório não existir}
+fi
+endsnippet
+
+# Criar log em arquivo
+snippet 'log' 'Criar log em arquivo'
+echo "$(date '+%Y-%m-%d %H:%M:%S') - ${1:mensagem}" >> ${2:/caminho/do/log.txt}
+endsnippet
+
+# Verificar comandos e instalar
+snippet 'checkinstall' 'Verificar comandos e instalar'
+if ! command -v ${1:comando} &> /dev/null; then
+    echo "${1:comando} não encontrado. Instalando..."
+    ${2:comando de instalação}
+fi
+endsnippet
+
+# Gerar números aleatórios
+snippet 'rand' 'Gerar números aleatórios'
+echo $(( RANDOM % ${1:100} + ${2:1} ))
+endsnippet
+
+# Loop infinito
+snippet 'infinite' 'Loop infinito'
+while true; do
+    ${1:# Comandos a serem executados continuamente}
+    sleep ${2:1} # Intervalo opcional
+done
+endsnippet
+
+# Comparar strings
+snippet 'strcompare' 'Comparar strings'
+if [[ "${1:var1}" == "${2:var2}" ]]; then
+    ${3:# Comandos se as strings forem iguais}
+else
+    ${4:# Comandos se forem diferentes}
+fi
+endsnippet
+
+# Enviar e-mail
+snippet 'sendmail' 'Enviar e-mail'
+echo "${1:Mensagem}" | mail -s "${2:Assunto}" ${3:endereco@dominio.com}
+endsnippet
+
+# Baixar arquivo com curl
+snippet 'curl' 'Baixar arquivo com curl'
+curl -o ${1:arquivo_destino} ${2:url_do_arquivo}
+endsnippet
+
+# Extrair informações com regex
+snippet 'regex' 'Extrair informações com regex'
+if [[ ${1:variavel} =~ ${2:expressao_regular} ]]; then
+    echo "${BASH_REMATCH[1]}"
+fi
+endsnippet
+
+# Verificar conexão com host
+snippet 'ping' 'Verificar conexão com host'
+ping -c ${1:4} ${2:hostname}
+endsnippet
+
+# Criar arquivo temporário
+snippet 'tmpfile' 'Criar arquivo temporário'
+temp_file=$(mktemp)
+echo "Arquivo temporário criado em $temp_file"
+${1:# Usar o arquivo temporário}
+rm -f $temp_file
+endsnippet
+
+# Colorir texto no terminal
+snippet 'color' 'Colorir texto no terminal'
+echo -e "\033[${1:cor}m${2:Texto}\033[0m"
+endsnippet
+
+# Configurar e usar trap para sinais
+snippet 'trap' 'Configurar trap para sinais'
+trap '${1:comando}' ${2:SINAL}
+endsnippet
+
+# Script de ajuda
+snippet 'help' 'Adicionar ajuda ao script'
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    echo "${1:Descrição do script}"
+    echo "Uso: $0 ${2:parâmetros}"
+    exit 0
+fi
+endsnippet

@@ -1,0 +1,167 @@
+# Adicionar cabeçalho ao script
+snippet 'header' 'Cabeçalho padrão para scripts'
+#!/bin/bash
+# Autor: ${1:Seu Nome}
+# Data: $(date '+%Y-%m-%d')
+# Descrição: ${2:Descrição do script}
+# Versão: 1.0
+# Uso: ./$(basename $0) ${3:parâmetros}
+endsnippet
+
+# Verificar se usuário é root
+snippet 'rootcheck' 'Verificar se o script está sendo executado como root'
+if [[ $EUID -ne 0 ]]; then
+    echo "Este script deve ser executado como root." >&2
+    exit 1
+fi
+endsnippet
+
+# Exibir barra de progresso
+snippet 'progress' 'Exibir barra de progresso'
+for ((i=0; i<=100; i+=${1:10})); do
+    echo -ne "Progresso: $i%\r"
+    sleep ${2:0.5}
+done
+echo -e "\nConcluído!"
+endsnippet
+
+# Gerar data/hora formatada
+snippet 'datetime' 'Gerar data e hora formatada'
+echo "$(date '+%Y-%m-%d %H:%M:%S')"
+endsnippet
+
+# Iterar sobre arquivos em um diretório
+snippet 'fileloop' 'Iterar sobre arquivos em um diretório'
+for file in ${1:/caminho/para/arquivos}/*; do
+    echo "Processando: $file"
+    ${2:# Comandos para cada arquivo}
+done
+endsnippet
+
+# Compactar arquivos em tar.gz
+snippet 'compress' 'Compactar arquivos em tar.gz'
+tar -czvf ${1:arquivo.tar.gz} ${2:diretorio_ou_arquivos}
+endsnippet
+
+# Extrair arquivos tar.gz
+snippet 'extract' 'Extrair arquivos tar.gz'
+tar -xzvf ${1:arquivo.tar.gz} -C ${2:diretorio_destino}
+endsnippet
+
+# Capturar saída de comando
+snippet 'capture' 'Capturar saída de um comando'
+output=$( ${1:comando} )
+echo "Saída do comando: $output"
+endsnippet
+
+# Verificar memória livre
+snippet 'freemem' 'Exibir memória livre'
+free -h
+endsnippet
+
+# Enviar notificação desktop (Linux)
+snippet 'notify' 'Enviar notificação no desktop'
+notify-send "${1:Título}" "${2:Mensagem}"
+endsnippet
+
+# Comparar números
+snippet 'numcompare' 'Comparar números'
+if [[ ${1:num1} -gt ${2:num2} ]]; then
+    echo "${1:num1} é maior que ${2:num2}"
+else
+    echo "${1:num1} não é maior que ${2:num2}"
+fi
+endsnippet
+
+# Baixar arquivos em lote com wget
+snippet 'wgetbatch' 'Baixar arquivos em lote'
+while read -r url; do
+    wget "$url"
+done < ${1:arquivo_com_urls.txt}
+endsnippet
+
+# Validar endereço IP
+snippet 'validateip' 'Validar endereço IP'
+if [[ ${1:ip} =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    echo "Endereço IP válido."
+else
+    echo "Endereço IP inválido."
+fi
+endsnippet
+
+# Monitorar alterações em arquivos
+snippet 'inotify' 'Monitorar alterações em arquivos com inotify'
+inotifywait -m ${1:caminho/do/arquivo} -e modify -e move -e create -e delete |
+while read -r event; do
+    echo "Evento detectado: $event"
+done
+endsnippet
+
+# Contar linhas em um arquivo
+snippet 'countlines' 'Contar linhas em um arquivo'
+lines=$(wc -l < ${1:arquivo.txt})
+echo "O arquivo tem $lines linhas."
+endsnippet
+
+# Monitorar uso de CPU
+snippet 'cpumonitor' 'Monitorar uso de CPU'
+while true; do
+    top -bn1 | grep "Cpu(s)" | awk '{print "Uso de CPU: "$2"%"}'
+    sleep ${1:1}
+done
+endsnippet
+
+# Configurar cron job automaticamente
+snippet 'cronsetup' 'Adicionar tarefa ao cron'
+(crontab -l 2>/dev/null; echo "${1:*/5 * * * *} ${2:/caminho/do/script.sh}") | crontab -
+echo "Tarefa adicionada ao cron com sucesso."
+endsnippet
+
+# Criar menu interativo
+snippet 'menu' 'Criar menu interativo'
+PS3="${1:Escolha uma opção: } "
+select opt in ${2:"Opção 1"} ${3:"Opção 2"} "Sair"; do
+    case $opt in
+        "${2:Opção 1}")
+            ${4:# Comandos para Opção 1}
+            ;;
+        "${3:Opção 2}")
+            ${5:# Comandos para Opção 2}
+            ;;
+        "Sair")
+            echo "Saindo..."
+            break
+            ;;
+        *)
+            echo "Opção inválida."
+            ;;
+    esac
+done
+endsnippet
+
+# Matar processos por nome
+snippet 'killproc' 'Matar processos por nome'
+pkill -f ${1:nome_do_processo}
+echo "Processos com o nome ${1:nome_do_processo} encerrados."
+endsnippet
+
+# Testar conectividade com a internet
+snippet 'checknet' 'Testar conectividade com a internet'
+if ping -c 1 8.8.8.8 &> /dev/null; then
+    echo "Conectado à internet."
+else
+    echo "Sem conexão à internet."
+fi
+endsnippet
+
+# Dividir arquivo em partes menores
+snippet 'split' 'Dividir arquivo em partes menores'
+split -b ${1:10M} ${2:arquivo_origem} ${3:prefixo_arquivo}
+echo "Arquivo dividido em partes de ${1:10M}."
+endsnippet
+
+# Limpar tela e exibir título
+snippet 'clear' 'Limpar tela e exibir título'
+clear
+echo "${1:== Título ==}"
+endsnippet

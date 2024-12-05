@@ -1,0 +1,101 @@
+snippet #!
+	#!/bin/bash
+	# MAUVADAO
+	# VER: 1.0.0
+	# DATA: 
+snippet shell
+	#!/bin/bash
+	# MAUVADAO
+	# VER: 1.0.0
+	# DATA: ${1:-DATA_CRIACAO}
+snippet sh
+	#!/bin/bash
+	# MAUVADAO
+	# VER: 1.0.0
+	# DATA: ${1:-DATA_CRIACAO}
+snippet bash
+	#!/bin/bash
+	# MAUVADAO
+	# VER: 1.0.0
+	# DATA: ${1:-DATA_CRIACAO}	
+snippet if
+	if [[ ${1:condition} ]]; then
+		${2:#statements}
+	fi
+snippet elif
+	elif [[ ${1:condition} ]]; then
+		${2:#statements}
+snippet iff
+	[[ ${1:condition} ]] && { ${2:statemests}; }
+snippet iffq
+	[[ $? == 0 ]] && { ${1:statements};  }
+snippet iffe
+	[[ -e ${1:$file} ]] && { ${2:statements};  }
+snippet iffn
+	[[ ! -f "${1:$file}" ]] && { echo -e "\e[1;31mFile nao existe\e[0m"; }
+snippet for
+	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
+		${3:#statements}
+	done
+snippet wh
+	while [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet until
+	until [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet case
+	case ${1:word} in
+		${2:pattern})
+			${3};;
+	esac
+snippet echo 
+	echo -e "\e[1;${1:33}m${2:#MENSAGEM}\e[0m"
+
+snippet filee
+	file="${1:#FILE}"
+	# se o arquivo existir
+	[[ -f $file ]] && { ${2:condition}; }
+
+
+snippet filen
+	file="${1:#FILE}"
+	# se o  arquivo nao existir
+	[[ ! -f $file ]] && { ${2:condition}; } 
+snippet echv
+echo -e "\[1;${1:31m}${1:MENSAGEM PRA EXIBIR}"
+snippet ifin
+	[[ $? == 0 ]] && { echo "Condicao verdadeira" ; }
+
+snippet curl
+	curl -sL ${1:$url}
+
+snippet check
+	# Verificando o status do host
+	curl -o /dev/null -m1 -X $request "$dom"-w '%{http_proxy}' -x "${proxy}:${port}"
+
+
+snippet status "Verifica o status da conexao"
+	# verificando o status da conexao
+	# setando informações de proxy e servidor
+	dom="${1:br1.forvps.xyz}"
+	tempo="${2:1}"
+	proxy="${3:timofertas.com}"
+	porta="${4:80}"
+	request="${5:PATCH}"
+	# fazendo o request
+	curl -m "$tempo" -s -o /dev/null -w '%{http_code}' -X GET "$dom" -H 'Websocket: Upgrade' -x "$proxy:$porta"
+
+snippet ife "Verifica se o file existe"
+	# se for verdadeiro
+	[[ ${1:CONDICAO} ]] && { ${2:COMANDOS}; }
+
+snippet ifn "Se o file nao existe"
+	# se nao for verdadeiro.
+	[[ ${1:CONDICAO} ]] && { ${2:COMANDOS}; }
+
+snippet usada "Verificar se parâmetro está em uso" b
+	[[ -n "\$1" ]] && {
+	${1:Code}
+	  }

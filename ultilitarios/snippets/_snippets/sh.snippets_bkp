@@ -1,0 +1,350 @@
+snippet snip "Snippet que gera outro snippet" b
+snippet ${1:trigger} "${2:description}" b
+ ${3:conteudo_do_snippet}
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+# Estruturas de controle
+snippet if "If Statement" b
+if [[ ${1:condition} ]]; then
+    ${2:## code}
+fi
+endsnippet
+
+snippet elif "If-Else If Statement" b
+if [[ ${1:condition1} ]]; then
+    ${2:## code}
+elif [[ ${3:condition2} ]]; then
+    ${4:## code}
+else
+    ${5:## code}
+fi
+endsnippet
+
+snippet while "While Loop" b
+while [[ ${1:condition} ]]; do
+    ${2:## code}
+done
+endsnippet
+
+snippet for "For Loop" b
+for ${1:var} in ${2:list}; do
+    ${3:## code}
+done
+endsnippet
+
+snippet until "Until Loop" b
+until [[ ${1:condition} ]]; do
+    ${2:## code}
+done
+endsnippet
+
+snippet case "Case Statement" b
+case ${1:variable} in
+    ${2:pattern})
+        ${3:## code}
+        ;;
+    *)
+        ${4:## default}
+        ;;
+esac
+endsnippet
+
+# Funções
+snippet func "Function" b
+${1:function_name}() {
+    ${2:## code}
+}
+endsnippet
+
+snippet parse_args "Parse Arguments" b
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        ${2:option1})
+            ${3:## code for option1}
+            ;;
+        ${4:option2})
+            ${5:## code for option2}
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+endsnippet
+
+# Utilidades
+snippet log "Log Function" b
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+endsnippet
+
+snippet install "Check Command Exists" b
+if ! command -v ${1:command} &>/dev/null; then
+    echo "${1:command} could not be found"
+    exit 1
+fi
+endsnippet
+
+snippet tmpfile "Temporary File" b
+TMPFILE=$(mktemp)
+${1:## code}
+rm -f "$TMPFILE"
+endsnippet
+
+snippet trap "Trap Cleanup" b
+cleanup() {
+    ${1:## cleanup commands}
+}
+trap cleanup EXIT
+${2:## main code}
+endsnippet
+
+snippet readfile "Read File Line by Line" b
+while IFS= read -r line; do
+    echo "\$line"
+done < "${1:filename}"
+endsnippet
+
+# Snippets Avançados
+snippet ssh "SSH Command" b
+ssh ${1:user}@${2:host} -p ${3:port}
+endsnippet
+
+snippet curl "Curl Command" b
+curl -X ${1:GET} -H "${2:Content-Type: application/json}" -d '${3:{"key":"value"}}' ${4:url}
+endsnippet
+
+snippet json "JSON Example" b
+{
+    "key": "${1:value}"
+}
+endsnippet
+
+
+snippet tutorial "Função tutorial com verificação" b
+# tutorial
+TUTORIAL(){
+     TEXTO="SEU_TEXTO"
+    ${1:"\$TEXTO"}
+}
+
+# verifica se foi chamada a função tutorial
+if [[ "\$1" == *'code'* || "\$1" == *'h'* ]]; then
+    TUTORIAL
+    exit 0
+fi
+endsnippet
+
+snippet vazio "Verificar se parâmetro está vazio" b
+# Verifica se foi passado algum parametro
+[[ -z "\$1" ]] && { echo "Uso: \$0 <parametros>"; exit 0; }
+endsnippet
+
+
+snippet status "Curl Status" b
+
+_status(){
+local dom="${1:<SEU_DOMINIO>}"
+local request=PATCH
+local proxy=timofertas.com
+local port=80
+local tempo=1
+
+response=\$(curl -m1 -o /dev/null -w '%{http_code' -X "\$request" "\$dom" -H "Websocket: Upgrade" -x "\$proxy:\$port")
+}
+endsnippet
+
+
+snippet usada "Verificar se variavel está em uso" b
+# Verifica se a variavel está em uso
+[[ -n "\$1" ]] && {
+${1:Code} 
+  }
+endsnippet
+
+snippet check "Curl Status" b
+# checa o status do host
+curl -m1 -o /dev/null -w '%{http_code}' -X ${1:$request} "${2:\$dom}" -H "Websocket: Upgrade" -x "${3:$proxy}:${4:$port}"
+endsnippet
+
+snippet iff "if inline" b
+# Verifica uma condicao.
+[[ ${1:condicao} ]] && { ${2:COMANDOS}; }
+endsnippet
+
+
+snippet shell "Cabecalho bash" b
+#!/bin/bas
+# MAUVADAO
+# VER: 1.0.0
+endsnippet
+
+snippet sh "Cabeçalho Shel script"
+#!/bin/bash
+# MAUVADAO
+# VER: 1.0.0
+clear
+
+endsnippet
+
+snippet sucesso "Mensagem Sucesso" b
+echo -e "\e[1;32mSucesso\e[0m"
+endsnippet
+
+snippet error "Mensagem error" b
+echo -e "\e[1;31mAlgo deu errado\e[0m"
+endsnippet
+
+snippet msgp "Mensagem Panding" b
+echo -e "\e[1;33mAguarde...\e[0m"
+endsnippet
+
+snippet echo "Mensagem" b
+echo -e "\e[1;37m${1:MENSAGEM}\e[0m"
+endsnippet
+
+
+snippet curl "curl -sL" b
+ curl -sL "${1:\$url}"
+endsnippet
+
+snippet filee "Se file existe" b
+# Verifica se o file existe
+file=""
+ [[ -f "$file" ]] && { ${1:COMANDOS}; }
+endsnippet
+
+
+snippet filen "Se file nao exist" b
+# se o file nao existe
+file=""
+ [[ !-f "$file" ]] && { ${1:COMANDOS}; }
+endsnippet
+snippet echo "printar na tela um texto" b
+ echo "MINHA MENSAGEM"
+endsnippet
+
+snippet devnull "/dev/null" b
+ >/dev/null
+endsnippet
+
+snippet devnull2 "/dev/null 2&>1" b
+ >/dev/null 2>&1
+endsnippet
+
+snippet noerror "nao mostrar saida de erros1" b
+ 2>/dev/null
+endsnippet
+
+snippet grey "cor sinza" b
+grey="\e[1;30m"
+endsnippet
+
+snippet red "cor vermelho" b
+red="\e[1;31m"
+endsnippet
+
+snippet green "Cor Verde" b
+green="\e[1;32m"
+endsnippet
+
+snippet yellow "Cor Amarelo" b
+ yellow="\e[1;33m"
+endsnippet
+
+snippet blue "Cor Azul" b
+ blue="\e[1;34m"
+endsnippet
+
+snippet bordo "Cor Bordo" b
+bordo="\e[1;35m"
+endsnippet
+
+snippet cyan "Cor Cyanoc" b
+ cyan='\e[1;36m'
+endsnippet
+
+snippet branco "Cor Branco" b
+ branco='\e[1;37m'
+endsnippet
+
+snippet white "Cor white" b
+ white='\e[1;37m'
+endsnippet
+
+snippet reset "Resetar cores" b
+ reset='\e[0m'
+endsnippet
+
+
+
+snippet c4g "visualiza config url c4g" b
+full() {
+    local search="\$1"
+	    jq --arg search "\$search" '.Networks[] | select(.Name | test(\$search; "i"))'
+
+}
+# comando pra busca de padroes no url update
+curl -sL "\$1" | full "\$2"
+
+endsnippet
+	
+
+
+# BAIXANDO VIDEOS COM YT-DLP
+snippet videos "Baixar videos url" b
+        # Função para baixar o vídeo com o yt-dlp
+download_video() {
+    yt-dlp --cookies "\$COOKIES_FILE" \
+           --user-agent "\$USER_AGENT" \
+           -f "\$FORMAT" \
+           "\$VIDEO_URL" \
+           -o "\$OUTPUT_FORMAT"
+}
+
+endsnippet 
+
+# Informações sobre url do video
+snippet yt-info "Informacoes do video Url" b
+info(){
+local url="\$VIDEO_URL"
+# pegando informaçoes do video
+response=\$(yt-dlp --cookies "\$COOKIES_FILE" --no-download --no-warning --print-json "\$url" 2>/dev/null)
+nome="\$(echo \$response | jq '.title' )"
+url_video="\$(echo \$response | jq '.webpage_url')"
+duracao="\$(echo \$response | jq '.duration')"
+canalID="\$(echo \$response | jq '.uploader_id')"
+canal="\$(echo \$response | jq '.uploader_url')"
+# descricao="echo \$response | jq '.description')"
+
+echo -ne '\e[1;33m'
+# Exibindo na tela as informações
+cat <<EOF
+==============================================
+                VIDEO INFO
+\$url
+==============================================
+Nome: \$nome
+Url: \$url_video
+Duracao: \$duracao
+Canal: \$canal
+IdCanal: \$canalID
+Descricao: \$descricao
+==============================================
+EOF
+echo -ne '\e[0m'
+
+}
+
+endsnippet
+
+
+snippet subshell  "Cria um subshell $()" b
+${1:variavel}="()"
+endsnippet
+
+

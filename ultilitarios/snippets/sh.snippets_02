@@ -1,0 +1,161 @@
+
+# Estruturas de controle
+snippet if "If Statement" b
+if [[ ${1:condition} ]]; then
+    ${2:## code}
+fi
+endsnippet
+
+snippet elif "If-Else If Statement" b
+if [[ ${1:condition1} ]]; then
+    ${2:## code}
+elif [[ ${3:condition2} ]]; then
+    ${4:## code}
+else
+    ${5:## code}
+fi
+endsnippet
+
+snippet while "While Loop" b
+while [[ ${1:condition} ]]; do
+    ${2:## code}
+done
+endsnippet
+
+snippet for "For Loop" b
+for ${1:var} in ${2:list}; do
+    ${3:## code}
+done
+endsnippet
+
+snippet until "Until Loop" b
+until [[ ${1:condition} ]]; do
+    ${2:## code}
+done
+endsnippet
+
+snippet case "Case Statement" b
+case ${1:variable} in
+    ${2:pattern})
+        ${3:## code}
+        ;;
+    *)
+        ${4:## default}
+        ;;
+esac
+endsnippet
+
+# Funções
+snippet func "Function" b
+${1:function_name}() {
+    ${2:## code}
+}
+endsnippet
+
+snippet parse_args "Parse Arguments" b
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        ${2:option1})
+            ${3:## code for option1}
+            ;;
+        ${4:option2})
+            ${5:## code for option2}
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+endsnippet
+
+# Utilidades
+snippet log "Log Function" b
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
+endsnippet
+
+snippet install "Check Command Exists" b
+if ! command -v ${1:command} &>/dev/null; then
+    echo "${1:command} could not be found"
+    exit 1
+fi
+endsnippet
+
+snippet tmpfile "Temporary File" b
+TMPFILE=$(mktemp)
+${1:## code}
+rm -f "$TMPFILE"
+endsnippet
+
+snippet trap "Trap Cleanup" b
+cleanup() {
+    ${1:## cleanup commands}
+}
+trap cleanup EXIT
+${2:## main code}
+endsnippet
+
+snippet readfile "Read File Line by Line" b
+while IFS= read -r line; do
+    echo "\$line"
+done < "${1:filename}"
+endsnippet
+
+# Snippets Avançados
+snippet ssh "SSH Command" b
+ssh ${1:user}@${2:host} -p ${3:port}
+endsnippet
+
+snippet curl "Curl Command" b
+curl -X ${1:GET} -H "${2:Content-Type: application/json}" -d '${3:{"key":"value"}}' ${4:url}
+endsnippet
+
+snippet json "JSON Example" b
+{
+    "key": "${1:value}"
+}
+endsnippet
+
+
+snippet tutorial "Função tutorial com verificação" b
+# tutorial
+TUTORIAL(){
+     TEXTO="SEU_TEXTO"
+    ${1:"\$TEXTO"}
+}
+
+# verifica se foi chamada a função tutorial
+if [[ "\$1" == *'code'* || "\$1" == *'h'* ]]; then
+    TUTORIAL
+    exit 0
+fi
+endsnippet
+
+snippet vazio "Verificar se parâmetro está vazio" b
+[[ -z "\$1" ]] && { echo "Uso: \$0 <parametros>"; exit 0; }
+endsnippet
+
+
+snippet status "Curl Status" b
+curl -m1 -o /dev/null -w '%{http_code}' -X ${1:$request} "${2:\$dom}" -H "Websocket: Upgrade" -x "${3:$proxy}:${4:$port}"
+endsnippet
+
+
+snippet usada "Verificar se parâmetro está em uso" b
+[[ -n "\$1" ]] && {
+${1:Code} 
+  }
+endsnippet
+
+snippet check "Curl Status" b
+# checa o status do host
+curl -m1 -o /dev/null -w '%{http_code}' -X ${1:$request} "${2:\$dom}" -H "Websocket: Upgrade" -x "${3:$proxy}:${4:$port}"
+endsnippet
+
+snippet iff "if inline" b
+# Verifica uma condicao.
+[[ ${1:condicao} ]] && { ${2:COMANDOS}; }
+endsnippet

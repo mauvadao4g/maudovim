@@ -1,0 +1,664 @@
+snippet 'html5' 'Estrutura básica do HTML5' 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>${1:Document}</title>
+</head>
+<body>
+    $2
+</body>
+</html>
+endsnippet
+
+snippet 'link' 'Adicionar um link' 
+<a href="${1:https://example.com}" target="${2:_blank}">${3:Texto do link}</a>
+endsnippet
+
+snippet 'img' 'Adicionar uma imagem' 
+<img src="${1:caminho/da/imagem.jpg}" alt="${2:Descrição da imagem}" width="${3:300}" height="${4:200}">
+endsnippet
+
+snippet 'form' 'Estrutura básica de um formulário' 
+<form action="${1:/submit}" method="${2:post}">
+    <label for="${3:id}">${4:Texto do campo}</label>
+    <input type="${5:text}" id="${3:id}" name="${6:nome}">
+    <button type="submit">${7:Enviar}</button>
+</form>
+endsnippet
+
+snippet 'table' 'Tabela básica' 
+<table border="${1:1}">
+    <thead>
+        <tr>
+            <th>${2:Cabeçalho 1}</th>
+            <th>${3:Cabeçalho 2}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${4:Valor 1}</td>
+            <td>${5:Valor 2}</td>
+        </tr>
+    </tbody>
+</table>
+endsnippet
+
+snippet 'list' 'Lista não ordenada'
+<ul>
+    <li>${1:Item 1}</li>
+    <li>${2:Item 2}</li>
+    <li>${3:Item 3}</li>
+</ul>
+endsnippet
+
+snippet 'list-ordered' 'Lista ordenada'
+<ol>
+    <li>${1:Item 1}</li>
+    <li>${2:Item 2}</li>
+    <li>${3:Item 3}</li>
+</ol>
+endsnippet
+
+snippet 'button' 'Botão básico'
+<button type="${1:button}">${2:Clique aqui}</button>
+endsnippet
+
+snippet 'video' 'Incluir um vídeo'
+<video controls width="${1:600}" height="${2:400}">
+    <source src="${3:caminho/do/video.mp4}" type="video/mp4">
+    Seu navegador não suporta vídeos HTML5.
+</video>
+endsnippet
+
+snippet 'audio' 'Incluir um áudio'
+<audio controls>
+    <source src="${1:caminho/do/audio.mp3}" type="audio/mp3">
+    Seu navegador não suporta áudio HTML5.
+</audio>
+endsnippet
+
+snippet 'iframe' 'Inserir um iframe'
+<iframe src="${1:https://example.com}" width="${2:600}" height="${3:400}" frameborder="${4:0}"></iframe>
+endsnippet
+
+snippet 'meta-viewport' 'Meta tag para responsividade'
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+endsnippet
+
+snippet 'div' 'Div básica'
+<div class="${1:classe}">${2:Conteúdo aqui}</div>
+endsnippet
+
+snippet 'span' 'Span básico'
+<span class="${1:classe}">${2:Texto aqui}</span>
+endsnippet
+
+snippet 'header' 'Cabeçalho HTML'
+<header>
+    <h1>${1:Título}</h1>
+    <nav>
+        <ul>
+            <li><a href="${2:#}">${3:Link 1}</a></li>
+            <li><a href="${4:#}">${5:Link 2}</a></li>
+        </ul>
+    </nav>
+</header>
+endsnippet
+
+snippet 'footer' 'Rodapé HTML'
+<footer>
+    <p>${1:Todos os direitos reservados.}</p>
+</footer>
+endsnippet
+
+snippet 'script' 'Incluir um script JavaScript'
+<script src="${1:caminho/script.js}" defer></script>
+endsnippet
+
+snippet 'style' 'Estilos CSS no HTML'
+<style>
+    ${1:body {
+        font-family: Arial, sans-serif;
+    }}
+</style>
+endsnippet
+
+
+snippet 'doctype' 'Declaração do tipo de documento'
+<!DOCTYPE html>
+endsnippet
+
+snippet 'meta-description' 'Meta descrição para SEO'
+<meta name="description" content="${1:Descrição do site}">
+endsnippet
+
+snippet 'meta-keywords' 'Meta keywords para SEO'
+<meta name="keywords" content="${1:palavra-chave1, palavra-chave2}">
+endsnippet
+
+snippet 'meta-author' 'Meta autor do documento'
+<meta name="author" content="${1:Seu Nome}">
+endsnippet
+
+snippet 'css-link' 'Link para folha de estilo externa'
+<link rel="stylesheet" href="${1:estilo.css}">
+endsnippet
+
+snippet 'favicon' 'Adicionar favicon'
+<link rel="icon" href="${1:favicon.ico}" type="image/x-icon">
+endsnippet
+
+snippet 'h1' 'Título nível 1'
+<h1>${1:Título principal}</h1>
+endsnippet
+
+snippet 'h2' 'Título nível 2'
+<h2>${1:Subtítulo}</h2>
+endsnippet
+
+snippet 'h3' 'Título nível 3'
+<h3>${1:Título secundário}</h3>
+endsnippet
+
+snippet 'br' 'Linha em branco'
+<br>
+endsnippet
+
+snippet 'hr' 'Linha horizontal'
+<hr>
+endsnippet
+
+snippet 'blockquote' 'Bloco de citação'
+<blockquote>
+    ${1:Texto da citação}
+</blockquote>
+endsnippet
+
+snippet 'code' 'Bloco de código'
+<pre><code>
+${1:// Código aqui}
+</code></pre>
+endsnippet
+
+snippet 'strong' 'Texto em negrito'
+<strong>${1:Texto importante}</strong>
+endsnippet
+
+snippet 'em' 'Texto em itálico'
+<em>${1:Texto enfatizado}</em>
+endsnippet
+
+snippet 'abbr' 'Abreviação com significado'
+<abbr title="${1:Significado da abreviação}">${2:Abrev}</abbr>
+endsnippet
+
+snippet 'address' 'Endereço'
+<address>
+    ${1:Endereço completo}
+</address>
+endsnippet
+
+snippet 'progress' 'Barra de progresso'
+<progress value="${1:50}" max="${2:100}">${3:50%}</progress>
+endsnippet
+
+snippet 'meter' 'Indicador de valor medido'
+<meter value="${1:0.5}" min="${2:0}" max="${3:1}" low="${4:0.2}" high="${5:0.8}" optimum="${6:0.7}">
+    ${7:50%}
+</meter>
+endsnippet
+
+snippet 'nav' 'Navegação básica'
+<nav>
+    <ul>
+        <li><a href="${1:#}">${2:Link 1}</a></li>
+        <li><a href="${3:#}">${4:Link 2}</a></li>
+    </ul>
+</nav>
+endsnippet
+
+snippet 'section' 'Seção do documento'
+<section>
+    <h2>${1:Título da Seção}</h2>
+    <p>${2:Conteúdo da seção}</p>
+</section>
+endsnippet
+
+snippet 'article' 'Artigo'
+<article>
+    <h2>${1:Título do Artigo}</h2>
+    <p>${2:Texto do artigo}</p>
+</article>
+endsnippet
+
+snippet 'aside' 'Informação lateral'
+<aside>
+    ${1:Conteúdo adicional ou lateral}
+</aside>
+endsnippet
+
+snippet 'details' 'Detalhes expansíveis'
+<details>
+    <summary>${1:Resumo ou título}</summary>
+    <p>${2:Conteúdo detalhado}</p>
+</details>
+endsnippet
+
+snippet 'mark' 'Texto destacado'
+<mark>${1:Texto destacado}</mark>
+endsnippet
+
+snippet 'figure' 'Figura com legenda'
+<figure>
+    <img src="${1:imagem.jpg}" alt="${2:Descrição}">
+    <figcaption>${3:Legenda da figura}</figcaption>
+</figure>
+endsnippet
+
+snippet 'select' 'Menu suspenso'
+<select name="${1:opcoes}">
+    <option value="${2:valor1}">${3:Opção 1}</option>
+    <option value="${4:valor2}">${5:Opção 2}</option>
+</select>
+endsnippet
+
+snippet 'textarea' 'Área de texto'
+<textarea name="${1:nome}" rows="${2:4}" cols="${3:50}">${4:Texto aqui}</textarea>
+endsnippet
+
+snippet 'input-text' 'Campo de texto'
+<input type="text" name="${1:nome}" placeholder="${2:Digite algo}">
+endsnippet
+
+snippet 'input-radio' 'Botão de rádio'
+<input type="radio" id="${1:opcao1}" name="${2:grupo}" value="${3:valor}">
+<label for="${1:opcao1}">${4:Opção 1}</label>
+endsnippet
+
+snippet 'input-checkbox' 'Caixa de seleção'
+<input type="checkbox" id="${1:opcao1}" name="${2:grupo}" value="${3:valor}">
+<label for="${1:opcao1}">${4:Opção 1}</label>
+endsnippet
+
+snippet 'input-date' 'Campo de data'
+<input type="date" name="${1:data}">
+endsnippet
+
+snippet 'input-email' 'Campo de email'
+<input type="email" name="${1:email}" placeholder="${2:email@exemplo.com}">
+endsnippet
+
+snippet 'input-password' 'Campo de senha'
+<input type="password" name="${1:senha}" placeholder="${2:Senha}">
+endsnippet
+
+snippet 'input-file' 'Campo de envio de arquivo'
+<input type="file" name="${1:arquivo}">
+endsnippet
+
+snippet 'input-range' 'Slider'
+<input type="range" name="${1:range}" min="${2:0}" max="${3:100}">
+endsnippet
+
+snippet 'fieldset' 'Grupo de campos'
+<fieldset>
+    <legend>${1:Título do grupo}</legend>
+    <input type="text" name="${2:nome}">
+</fieldset>
+endsnippet
+
+snippet 'canvas' 'Canvas para gráficos'
+<canvas id="${1:meuCanvas}" width="${2:500}" height="${3:400}"></canvas>
+endsnippet
+
+snippet 'svg' 'Gráfico SVG'
+<svg width="${1:100}" height="${2:100}" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+endsnippet
+
+snippet 'dl' 'Lista de definições'
+<dl>
+    <dt>${1:Termo}</dt>
+    <dd>${2:Definição}</dd>
+</dl>
+endsnippet
+
+snippet 'marquee' 'Texto rolando (obsoleto)'
+<marquee>${1:Texto rolante}</marquee>
+endsnippet
+
+
+
+snippet 'map' 'Mapa de imagens'
+<img src="${1:imagem.jpg}" usemap="#${2:mapa}">
+<map name="${2:mapa}">
+    <area shape="${3:rect}" coords="${4:50,50,100,100}" href="${5:#}" alt="${6:Descrição}">
+</map>
+endsnippet
+
+snippet 'input-color' 'Campo de seleção de cor'
+<input type="color" name="${1:cor}" value="${2:#000000}">
+endsnippet
+
+snippet 'input-number' 'Campo de número'
+<input type="number" name="${1:numero}" min="${2:1}" max="${3:100}" step="${4:1}" value="${5:10}">
+endsnippet
+
+snippet 'input-search' 'Campo de busca'
+<input type="search" name="${1:busca}" placeholder="${2:Digite aqui}">
+endsnippet
+
+snippet 'input-tel' 'Campo de telefone'
+<input type="tel" name="${1:telefone}" placeholder="${2:+55 11 99999-9999}">
+endsnippet
+
+snippet 'datalist' 'Campo com lista de opções'
+<input list="${1:opcoes}" name="${2:nome}">
+<datalist id="${1:opcoes}">
+    <option value="${3:Opção 1}">
+    <option value="${4:Opção 2}">
+    <option value="${5:Opção 3}">
+</datalist>
+endsnippet
+
+snippet 'fieldset-disabled' 'Grupo de campos desabilitados'
+<fieldset disabled>
+    <legend>${1:Título}</legend>
+    <input type="text" name="${2:nome}">
+</fieldset>
+endsnippet
+
+snippet 'label' 'Rótulo para campo'
+<label for="${1:idCampo}">${2:Texto do rótulo}</label>
+<input type="${3:text}" id="${1:idCampo}" name="${4:nome}">
+endsnippet
+
+snippet 'time' 'Elemento de tempo'
+<time datetime="${1:2024-01-01T12:00:00Z}">${2:1 de Janeiro de 2024, 12h}</time>
+endsnippet
+
+snippet 'picture' 'Imagem com suporte para diferentes tamanhos'
+<picture>
+    <source srcset="${1:imagem-grande.jpg}" media="(min-width: 800px)">
+    <source srcset="${2:imagem-pequena.jpg}" media="(max-width: 799px)">
+    <img src="${3:imagem-padrao.jpg}" alt="${4:Descrição da imagem}">
+</picture>
+endsnippet
+
+snippet 'summary-details' 'Resumo clicável com detalhes'
+<details>
+    <summary>${1:Texto do resumo}</summary>
+    <p>${2:Detalhes expandidos aqui}</p>
+</details>
+endsnippet
+
+snippet 'kbd' 'Tecla ou atalho de teclado'
+<p>Pressione <kbd>${1:Ctrl+C}</kbd> para copiar.</p>
+endsnippet
+
+snippet 'samp' 'Texto de exemplo de código'
+<p>Saída esperada: <samp>${1:Hello, World!}</samp></p>
+endsnippet
+
+snippet 'sub' 'Texto subscrito'
+<p>${1:H<sub>2</sub>O}</p>
+endsnippet
+
+snippet 'sup' 'Texto sobrescrito'
+<p>${1:E=mc<sup>2</sup>}</p>
+endsnippet
+
+snippet 'var' 'Variável'
+<p>A variável é <var>${1:x}</var>.</p>
+endsnippet
+
+snippet 'iframe-responsive' 'Iframe responsivo'
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
+    <iframe src="${1:https://example.com}" frameborder="0" style="position: absolute; width: 100%; height: 100%;"></iframe>
+</div>
+endsnippet
+
+snippet 'button-submit' 'Botão de envio de formulário'
+<button type="submit">${1:Enviar}</button>
+endsnippet
+
+snippet 'button-reset' 'Botão para resetar formulário'
+<button type="reset">${1:Redefinir}</button>
+endsnippet
+
+snippet 'button-icon' 'Botão com ícone'
+<button>
+    <img src="${1:icone.png}" alt="${2:Descrição do ícone}"> ${3:Texto do botão}
+</button>
+endsnippet
+
+snippet 'ul-nested' 'Lista não ordenada aninhada'
+<ul>
+    <li>${1:Item 1}</li>
+    <li>${2:Item 2}
+        <ul>
+            <li>${3:Subitem 1}</li>
+            <li>${4:Subitem 2}</li>
+        </ul>
+    </li>
+</ul>
+endsnippet
+
+snippet 'figure-with-caption' 'Figura com legenda e link'
+<figure>
+    <img src="${1:imagem.jpg}" alt="${2:Descrição}">
+    <figcaption>
+        <a href="${3:#}">${4:Veja mais informações aqui}</a>
+    </figcaption>
+</figure>
+endsnippet
+
+snippet 'responsive-table' 'Tabela responsiva com CSS embutido'
+<style>
+    .responsive-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .responsive-table th, .responsive-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .responsive-table th {
+        background-color: #f2f2f2;
+    }
+</style>
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>${1:Cabeçalho 1}</th>
+            <th>${2:Cabeçalho 2}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${3:Dado 1}</td>
+            <td>${4:Dado 2}</td>
+        </tr>
+    </tbody>
+</table>
+endsnippet
+
+snippet 'progress-label' 'Barra de progresso com rótulo'
+<div>
+    <label for="${1:progresso}">${2:Progresso:}</label>
+    <progress id="${1:progresso}" value="${3:50}" max="${4:100}">${3:50%}</progress>
+</div>
+endsnippet
+
+
+snippet 'audio' 'Elemento de áudio com controles'
+<audio controls>
+    <source src="${1:audio.mp3}" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+endsnippet
+
+snippet 'video' 'Elemento de vídeo com controles'
+<video width="${1:640}" height="${2:360}" controls>
+    <source src="${3:video.mp4}" type="video/mp4">
+    Seu navegador não suporta o elemento de vídeo.
+</video>
+endsnippet
+
+snippet 'meter' 'Medidor de valor'
+<meter value="${1:0.7}" min="${2:0}" max="${3:1}" low="${4:0.2}" high="${5:0.8}" optimum="${6:0.9}">
+    ${7:70%}
+</meter>
+endsnippet
+
+snippet 'abbr' 'Abreviação'
+<p>A sigla para Organização das Nações Unidas é <abbr title="${1:Organização das Nações Unidas}">ONU</abbr>.</p>
+endsnippet
+
+snippet 'mark' 'Texto destacado'
+<p>Este é um texto com <mark>${1:palavras destacadas}</mark>.</p>
+endsnippet
+
+snippet 'blockquote' 'Citação em bloco'
+<blockquote cite="${1:https://example.com}">
+    ${2:Este é um exemplo de citação longa.}
+</blockquote>
+endsnippet
+
+snippet 'optgroup' 'Grupo de opções'
+<select name="${1:categoria}">
+    <optgroup label="${2:Grupo 1}">
+        <option value="${3:valor1}">${4:Opção 1}</option>
+        <option value="${5:valor2}">${6:Opção 2}</option>
+    </optgroup>
+    <optgroup label="${7:Grupo 2}">
+        <option value="${8:valor3}">${9:Opção 3}</option>
+        <option value="${10:valor4}">${11:Opção 4}</option>
+    </optgroup>
+</select>
+endsnippet
+
+snippet 'code' 'Bloco de código'
+<pre>
+<code>
+${1:// Seu código aqui}
+</code>
+</pre>
+endsnippet
+
+snippet 'figure' 'Figura com legenda'
+<figure>
+    <img src="${1:imagem.jpg}" alt="${2:Descrição da imagem}">
+    <figcaption>${3:Legenda para a imagem}</figcaption>
+</figure>
+endsnippet
+
+snippet 'form' 'Formulário básico'
+<form action="${1:/submit}" method="${2:post}">
+    <label for="${3:campo}">${4:Campo:}</label>
+    <input type="text" id="${3:campo}" name="${5:nome}">
+    <button type="submit">${6:Enviar}</button>
+</form>
+endsnippet
+
+snippet 'nav' 'Barra de navegação'
+<nav>
+    <ul>
+        <li><a href="${1:#home}">${2:Home}</a></li>
+        <li><a href="${3:#about}">${4:Sobre}</a></li>
+        <li><a href="${5:#contact}">${6:Contato}</a></li>
+    </ul>
+</nav>
+endsnippet
+
+snippet 'article' 'Artigo'
+<article>
+    <header>
+        <h2>${1:Título do Artigo}</h2>
+        <p>${2:Resumo ou descrição breve}</p>
+    </header>
+    <p>${3:Conteúdo do artigo aqui.}</p>
+</article>
+endsnippet
+
+snippet 'aside' 'Seção lateral'
+<aside>
+    <h2>${1:Título da Seção Lateral}</h2>
+    <p>${2:Conteúdo da seção lateral aqui.}</p>
+</aside>
+endsnippet
+
+snippet 'progress-bar' 'Barra de progresso'
+<progress value="${1:40}" max="${2:100}">${1:40}%</progress>
+endsnippet
+
+snippet 'table-complex' 'Tabela com cabeçalhos e rodapé'
+<table>
+    <caption>${1:Título da Tabela}</caption>
+    <thead>
+        <tr>
+            <th>${2:Coluna 1}</th>
+            <th>${3:Coluna 2}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${4:Dados 1}</td>
+            <td>${5:Dados 2}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">${6:Rodapé da tabela}</td>
+        </tr>
+    </tfoot>
+</table>
+endsnippet
+
+snippet 'template' 'Modelo de conteúdo'
+<template id="${1:meu-template}">
+    <div>${2:Conteúdo do template}</div>
+</template>
+endsnippet
+
+snippet 'embed' 'Elemento embed'
+<embed src="${1:arquivo.pdf}" width="${2:800}" height="${3:600}">
+endsnippet
+
+snippet 'ol-nested' 'Lista ordenada aninhada'
+<ol>
+    <li>${1:Item 1}</li>
+    <li>${2:Item 2}
+        <ol>
+            <li>${3:Subitem 1}</li>
+            <li>${4:Subitem 2}</li>
+        </ol>
+    </li>
+</ol>
+endsnippet
+
+snippet 'footer' 'Rodapé'
+<footer>
+    <p>${1:Texto do rodapé}</p>
+</footer>
+endsnippet
+
+snippet 'header' 'Cabeçalho'
+<header>
+    <h1>${1:Título Principal}</h1>
+    <p>${2:Subtítulo ou descrição}</p>
+</header>
+endsnippet
+
+snippet 'section' 'Seção de conteúdo'
+<section>
+    <h2>${1:Título da Seção}</h2>
+    <p>${2:Conteúdo da seção aqui.}</p>
+</section>
+endsnippet
+
+

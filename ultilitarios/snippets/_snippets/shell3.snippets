@@ -1,0 +1,160 @@
+# Criar uma sequência numérica
+snippet 'seq' 'Criar uma sequência numérica'
+for i in $(seq ${1:1} ${2:10}); do
+    echo "Número: $i"
+done
+endsnippet
+
+# Verificar portas abertas
+snippet 'portscan' 'Verificar portas abertas em um host'
+for port in {${1:20}..${2:80}}; do
+    timeout 1 bash -c "</dev/tcp/${3:hostname}/$port" &>/dev/null && echo "Porta $port aberta" || echo "Porta $port fechada"
+done
+endsnippet
+
+# Configurar alias no shell
+snippet 'alias' 'Configurar alias no shell'
+alias ${1:comando_alias}="${2:comando_original}"
+endsnippet
+
+# Listar apenas arquivos de um diretório
+snippet 'listfiles' 'Listar apenas arquivos em um diretório'
+for file in ${1:/caminho/do/diretorio}/*; do
+    if [[ -f $file ]]; then
+        echo "Arquivo: $file"
+    fi
+done
+endsnippet
+
+# Listar apenas diretórios
+snippet 'listdirs' 'Listar apenas diretórios'
+for dir in ${1:/caminho/do/diretorio}/*; do
+    if [[ -d $dir ]]; then
+        echo "Diretório: $dir"
+    fi
+done
+endsnippet
+
+# Substituir texto em arquivos
+snippet 'sed' 'Substituir texto em arquivos'
+sed -i 's/${1:antigo}/${2:novo}/g' ${3:arquivo.txt}
+endsnippet
+
+# Concatenar arquivos em um só
+snippet 'concat' 'Concatenar arquivos em um só'
+cat ${1:arquivo1} ${2:arquivo2} > ${3:saida.txt}
+endsnippet
+
+# Calcular soma de números
+snippet 'sum' 'Calcular soma de números'
+sum=$(( ${1:num1} + ${2:num2} ))
+echo "A soma é $sum"
+endsnippet
+
+# Converter texto para maiúsculas
+snippet 'toupper' 'Converter texto para maiúsculas'
+echo "${1:texto}" | tr '[:lower:]' '[:upper:]'
+endsnippet
+
+# Converter texto para minúsculas
+snippet 'tolower' 'Converter texto para minúsculas'
+echo "${1:texto}" | tr '[:upper:]' '[:lower:]'
+endsnippet
+
+# Mostrar uso de disco
+snippet 'diskusage' 'Mostrar uso de disco'
+df -h ${1:/}
+endsnippet
+
+# Pausar execução
+snippet 'pause' 'Pausar execução e aguardar ação do usuário'
+read -n 1 -s -r -p "Pressione qualquer tecla para continuar..."
+echo
+endsnippet
+
+# Arquivo de configurações
+snippet 'configfile' 'Ler configurações de um arquivo'
+while IFS='=' read -r key value; do
+    eval "${key}='${value}'"
+done < ${1:config.txt}
+endsnippet
+
+# Enviar requisição POST com curl
+snippet 'postcurl' 'Enviar requisição POST com curl'
+curl -X POST -H "Content-Type: application/json" -d '${1:{ "chave": "valor" }}' ${2:http://api.endpoint.com}
+endsnippet
+
+# Monitorar utilização de memória
+snippet 'memoryusage' 'Monitorar utilização de memória'
+while true; do
+    free -h | grep "Mem:" | awk '{print "Memória usada: "$3}'
+    sleep ${1:5}
+done
+endsnippet
+
+# Comparar dois arquivos
+snippet 'diff' 'Comparar dois arquivos'
+diff ${1:arquivo1} ${2:arquivo2}
+endsnippet
+
+# Criar arquivo de senha seguro
+snippet 'securefile' 'Criar arquivo com permissões seguras'
+touch ${1:arquivo.txt}
+chmod 600 ${1:arquivo.txt}
+echo "Arquivo seguro criado: ${1:arquivo.txt}"
+endsnippet
+
+# Testar URL
+snippet 'testurl' 'Testar se uma URL está acessível'
+if curl -s --head --request GET ${1:http://example.com} | grep "200 OK" > /dev/null; then
+    echo "URL acessível."
+else
+    echo "URL inacessível."
+fi
+endsnippet
+
+# Obter tamanho de um arquivo
+snippet 'filesize' 'Obter tamanho de um arquivo'
+size=$(stat --format=%s ${1:arquivo.txt})
+echo "O tamanho do arquivo é $size bytes."
+endsnippet
+
+# Renomear arquivos em lote
+snippet 'batchrename' 'Renomear arquivos em lote'
+for file in ${1:diretorio}/*; do
+    mv "$file" "${file%.${2:extensao_antiga}}.${3:extensao_nova}"
+done
+endsnippet
+
+# Atualizar pacotes do sistema
+snippet 'update' 'Atualizar pacotes do sistema'
+sudo apt update && sudo apt upgrade -y
+endsnippet
+
+# Arquivo de log rotativo
+snippet 'rotatelog' 'Arquivo de log rotativo'
+log_file="${1:logfile.log}"
+if [[ -f $log_file && $(stat --format=%s "$log_file") -gt ${2:1048576} ]]; then
+    mv "$log_file" "$log_file.$(date '+%Y-%m-%d_%H-%M-%S')"
+    touch "$log_file"
+fi
+endsnippet
+
+# Testar disponibilidade de servidor via ping
+snippet 'serverping' 'Testar disponibilidade de servidor via ping'
+if ping -c ${1:3} ${2:servidor} &>/dev/null; then
+    echo "Servidor ${2:servidor} está disponível."
+else
+    echo "Servidor ${2:servidor} está indisponível."
+fi
+endsnippet
+
+# Redirecionar saída para /dev/null
+snippet 'redirectnull' 'Redirecionar saída para /dev/null'
+${1:comando} > /dev/null 2>&1
+endsnippet
+
+# Mostrar processos em execução
+snippet 'ps' 'Mostrar processos em execução'
+ps aux | grep "${1:processo}"
+endsnippet

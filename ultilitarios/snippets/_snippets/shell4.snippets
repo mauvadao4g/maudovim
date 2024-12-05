@@ -1,0 +1,151 @@
+# Adicionar uma linha ao final de um arquivo
+snippet 'addline' 'Adicionar uma linha ao final de um arquivo'
+echo "${1:Texto para adicionar}" >> ${2:arquivo.txt}
+endsnippet
+
+# Remover linhas duplicadas em um arquivo
+snippet 'removedup' 'Remover linhas duplicadas de um arquivo'
+sort -u ${1:arquivo.txt} -o ${1:arquivo.txt}
+endsnippet
+
+# Monitorar alterações em um arquivo
+snippet 'filemonitor' 'Monitorar alterações em um arquivo'
+tail -f ${1:arquivo.log}
+endsnippet
+
+# Comprimir arquivos com tar
+snippet 'compress' 'Comprimir arquivos com tar'
+tar -czvf ${1:arquivo.tar.gz} ${2:diretorio_ou_arquivos}
+endsnippet
+
+# Descomprimir arquivos tar.gz
+snippet 'extract' 'Descomprimir arquivos tar.gz'
+tar -xzvf ${1:arquivo.tar.gz} -C ${2:destino}
+endsnippet
+
+# Enviar email com anexo usando mailx
+snippet 'sendemail' 'Enviar email com anexo'
+echo "${1:Corpo do email}" | mailx -s "${2:Assunto}" -a ${3:anexo} ${4:destinatario}
+endsnippet
+
+# Testar conectividade com múltiplos hosts
+snippet 'multiping' 'Testar conectividade com múltiplos hosts'
+for host in ${1:host1} ${2:host2} ${3:host3}; do
+    if ping -c 1 $host &>/dev/null; then
+        echo "$host está acessível."
+    else
+        echo "$host está inacessível."
+    fi
+done
+endsnippet
+
+# Mostrar horário atual formatado
+snippet 'datetime' 'Mostrar horário atual formatado'
+echo "Data e hora atual: $(date '+%Y-%m-%d %H:%M:%S')"
+endsnippet
+
+# Monitorar uso de CPU
+snippet 'cpuusage' 'Monitorar uso de CPU'
+while true; do
+    top -bn1 | grep "Cpu(s)" | awk '{print "Uso de CPU: "$2+$4"%"}'
+    sleep ${1:5}
+done
+endsnippet
+
+# Gerar números aleatórios
+snippet 'random' 'Gerar números aleatórios'
+echo $((RANDOM % ${1:100}))
+endsnippet
+
+# Backup incremental
+snippet 'backup' 'Criar backup incremental'
+rsync -av --progress ${1:diretorio_origem}/ ${2:diretorio_destino}/
+endsnippet
+
+# Comparar conteúdo de diretórios
+snippet 'dircompare' 'Comparar conteúdo de dois diretórios'
+diff -rq ${1:dir1} ${2:dir2}
+endsnippet
+
+# Executar comandos em paralelo
+snippet 'parallel' 'Executar comandos em paralelo'
+echo -e "${1:comando1}\n${2:comando2}" | xargs -n1 -P2 -I{} bash -c '{}'
+endsnippet
+
+# Calcular tempo de execução
+snippet 'timer' 'Calcular tempo de execução'
+start=$(date +%s)
+${1:comando}
+end=$(date +%s)
+echo "Tempo de execução: $((end - start)) segundos."
+endsnippet
+
+# Gerar hash de um arquivo
+snippet 'hashgen' 'Gerar hash de um arquivo'
+sha256sum ${1:arquivo.txt}
+endsnippet
+
+# Procurar padrão em arquivos
+snippet 'grep' 'Procurar padrão em arquivos'
+grep -i "${1:padrao}" ${2:arquivo.txt}
+endsnippet
+
+# Baixar arquivo com wget
+snippet 'download' 'Baixar arquivo com wget'
+wget -O ${1:arquivo_saida} ${2:url}
+endsnippet
+
+# Testar conexão SSH
+snippet 'sshcheck' 'Testar conexão SSH'
+ssh -q -o "BatchMode=yes" ${1:usuario}@${2:host} "exit"
+if [[ $? -eq 0 ]]; then
+    echo "Conexão SSH bem-sucedida."
+else
+    echo "Falha na conexão SSH."
+fi
+endsnippet
+
+# Contar palavras em um arquivo
+snippet 'wordcount' 'Contar palavras em um arquivo'
+wc -w ${1:arquivo.txt}
+endsnippet
+
+# Listar arquivos por tamanho
+snippet 'listsize' 'Listar arquivos ordenados por tamanho'
+ls -lhS ${1:diretorio}
+endsnippet
+
+# Rotacionar logs
+snippet 'logrotate' 'Rotacionar logs manualmente'
+mv ${1:arquivo.log} "${1:arquivo.log}.$(date '+%Y-%m-%d')"
+touch ${1:arquivo.log}
+endsnippet
+
+# Buscar processos por nome
+snippet 'findproc' 'Buscar processos por nome'
+ps aux | grep -i "${1:processo}" | grep -v "grep"
+endsnippet
+
+# Capturar saída de erro em arquivo
+snippet 'stderr' 'Capturar saída de erro em arquivo'
+${1:comando} 2> ${2:erro.log}
+endsnippet
+
+# Calcular espaço livre no disco
+snippet 'freespace' 'Calcular espaço livre no disco'
+df -h | grep "${1:/}" | awk '{print "Espaço livre: "$4}'
+endsnippet
+
+# Testar conexão a uma porta específica
+snippet 'testport' 'Testar conexão a uma porta específica'
+timeout 2 bash -c "</dev/tcp/${1:host}/${2:porta}" &>/dev/null && echo "Porta ${2:porta} está acessível" || echo "Porta ${2:porta} está inacessível"
+endsnippet
+
+# Verificar se um arquivo existe
+snippet 'fileexists' 'Verificar se um arquivo existe'
+if [[ -e ${1:arquivo.txt} ]]; then
+    echo "O arquivo ${1:arquivo.txt} existe."
+else
+    echo "O arquivo ${1:arquivo.txt} não existe."
+fi
+endsnippet

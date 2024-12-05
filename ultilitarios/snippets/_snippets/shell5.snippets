@@ -1,0 +1,161 @@
+# Monitorar uso de memória
+snippet 'memusage' 'Monitorar uso de memória'
+free -h | awk '/^Mem:/ {print "Uso de memória: " $3 " / " $2}'
+endsnippet
+
+# Gerar senha aleatória
+snippet 'genpassword' 'Gerar senha aleatória'
+tr -dc A-Za-z0-9 </dev/urandom | head -c ${1:16} ; echo ''
+endsnippet
+
+# Verificar status de serviços do sistema
+snippet 'checkservice' 'Verificar status de um serviço'
+systemctl status ${1:servico} | grep "Active:"
+endsnippet
+
+# Criar usuário no sistema
+snippet 'adduser' 'Criar usuário no sistema'
+sudo useradd -m -s /bin/bash ${1:usuario}
+echo "${1:usuario}:${2:senha}" | sudo chpasswd
+endsnippet
+
+# Bloquear endereço IP com iptables
+snippet 'blockip' 'Bloquear endereço IP com iptables'
+sudo iptables -A INPUT -s ${1:IP} -j DROP
+endsnippet
+
+# Compactar diretório com zip
+snippet 'zipdir' 'Compactar diretório com zip'
+zip -r ${1:arquivo.zip} ${2:diretorio}
+endsnippet
+
+# Descompactar arquivo zip
+snippet 'unzip' 'Descompactar arquivo zip'
+unzip ${1:arquivo.zip} -d ${2:destino}
+endsnippet
+
+# Apagar arquivos antigos em um diretório
+snippet 'cleanold' 'Apagar arquivos antigos'
+find ${1:diretorio} -type f -mtime +${2:30} -exec rm {} \;
+endsnippet
+
+# Exibir conteúdo de um arquivo com numeração de linhas
+snippet 'showfile' 'Exibir conteúdo de um arquivo com numeração de linhas'
+nl ${1:arquivo.txt}
+endsnippet
+
+# Criar arquivo temporário
+snippet 'tempfile' 'Criar arquivo temporário'
+tempfile=$(mktemp)
+echo "Arquivo temporário criado em: $tempfile"
+endsnippet
+
+# Testar conexão HTTP
+snippet 'httptest' 'Testar conexão HTTP'
+curl -Is ${1:url} | head -n 1
+endsnippet
+
+# Gerar lista de arquivos no formato JSON
+snippet 'listjson' 'Gerar lista de arquivos em JSON'
+ls -1 ${1:diretorio} | jq -R . | jq -s .
+endsnippet
+
+# Executar comando remoto via SSH
+snippet 'remoteexec' 'Executar comando remoto via SSH'
+ssh ${1:usuario}@${2:host} "${3:comando}"
+endsnippet
+
+# Verificar versão de software instalado
+snippet 'checkversion' 'Verificar versão de um software'
+${1:software} --version
+endsnippet
+
+# Obter endereço IP público
+snippet 'publicip' 'Obter endereço IP público'
+curl -s ifconfig.me
+endsnippet
+
+# Sincronizar dois diretórios
+snippet 'syncdirs' 'Sincronizar dois diretórios'
+rsync -avz ${1:origem} ${2:destino}
+endsnippet
+
+# Buscar string e substituir em arquivos
+snippet 'findreplace' 'Buscar e substituir texto em arquivos'
+sed -i "s/${1:antigo}/${2:novo}/g" ${3:arquivo.txt}
+endsnippet
+
+# Mostrar tempo de uptime do sistema
+snippet 'uptime' 'Mostrar tempo de uptime do sistema'
+uptime -p
+endsnippet
+
+# Exibir logs do sistema em tempo real
+snippet 'syslogs' 'Exibir logs do sistema em tempo real'
+journalctl -f
+endsnippet
+
+# Calcular soma de arquivos
+snippet 'checksum' 'Calcular soma de verificação (checksum)'
+md5sum ${1:arquivo.txt}
+endsnippet
+
+# Medir tempo de resposta de um site
+snippet 'pingurl' 'Medir tempo de resposta de um site'
+curl -o /dev/null -s -w "%{time_total}\n" ${1:url}
+endsnippet
+
+# Gerar arquivo CSV com cabeçalhos
+snippet 'createcsv' 'Gerar arquivo CSV com cabeçalhos'
+echo "${1:coluna1,coluna2,coluna3}" > ${2:arquivo.csv}
+endsnippet
+
+# Monitorar temperatura do sistema (necessita sensores instalados)
+snippet 'cputemp' 'Monitorar temperatura da CPU'
+sensors | grep "Core" | awk '{print $1, $2, $3}'
+endsnippet
+
+# Listar portas abertas
+snippet 'openports' 'Listar portas abertas no sistema'
+sudo netstat -tuln | grep LISTEN
+endsnippet
+
+# Detectar distribuição Linux
+snippet 'detectdistro' 'Detectar distribuição Linux'
+cat /etc/*-release | grep PRETTY_NAME | cut -d '=' -f 2
+endsnippet
+
+# Agendar tarefa no cron
+snippet 'cronjob' 'Agendar tarefa no cron'
+echo "${1:*/5 * * * * comando}" | crontab -
+endsnippet
+
+# Baixar e extrair arquivo tar.gz diretamente
+snippet 'fetchandextract' 'Baixar e extrair arquivo tar.gz diretamente'
+curl -sL ${1:url} | tar -xz -C ${2:destino}
+endsnippet
+
+# Gerar logs rotacionáveis
+snippet 'rotatelogs' 'Gerar logs rotacionáveis'
+logrotate -d ${1:arquivo.conf}
+endsnippet
+
+# Criar links simbólicos
+snippet 'symlink' 'Criar link simbólico'
+ln -s ${1:arquivo_origem} ${2:arquivo_destino}
+endsnippet
+
+# Detectar número de CPUs disponíveis
+snippet 'cpucount' 'Detectar número de CPUs disponíveis'
+nproc
+endsnippet
+
+# Reformatar arquivo JSON
+snippet 'prettyjson' 'Reformatar arquivo JSON para leitura'
+jq . ${1:arquivo.json}
+endsnippet
+
+# Detectar arquitetura do sistema
+snippet 'archdetect' 'Detectar arquitetura do sistema'
+uname -m
+endsnippet

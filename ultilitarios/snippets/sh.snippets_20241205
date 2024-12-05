@@ -28,11 +28,7 @@ endglobal
 #                            TextMate Snippets                            #
 ###########################################################################
 
-snippet snippet "Snippet que gera outro snippet" b
-snippet ${1:trigger} "${2:description}" b
- ${3:conteudo_do_snippet}
-`!p snip.rv = "endsnippet"`
-endsnippet
+
 
 snippet snip "Create Snippet"
 snippet ${1:nome} "${2:COMENTARIO}"
@@ -1123,12 +1119,9 @@ snippet cores "Cores Bash" b
  vd='\e[1;32m'
  am='\e[1;33m'
  az='\e[1;34m'
- mg=='\e[1;35m'
- cy=='\e[1;36m'
  fs='\e[1;30m'
  rs='\e[0m'
 endsnippet
-
 
 snippet limparpay "Limpar payloads" b
 # LIMPA E FORMATA AS PAYLOADS
@@ -1220,12 +1213,6 @@ echo -e '\e[1;35m'
 figlet ${1:MauDaVpn}
 echo -e '\e[0m'
 endsnippet
-
-
-
-
-
-
 ####################################################
 # vim:ft=snippets:
 
