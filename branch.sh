@@ -34,4 +34,15 @@ mensagem "Fazendo commit do arquivo na branch $BRANCH_DESTINO..."
 git add "$ARQUIVO"
 git commit -m "Adicionando $ARQUIVO da branch $BRANCH_ORIGEM para $BRANCH_DESTINO"
 
+# Push na branch de origem
+git checkout testes_vim
+git push origin testes_vim
+
+# push na branch de destino
+git checkout main
+git push origin main
+
+
+# em todas as branch se tiver as permissoes nescessarias
+# git push --all
 mensagem "Operação concluída com sucesso!"
