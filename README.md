@@ -1,10 +1,11 @@
 # MAUDAVPN
-
+  <img alt="Welcome" title="Welcome" src="https://host-pw.shop/adm/imgbb//UPLOADS/ARLEQUINA/ARLEQUINA_01/Arlequi-16361.jpg" />
+  Menu
 ## Descrição do Projeto
 
 <p align="center"></p>
 <h1 align="center">
-    <a href="https://t.me/maudavpn">🔗 Canal telegram</a>
+    <a href="https://t.me/maudavpn">🔗 Canal telegram</a><br>
     <a href="https://t.me/maud4vpn">🧠 Grupo Telegram</a>
 </h1>
 <p align="center">🚀 Automatizando a instalção e configuraçao do vim e nvim.</p>
@@ -41,7 +42,7 @@ $ vim
 ## Pronto.
 ```
 
-### Comandos Intacao via link
+### Comandos Intalação via link
 curl -sL "https://raw.githubusercontent.com/mauvadao4g/maudovim/refs/heads/main/instalador" | bash
 
 OU
