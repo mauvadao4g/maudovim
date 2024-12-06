@@ -1,5 +1,5 @@
 # MAUDAVPN
-  <img alt="Welcome" title="Welcome" src="img/img.jpg" />
+  <img alt="Welcome" title="Welcome" src="img/maudavpn-telegram.jpg" />
   Menu
 ## Descrição do Projeto
 
