@@ -1223,7 +1223,25 @@ endsnippet
 
 
 
+# PASTAS E DIRETORIOS
+snippet mke "Verifica se a pasta existe" b
+# verifica se a pasta já existe.
+${1:PATCH}="${2}"
+[[ -d $PATCH ]] && { echo "$PATCH Já existe"; }  
+endsnippet
 
+
+snippet mkn "Verifica se a pasta nao existe" b
+# verifica se a pasta já existe.
+${1:PATCH}="${2}"
+[[ ! -d $PATCH ]] && { echo "$PATCH não existe"; }  
+endsnippet
+
+snippet mks "Verifica se a pasta existe se nao." b
+# verifica se a pasta já existe, Se nao.
+${1:PATCH}="${2}"
+[[ -d $PATCH ]] && { echo "$PATCH Já existe"; } || { echo "$PATCH não existe"; }  
+endsnippet
 
 
 ####################################################
