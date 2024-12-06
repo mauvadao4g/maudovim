@@ -39,7 +39,7 @@ configurar_vim_neovim() {
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     echo "Configurando o Vim e Neovim..."
-    cat > ~/.vimrc << EOF
+    cat > ~/.vimrc teste.vim<< EOF
 " Gerenciador de plugins
 call plug#begin('~/.vim/autoload/plug/start')
 
@@ -115,15 +115,6 @@ inoremap <C-k> <Esc>k
 " Ctrl+L: Apaga a próxima palavra no modo de inserção
 inoremap <C-l> <Esc>S
 
-
-" Mapeamentos personalizados
-
-" Ctrl+s para salvar
-nnoremap <C-s> :w<CR>
-" Ctrl+q para sair sem salvar
-nnoremap <C-q> :q!<CR>
-" Ctrl+d para salvar e encerrar
-nnoremap <C-d> :wq<CR>
 
 " Ctrl+t: Abre o terminal na vertical
 inoremap <C-t> <Esc>:vsp term://$SHELL<CR>

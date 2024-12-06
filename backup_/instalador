@@ -1,0 +1,27 @@
+#!/bin/bash
+# instalando o editor vim
+
+# Logo MauDaVpn
+echo -e '\e[1;33m'
+figlet MauDaVpn
+echo -e '\e[0m'
+
+cd "$HOME"
+git clone https://github.com/mauvadao4g/maudovim.git
+cd maudovim
+
+# verificando se o install está na pasta
+[[ -f "install.sh" ]] && {
+bash install.sh
+}
+
+
+cd ../
+# verificando se o file existe
+file="maudovim"
+[[ -d "$file" ]] && { rm -rf maudovim ; history -c; }
+
+
+echo -e "\e[1;33mInstalação concluida\e[0m"
+
+cd -
