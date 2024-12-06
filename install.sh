@@ -5,6 +5,21 @@
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
 
+_bkp(){
+    timestamp=$(date +%Y%m%d_%H%M%S)
+
+# Verificando se a pasta existe
+[ ! -d vimrc_bkp ] && {
+mkdir -p vimrc_bkp ; }
+
+    cp $HOME/.vimrc vimrc_bkp/vimrc_$timestamp.bkp
+    clear
+    echo -e "\e[1;32mCriado com sucesso!\e[0m"
+    echo -ne '\e[44;1;37mLocal\e[0m: '
+  ls vimrc_bkp/vimrc_$timestamp.bkp
+
+}
+
 _uninstall(){
 echo "Desinstalando o vim+nvim"
 echo
@@ -39,7 +54,7 @@ configurar_vim_neovim() {
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     echo "Configurando o Vim e Neovim..."
-    cat > ~/.vimrc << EOF
+    cat > temp.vim << EOF
 " Gerenciador de plugins
 call plug#begin('~/.vim/autoload/plug/start')
 
@@ -131,7 +146,9 @@ inoremap <C-t> <Esc>:vsp term://$SHELL<CR>
 " Ctrl+n: Abre o NERDTree
 inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
 EOF
+    
 
+    mv temp.vim ~/.vimrc
     cp ~/.vimrc ~/.config/nvim/init.vim
 
     echo "Instalando plugins do Vim e Neovim..."
@@ -216,6 +233,7 @@ menu_principal() {
     echo "4. Limpar plugins antigos"
     echo "5. Fazer backup das configurações atuais"
     echo "6. Desinstalar  vim+nvim"
+    echo "7. Backup HOME/.vimrc"
     echo "0. Sair"
     echo "========================"
     read -p "Escolha uma opção: " opcao
@@ -224,10 +242,12 @@ menu_principal() {
         1) instalar_dependencias ;;
         2) configurar_vim_neovim ;;
         3) corrigir_erro_tema ;;
-        4) limpar_plugins ;;
+        4) limpar_plugins ;; # Exclui pastas de plugin
         5) backup_configuracoes ;;
-        6) _uninstall ;;
+        6) _uninstall ;; # Remove os programas e configurações
+        7) _bkp ;; # Backup $HOME/.vimrc
         0) echo "Saindo..."; exit 0 ;;
+        
         *) echo "Opção inválida!"; menu_principal ;;
     esac
 
