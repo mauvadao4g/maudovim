@@ -20,7 +20,8 @@ new() {
 
     # Cria o novo nome do arquivo
     newFile="ver$num"
-
+    # Deleta o file antigo
+    [[ -f $newFile ]] && { rm $file >/dev/null 2>&1; }
     # Cria o novo arquivo
     touch "$newFile"
     echo "Novo arquivo criado: $newFile"
