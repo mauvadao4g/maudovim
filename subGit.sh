@@ -4,6 +4,7 @@
 # Versão: 1.0.1
 
 _new() {
+    data=$(date '+%Y-%m-%d %H:%M:%S')
     # Obtém o último arquivo correspondente ao padrão "ver[0-9]*"
     file=$(ls ver[0-9]* 2>/dev/null | sort -V | tail -n 1)
 
@@ -24,6 +25,10 @@ _new() {
 
     # Cria o novo arquivo
     touch "$newFile"
+    # adicionando linha de texto ao novo file
+    echo "Ver: $num"
+    echo "Update: $data" >> $newFile
+
     echo "Nova versão atualizada: $newFile"
 }
 
