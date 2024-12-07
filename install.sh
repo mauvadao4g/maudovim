@@ -12,7 +12,8 @@ _bkp(){
 [ ! -d vimrc_bkp ] && {
 mkdir -p vimrc_bkp ; }
 
-    cp $HOME/.vimrc vimrc_bkp/vimrc_$timestamp.bkp
+        cp $HOME/.vimrc vimrc_bkp/vimrc_$timestamp.bkp
+    cp /root/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets vimrc_bkp/sh.snippets_$timestamp.bkp
     clear
     echo -e "\e[1;32mCriado com sucesso!\e[0m"
     echo -ne '\e[44;1;37mLocal\e[0m: '
