@@ -3,6 +3,33 @@
 # Script para adicionar, commitar e enviar alterações ao Git
 # Versão: 1.0.1
 
+
+new() {
+    # Obtém o último arquivo correspondente ao padrão "ver[0-9]*"
+    file=$(ls ver[0-9]* 2>/dev/null | sort -V | tail -n 1)
+
+    # Se não houver nenhum arquivo correspondente, inicia do zero
+    if [[ -z "$file" ]]; then
+        num=1
+    else
+        # Extrai o número da versão do arquivo existente
+        num=$(echo "$file" | grep -Eo '[0-9]+')
+        # Incrementa o número
+        ((num++))
+    fi
+
+    # Cria o novo nome do arquivo
+    newFile="ver$num"
+
+    # Cria o novo arquivo
+    touch "$newFile"
+    echo "Novo arquivo criado: $newFile"
+}
+
+# Chama a função
+new
+
+
 # Função para exibir mensagens coloridas
 msg() {
     local color=$1
