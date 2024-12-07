@@ -24,7 +24,7 @@ _new() {
 
     # Cria o novo arquivo
     touch "$newFile"
-    echo "Novo arquivo criado: $newFile"
+    echo "Nova versão atualizada: $newFile"
 }
 
 # Chama a função
