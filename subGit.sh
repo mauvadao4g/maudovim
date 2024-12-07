@@ -27,8 +27,8 @@ _new() {
     touch "$newFile"
     # adicionando linha de texto ao novo file
     echo "==========================" >> $newFile
-    
-    echo "$(basename $(pwd))"
+    echo "$(basename $(pwd))" >> $newFile   
+#    echo "$(basename $(pwd))"
     echo "Ver: $num" >> $newFile
     echo "Update: $data" >> $newFile
     echo "==========================" >> $newFile
