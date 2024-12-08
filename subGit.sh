@@ -90,11 +90,12 @@ sleep 1
     msg green "Processo concluído com sucesso!"
 
     echo -ne "\e[1;33mCommit:\e[0m "
-    git log --oneline | head -n1
+    COMMIT="$(git log --oneline | head -n1)"
+    echo "$COMMIT"
     echo -ne '\e[1;30m'
     cat ver[0-9]*
     echo -ne '\e[0m'    
-
+    echo "$COMMIT" >> "$newFile" 
 
 
 
