@@ -1,23 +1,28 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.1
+# VER: 3.0.2
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
 
 _bkp(){
-    timestamp=$(date +%Y%m%d_%H%M%S)
-
+    timestamp=$(date +%Y%m%d%H%M%S)
+    mkdir -p vimrc_$timestamp
 # Verificando se a pasta existe
 [ ! -d vimrc_bkp ] && {
 mkdir -p vimrc_bkp ; }
 
-        cp $HOME/.vimrc vimrc_bkp/vimrc_$timestamp.bkp
-    cp /root/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets vimrc_bkp/sh.snippets_$timestamp.bkp
+# copiando os arquivos do $HOME/.vimrc
+        cp $HOME/.vimrc vimrc_$timestamp/vimrc
+# copiando o sh.snippets
+    cp /root/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets vimrc_$timestamp/sh.snippets
+
+    # Movendo a pasta pro diretório de backup
+    mv vimrc_$timestamp vimrc_bkp
     clear
     echo -e "\e[1;32mCriado com sucesso!\e[0m"
-    echo -ne '\e[44;1;37mLocal\e[0m: '
-  ls vimrc_bkp/vimrc_$timestamp.bkp
+    echo -ne '\e[44;1;37mFile:\e[0m: '
+  ls vimrc_bkp/vimrc_$timestamp
 
 }
 
