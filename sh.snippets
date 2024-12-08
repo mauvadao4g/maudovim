@@ -42,6 +42,9 @@ endsnipet
 endsnippet
 
 
+snippet vim "Comando pra instalar o vim."
+bash <(curl -sL "https://raw.githubusercontent.com/mauvadao4g/maudovim/refs/heads/main/instalador")
+endsnippet
 
 snippet timea "20241202_173015 - data para backup" b
 # Backup de arquivos.
@@ -695,6 +698,11 @@ endsnippet
 ###########################################################
 #      SNIPEETS PEGANDO INFORMAÇÕES DE IP EXTERNO E INTERNO
 ###########################################################
+
+# Ver Ip externo
+snippet verip "Ver ip externo"
+IP=$(curl -s http://whatismyip.akamai.com/)
+endsnippet
 
 # Snippet para obter o IP externo do provedor
 snippet ipex "Verifica o ip externo da máquina"
