@@ -86,4 +86,16 @@ DIR="$(pwd)"
 git config --global --add safe.directory "$DIR" && git push || { msg red "Erro ao enviar alterações."; exit 1; }
 
 # Mensagem de sucesso
+sleep 1
     msg green "Processo concluído com sucesso!"
+
+    echo -ne "\e[1;33mCommit:\e[0m "
+    git log --oneline | head -n1
+    echo -ne '\e[1;30m'
+    cat ver[0-9]*
+    echo -ne '\e[0m'    
+
+
+
+
+
