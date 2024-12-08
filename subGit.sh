@@ -1,7 +1,7 @@
 #!/bin/bash
 # MAUVADAO
+# Versão: 1.0.2
 # Script para adicionar, commitar e enviar alterações ao Git
-# Versão: 1.0.1
 
 _new() {
     data=$(date '+%Y-%m-%d %H:%M:%S')
