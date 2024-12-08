@@ -64,6 +64,8 @@ fi
 # Mensagens de início
 msg yellow "Iniciando o script de automação Git..."
 
+
+texto=$(cat "ver[0-9]*")
 # Adicionando alterações
 msg green "Adicionando arquivos ao repositório..."
 git add -A || { msg red "Erro ao adicionar arquivos."; exit 1; }
@@ -73,7 +75,7 @@ msg green "Verificando o status do repositório..."
 git status || { msg red "Erro ao verificar o status."; exit 1; }
 
 # Commit com timestamp
-commit_msg="Update: $(date +%d%m%y_%H:%M)"
+commit_msg="Update: $(date +%d%m%y_%H:%M)"'\n'"$texto"
 msg green "Realizando commit com a mensagem: '$commit_msg'"
 git commit -m "$commit_msg" || { msg red "Erro ao realizar commit."; exit 1; }
 
