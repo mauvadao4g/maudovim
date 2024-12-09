@@ -4,6 +4,7 @@
 # Script para adicionar, commitar e enviar alterações ao Git
 
 _new() {
+    local commit="$1"
     data=$(date '+%Y-%m-%d %H:%M:%S')
     # Obtém o último arquivo correspondente ao padrão "ver[0-9]*"
     file=$(ls ver[0-9]* 2>/dev/null | sort -V | tail -n 1)
@@ -32,14 +33,15 @@ _new() {
 #    echo "$(basename $(pwd))"
     echo "Ver: $num" >> $newFile
     echo "Data: $data" >> $newFile
-        echo "Update:${1:-New Update}" >> $newFile
+        echo "Update:${commit:-New Update}" >> $newFile
     echo "==========================" >> $newFile
 
     echo "Nova versão atualizada: $newFile"
 }
 
 # Chama a função
-_new
+commit="$1"
+_new "$commit"
 
 
 
