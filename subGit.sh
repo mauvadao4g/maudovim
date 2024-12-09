@@ -26,12 +26,13 @@ _new() {
     # Cria o novo arquivo
     touch "$newFile"
     # adicionando linha de texto ao novo file
-    echo "$1" >> $newFile
+
     echo "==========================" >> $newFile
     echo "$(basename $(pwd))" >> $newFile   
 #    echo "$(basename $(pwd))"
     echo "Ver: $num" >> $newFile
-    echo "Update: $data" >> $newFile
+    echo "Data: $data" >> $newFile
+        echo "Update:${1:-New Update}" >> $newFile
     echo "==========================" >> $newFile
 
     echo "Nova versão atualizada: $newFile"
