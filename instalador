@@ -1,6 +1,31 @@
 #!/bin/bash
 # instalando o editor vim
 
+
+
+ echo -e "\e[1;36mInstalando pacotes no sistema\e[0m"
+ # Pacotes pra instalar
+ pacotes=(
+'curl'
+'figlet'
+'git'
+# Adicione mais aplicações conforme nescessidades
+)
+
+for prog in ${pacotes[@]}; do
+# Verificando os pacotes e instalando no sistema
+if  command -v ${prog} &>/dev/null; then
+    echo -e "\e[44;1;37m${prog}:\e[0m \e[1;33mpacote já instalado no sistema\e[0m" 
+
+else	
+echo -e "\e[44;1;37m${prog}:\e[0m \e[1;32mInstalando pacote no sistema\e[0m"
+apt install -y "${prog}"
+fi
+
+done
+
+
+
 # Logo MauDaVpn
 echo -e '\e[1;33m'
 figlet MauDaVpn
