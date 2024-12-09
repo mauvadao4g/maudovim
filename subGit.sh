@@ -33,7 +33,7 @@ _new() {
 #    echo "$(basename $(pwd))"
     echo "Ver: $num" >> $newFile
     echo "Data: $data" >> $newFile
-        echo "Update:${commit:-New Update}" >> $newFile
+        echo "Update: ${commit:-New Update}" >> $newFile
     echo "==========================" >> $newFile
 
     echo "Nova versão atualizada: $newFile"
