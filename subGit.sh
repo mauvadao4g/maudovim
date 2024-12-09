@@ -26,6 +26,7 @@ _new() {
     # Cria o novo arquivo
     touch "$newFile"
     # adicionando linha de texto ao novo file
+    echo "$1" >> $newFile
     echo "==========================" >> $newFile
     echo "$(basename $(pwd))" >> $newFile   
 #    echo "$(basename $(pwd))"
@@ -77,7 +78,7 @@ git status || { msg red "Erro ao verificar o status."; exit 1; }
 # Commit com timestamp
 msg green "Realizando commit com a mensagem: '$commit_msg'"
 # commit_msg="Update: $(date +%d%m%y_%H:%M)"
-commit_msg="$(date  +%d%m%y_%H:%M ;echo;  echo -e "$texto\n")"
+commit_msg="$(date  +%d%m%y_%H:%M ;echo;$1;  echo -e "\n$texto\n")"
 git commit -m "$commit_msg" || { msg red "Erro ao realizar commit."; exit 1; }
 
 # Enviando alterações
