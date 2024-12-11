@@ -1211,12 +1211,6 @@ if [ ! -d "${1:ORIGEM}" ]; then
 fi
 endsnippet
 
-snippet logo "MauDaVpn"
-echo -e '\e[1;35m'
-figlet ${1:MauDaVpn}
-echo -e '\e[0m'
-endsnippet
-
 
 
 # PASTAS E DIRETORIOS
@@ -1646,6 +1640,22 @@ snippet titulo "Print do titulo no topo"
     echo
 endsnippet
 
+
+snippet logo "MauDaVpn"
+echo -ne '\e[1;35m'
+figlet ${1:MauDaVpn}
+echo -ne '\e[0m'
+endsnippet
+
+snippet maudavpn "MauDaVpn"
+echo -ne '\e[1;34m'
+figlet ${1:MauDaVpn}
+echo -ne '\e[0m'
+endsnippet
+
+snippet linha "Cria uma linha  ----" b
+    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+endsnippet
 
 
 ####################################################
