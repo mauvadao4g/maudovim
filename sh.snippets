@@ -262,17 +262,6 @@ snippet chk "Curl Status"
 curl -m1 -o /dev/null -w '%{http_code}' -X ${1:$request} "${2:\$dom}" -H "Websocket: Upgrade" -x "${3:$proxy}:${4:$port}"
 endsnippet
 
-
-
-
-
-snippet vazio "Verificar se parâmetro está vazio" b
-[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
-endsnippet
-
-
-
-
 # checando se a aplicação ja está instalada
 snippet install "Check Command Exists" b
 if ! command -v ${1:command} &>/dev/null; then
@@ -418,6 +407,9 @@ yt-dlp --cookies "$cookies" \
 
 endsnippet
 
+
+
+# PRINTAR  MENSAGENS
 snippet echo "Printa a mensagem na tela"
 echo -e "\e[1;${1:37}m${2:$MENSAGEM}\e[0m"
 endsnippet
@@ -454,6 +446,8 @@ endsnippet
 snippet echbr "Printa a mensagem na cor branco"
 echo -e "\e[1;${1:37}m${2$MENSAGEM}\e[0m"
 endsnippet
+
+
 
 snippet bkp "Gera o nome do file de backup"
 # Gerando um file de backup
@@ -1111,13 +1105,6 @@ read -p "Escolha uma opção: " opcao
 
 endsnippet
 
-snippet error "❌ ERROR"
-echo -e "\e[1;31m[❌]${1:ERROR}[❌]\e[0m"
-endsnippet
-
-snippet sucess "✔️ Sucesso"
-echo -e "\e[1;32m[✔️]${1:Sucesso[✔️]}\e[0m"
-endsnippet
 
 snippet true "while true; do  ....; done"
 while true; do
@@ -1618,6 +1605,38 @@ done
 endsnippet
 
 
+
+
+snippet error "❌ ERROR"
+echo -e "\e[1;31m[❌]${1:ERROR}[❌]\e[0m"
+endsnippet
+
+snippet sucess "✔️ Sucesso"
+echo -e "\e[1;32m[✔️]${1:Sucesso[✔️]}\e[0m"
+endsnippet
+
+
+snippet sucesso "Sucesso"
+echo -e "\e[1;32mSucesso\e[0m"
+endsnippet
+
+
+snippet erro "Error"
+echo -e "\e[1;Error\e[0m"
+endsnippet
+
+# VERIFICAÇOES 
+snippet vazio "Verificar se parâmetro está vazio" b
+[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
+endsnippet
+
+snippet -z "Verificar se parâmetro está vazio" b
+[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
+endsnippet
+
+snippet -n "Verificar se parâmetro está em uso " b
+[[ -n "${1:\$1}" ]] && { ${2:COMANDOS}"; }
+endsnippet
 
 ####################################################
 # vim:ft=snippets:
