@@ -1761,9 +1761,7 @@ endsnippet
 snippet pct "instalar pacotes" b
     inst_pct() {
         _pacotes=( ${1: "xclip" "bc" "screen" "nano" "unzip" "lsof" "netstat" "net-tools" "dos2unix" "nload" "jq" "curl" "figlet" "python3" "python-pip" "python" "at"})
-        for _prog in ${_pacotes[@]}; do
-            apt install $_prog -y
-        done
+        for _prog in ${_pacotes[@]}; do apt install $_prog -y done
         pip install speedtest-cli
     }
     fun_bar 'inst_pct'
@@ -1771,12 +1769,32 @@ snippet pct "instalar pacotes" b
 endsnippet
 
 
+# Verificando se o .zip está legivel ou corrompido
+snippet testunzip "Testar se o .zip está legivel"
+file="${1:file.zip}"
+unzip -t "$file"
+endsnippet
+
+snippet test7z "Testar se o  .zip está legivel com 7z"
+file="${1:file.zip}"
+7z t "$file"
+endsnippet
+
+snippet testzip "Testar um .zip  se está legivel com zip -T"
+file=${1:file.zip}
+zip -T  "$file"
+endsnippet
+
+snippet test? "[[ $? == 0 ]]"
+    # Verificando uma condição
+    [[ $? == 0 ]] && { ${1:COMANDOS}; }
+endsnippet
 
 
-
-
-
-
+snippet test?| "[[ $? == 0 ]]"
+    # Verificando uma condição
+    [[ $? == 0 ]] && { ${1:COMANDOS}; } || { ${2:COMANDOS}; }
+endsnippet
 ####################################################
 # vim:ft=snippets:
 
