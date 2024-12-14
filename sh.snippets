@@ -50,8 +50,8 @@ snippet dev " >/dev/null 2>&1" b
 ${1:COMANDOS} >/dev/null 2>&1
 endsnippet
 
-snippet 2>$1 ">dev/null 2>$1"
->/dev/null 2>$1
+snippet 2> ">dev/null 2>&1"
+>/dev/null 2>&1
 endsnippet
 
 
@@ -1720,19 +1720,17 @@ endsnippet
 
 
 # mostrar Linhas
-snippet linhas "Mostrando linhas" b
+snippet lin "Mostrando linhas" b
         echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
 endsnippet
 
 # mostrar Linhas
-snippet linhas1 "Mostrando linhas" b
+snippet lin1 "Mostrando linhas" b
         echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
 endsnippet
 
 
-
-
-snippet linha2 "Cria uma linha  ----" b
+snippet lin2 "Cria uma linha  ----" b
     echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
 endsnippet
 
