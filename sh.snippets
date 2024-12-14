@@ -41,6 +41,7 @@ endsnipet
 
 endsnippet
 
+# Jogando a saida pro dev/null
 snippet /dev " >/dev/null 2>&1" b
  >/dev/null 2>&1
 endsnippet
@@ -48,6 +49,26 @@ endsnippet
 snippet dev " >/dev/null 2>&1" b
 ${1:COMANDOS} >/dev/null 2>&1
 endsnippet
+
+snippet 2>$1 ">dev/null 2>$1"
+>/dev/null 2>$1
+endsnippet
+
+
+# Verificar conexao com o git
+snippet testgit "Verifica conexao com o ssh do github"
+function verificar_ssh_github() {
+    echo "Verificando conexão SSH com o GitHub..."
+    if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+        echo -e "\033[32mConexão SSH com o GitHub está funcionando corretamente!\033[0m"
+    else
+        echo -e "\033[31mFalha na conexão SSH com o GitHub. Verifique sua chave SSH e tente novamente.\033[0m"
+    fi
+}
+
+endsnippet
+
+
 
 snippet vim "Comando pra instalar o vim."
 # comando pra instalar o vim configurado
