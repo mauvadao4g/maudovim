@@ -1,7 +1,22 @@
 #!/bin/bash
 # MAUVADAO
-# Versão: 1.0.2
+# Versão: 1.0.3
 # Script para adicionar, commitar e enviar alterações ao Git
+
+
+# Função Bash para Verificar Conexão SSH com o GitHub:
+#!/bin/bash
+
+function verificar_ssh_github() {
+    echo "Verificando conexão SSH com o GitHub..."
+    if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+        echo -e "\033[32mConexão SSH com o GitHub está funcionando corretamente!\033[0m"
+    else
+        echo -e "\033[31mFalha na conexão SSH com o GitHub. Verifique sua chave SSH e tente novamente.\033[0m"
+    exit 1
+    fi
+}
+
 
 _new() {
     local commit="$1"
