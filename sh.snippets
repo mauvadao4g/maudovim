@@ -727,6 +727,23 @@ snippet verip "Ver ip externo"
 IP=$(curl -s http://whatismyip.akamai.com/)
 endsnippet
 
+snippet verip1 "checkip.amazonaws.com"
+# Verificar ip externo
+IP=$(curl  http://checkip.amazonaws.com)
+endsnippet
+
+
+snippet verip2 "checkip.amazonaws.com"
+# Verificar ip externo
+IP=$(lynx -dump http://checkip.amazonaws.com)
+endsnippet
+
+
+snippet verip3 "api.ipify.org"
+# Verificar ip externo
+IP=$(curl https://api.ipify.org)
+endsnippet
+
 # Snippet para obter o IP externo do provedor
 snippet ipex "Verifica o ip externo da máquina"
 # Utiliza um serviço público para obter o IP externo da máquina
