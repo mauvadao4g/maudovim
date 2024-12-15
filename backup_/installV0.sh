@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.3
+# VER: 3.0.2
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -61,9 +61,7 @@ configurar_vim_neovim() {
 
     echo "Configurando o Vim e Neovim..."
     cat > temp.vim << EOF
-"------------------------------------------------
 " Gerenciador de plugins
-"------------------------------------------------
 call plug#begin('~/.vim/autoload/plug/start')
 
 " Plugins essenciais
@@ -87,16 +85,12 @@ Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
-"------------------------------------------------
 " Configurações do Airline
-"------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dracula'
 
 
-"------------------------------------------------
 " Configurações gerais
-"------------------------------------------------
 syntax on
 filetype plugin indent on
 set number
@@ -109,61 +103,24 @@ set expandtab
 set background=dark
 colorscheme dracula
 
-"------------------------------------------------
 " Melhor visualização
-"------------------------------------------------
 set cursorline
 set termguicolors
 " highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
 highlight CursorLine cterm=bold ctermbg=235 guibg=#1e1e1e
 
-"------------------------------------------------
 " Configurações do Coc
-"------------------------------------------------
 set hidden
 set nobackup
 set nowritebackup
 set updatetime=300
 set signcolumn=yes
 
-"------------------------------------------------
 " Configuração do auto-pairs
-"------------------------------------------------
 let g:AutoPairsMapBS = 1  " Habilitar backspace para apagar pares automaticamente
 let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitação rápida
 
-
-"------------------------------------------------
-" Configuração do emmet
-"------------------------------------------------
-" Ativar o Emmet apenas em arquivos HTML, CSS, etc.
-let g:user_emmet_leader_key='<C-Z>'
-
-" Expandir a abreviação do Emmet com Ctrl+y,
-" que é a combinação padrão sugerida pelo plugin
-imap <C-y>, <Plug>(emmet-expand-abbr)
-nmap <C-y>, <Plug>(emmet-expand-word)
-
-" Navegar entre os pontos de edição do Emmet
-imap <C-y>n <Plug>(emmet-next-edit-point)
-imap <C-y>p <Plug>(emmet-prev-edit-point)
-
-" Envolver seleção com tag do Emmet (modo visual)
-vmap <C-y>, <Plug>(emmet-wrap-with-abbreviation)
-
-" Outros atalhos úteis
-" Mover uma tag ao redor do texto
-imap <C-y>d <Plug>(emmet-balance-tag-outward)
-imap <C-y>D <Plug>(emmet-balance-tag-inward)
-
-" Incrementar ou decrementar números
-imap <C-y>+ <Plug>(emmet-increment-number)
-imap <C-y>- <Plug>(emmet-decrement-number)
-
-
-"------------------------------------------------
 " Mapeamentos personalizados no modo de inserção
-"------------------------------------------------
 " Ctrl+e: Vai para o final da linha e continua editando
 inoremap <C-e> <Esc>A
 
@@ -190,12 +147,12 @@ nnoremap <C-q> :q!<CR>
 nnoremap <C-d> :wq<CR>
 
 " Ctrl+t: Abre o terminal na vertical
-inoremap <C-t> <Esc>:vsp term:///bin/bash<CR>
+inoremap <C-t> <Esc>:vsp term://$SHELL<CR>
 
 " Ctrl+n: Abre o NERDTree
 inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
-
 EOF
+    
 
     mv temp.vim ~/.vimrc
     cp ~/.vimrc ~/.config/nvim/init.vim
@@ -221,13 +178,14 @@ instalar_dependencias() {
     pip3 install pynvim
     verPython
     menu_principal
+    
 }
 
 verPython(){
     echo "Verificando suporte ao Python3 no Vim..."
     if vim --version | grep -q "+python3"; then
         echo "O Vim já suporta Python3."
-
+        
     else
         echo "O Vim não suporta Python3. Instalando uma versão compatível..."
 
@@ -240,6 +198,8 @@ verPython(){
     fi
 
 }
+
+
 
 corrigir_erro_tema() {
     autolad="$HOME/.vim/autoload/plug/start"
@@ -293,7 +253,7 @@ menu_principal() {
         6) _uninstall ;; # Remove os programas e configurações
         7) _bkp ;; # Backup $HOME/.vimrc
         0) echo "Saindo..."; exit 0 ;;
-
+        
         *) echo "Opção inválida!"; menu_principal ;;
     esac
 
@@ -301,3 +261,4 @@ menu_principal() {
 
 # Execução principal
 menu_principal
+
