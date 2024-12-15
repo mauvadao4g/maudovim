@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.3
+# VER: 3.0.4
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -101,7 +101,7 @@ call plug#end()
 " Configurações do VimShell
 "------------------------------------------------
 " Define a tecla para abrir o VimShell
-nmap <Leader>st :VimShell<CR>
+" nmap <Leader>t :VimShell<CR>
 
 " Use uma janela horizontal para o VimShell
 let g:vimshell_window_type = 'horizontal'
@@ -210,7 +210,8 @@ nnoremap <C-q> :q!<CR>
 nnoremap <C-d> :wq<CR>
 
 " Ctrl+t: Abre o terminal na vertical
-inoremap <C-t> <Esc>:vsp term:///bin/bash<CR>
+" inoremap <C-t> <Esc>:vsp term:///bin/bash<CR>
+inoremap <C-t> <Esc>:term<CR>
 
 " Ctrl+n: Abre o NERDTree
 inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
