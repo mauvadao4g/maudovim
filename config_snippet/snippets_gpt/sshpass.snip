@@ -1,0 +1,95 @@
+snippet -a "Autenticação SSH automatizada usando sshpass com senha" b
+sshpass -p "sua_senha" ssh usuario@servidor
+endsnippet
+
+snippet -b "Copiar arquivos usando SCP com sshpass" b
+sshpass -p "sua_senha" scp arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -c "Copiar diretórios recursivamente usando SCP com sshpass" b
+sshpass -p "sua_senha" scp -r /caminho/diretorio usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -d "Executar comandos remotamente usando sshpass" b
+sshpass -p "sua_senha" ssh usuario@servidor "comando_remoto"
+endsnippet
+
+snippet -e "Autenticação SSH com sshpass em uma chave SSH específica" b
+sshpass -p "sua_senha" ssh -i /caminho/para/chave.pem usuario@servidor
+endsnippet
+
+snippet -f "Copiar múltiplos arquivos com SCP e sshpass" b
+sshpass -p "sua_senha" scp arquivo1.txt arquivo2.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -g "Usar sshpass com ssh para login com comando automatizado" b
+sshpass -p "sua_senha" ssh usuario@servidor "cd /diretorio && comando"
+endsnippet
+
+snippet -h "Usar sshpass para executar script remoto via SSH" b
+sshpass -p "sua_senha" ssh usuario@servidor 'bash -s' < script_local.sh
+endsnippet
+
+snippet -i "Usar sshpass com um comando SCP e especificar o número de tentativas" b
+sshpass -p "sua_senha" scp -o ConnectTimeout=10 arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -j "Usar sshpass para transferir arquivo e sobrescrever sem confirmação" b
+sshpass -p "sua_senha" scp -o StrictHostKeyChecking=no arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -k "Usar sshpass com scp para transferir arquivos e especificar porta personalizada" b
+sshpass -p "sua_senha" scp -P 2222 arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -l "Usar sshpass para copiar arquivo enquanto ignora verificações de chave do host" b
+sshpass -p "sua_senha" ssh -o StrictHostKeyChecking=no usuario@servidor
+endsnippet
+
+snippet -m "Usar sshpass para copiar um arquivo para servidor remoto e mudar dono do arquivo" b
+sshpass -p "sua_senha" scp arquivo.txt usuario@servidor:/caminho/destino/ && sshpass -p "sua_senha" ssh usuario@servidor "chown usuario:grupo /caminho/destino/arquivo.txt"
+endsnippet
+
+snippet -n "Automatizar login SSH sem interação usando sshpass" b
+sshpass -p "sua_senha" ssh -o PreferredAuthentications=password usuario@servidor
+endsnippet
+
+snippet -o "Usar sshpass para executar múltiplos comandos remotos" b
+sshpass -p "sua_senha" ssh usuario@servidor "comando1; comando2; comando3"
+endsnippet
+
+snippet -p "Usar sshpass com scp para mover diretório e manter permissões" b
+sshpass -p "sua_senha" scp -rp /caminho/diretorio usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -q "Usar sshpass para se conectar e ignorar qualquer saída do comando" b
+sshpass -p "sua_senha" ssh usuario@servidor "comando" > /dev/null 2>&1
+endsnippet
+
+snippet -r "Usar sshpass com scp e aplicar um intervalo de tempo entre tentativas" b
+sshpass -p "sua_senha" scp -o ConnectionAttempts=3 arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -s "Usar sshpass para copiar arquivos e usar proxy" b
+sshpass -p "sua_senha" scp -o ProxyCommand="ssh -q -W %h:%p proxyservidor" arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -t "Usar sshpass com scp para copiar arquivos e visualizar o progresso" b
+sshpass -p "sua_senha" scp -v arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -u "Usar sshpass para executar comandos remotamente com ssh e capturar a saída" b
+sshpass -p "sua_senha" ssh usuario@servidor "comando_remoto" > saida_comando.txt
+endsnippet
+
+snippet -v "Usar sshpass para rodar comando remoto e salvar a saída em um arquivo local" b
+sshpass -p "sua_senha" ssh usuario@servidor "cat /caminho/arquivo_remoto" > arquivo_local.txt
+endsnippet
+
+snippet -w "Usar sshpass para fazer upload de um arquivo com escopo de segurança mínimo" b
+sshpass -p "sua_senha" scp -o StrictHostKeyChecking=no arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -x "Usar sshpass para executar script remoto e logar a saída" b
+sshpass -p "sua_senha" ssh usuario@servidor 'bash -s' < script.sh > log_saida.txt
+endsnippet
