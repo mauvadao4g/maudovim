@@ -1,0 +1,115 @@
+# ==================
+# INSTALANDO PACOTES
+# ==================
+
+
+
+snippet funbar "function funbar" b
+fun_bar() {
+    comando[0]="\$1"
+    comando[1]="\$2"
+    (
+        [[ -e $HOME/fim ]] && rm $HOME/fim
+        ${comando[0]} -y >/dev/null 2>&1
+        ${comando[1]} -y >/dev/null 2>&1
+        touch $HOME/fim
+    ) >/dev/null 2>&1 &
+    tput civis
+    echo -ne "  \033[1;33mAGUARDE \033[1;37m- \033[1;33m["
+    while true; do
+        for ((i = 0; i < 18; i++)); do
+            echo -ne "\033[1;31m#"
+            sleep 0.1s
+        done
+        [[ -e $HOME/fim ]] && rm $HOME/fim && break
+        echo -e "\033[1;33m]"
+        sleep 1s
+        tput cuu1
+        tput dl1
+        echo -ne "  \033[1;33mAGUARDE \033[1;37m- \033[1;33m["
+    done
+    echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+    tput cnorm
+}
+endsnippet
+
+
+# checando se a aplicação ja está instalada
+snippet install "Check Command Exists" b
+if ! command -v ${1:command} &>/dev/null; then
+    echo "${1:command} could not be found"
+    exit 1
+fi
+endsnippet
+
+
+
+
+
+
+snippet pct "instalar pacotes" b
+    inst_pct() {
+        _pacotes=( ${1: "xclip" "bc" "screen" "nano" "unzip" "lsof" "netstat" "net-tools" "dos2unix" "nload" "jq" "curl" "figlet" "python3" "python-pip" "python" "at"})
+        for _prog in ${_pacotes[@]}; do apt install $_prog -y done
+        pip install speedtest-cli
+    }
+    fun_bar 'inst_pct'
+
+endsnippet
+
+
+
+
+
+
+# instalar pacotes nao instalado
+snippet pacotesn "Instala pacotes contidos em um  array"
+ echo -e "\e[1;36mInstalando pacotes no sistema\e[0m"
+ # Pacotes pra instalar
+ pacotes=(
+'${1:aplicação1}'
+'${2:aplicação2}'
+'${3:aplicação3}'
+
+# Adicione mais aplicações conforme nescessidades
+)
+
+for prog in ${pacotes[@]}; do
+# Verificando os pacotes e instalando no sistema
+if ! command -v ${prog} &>/dev/null; then
+    echo -e "\e[44;1;37m${prog}:\e[0m \e[1;33minstalando aplicação no sistema\e[0m"
+apt install -y "${prog}"
+fi
+
+done
+endsnippet
+
+
+
+# mostrar pacotes instalados
+snippet pacotes "Instala pacotes contidos em um  array"
+ echo -e "\e[1;36mInstalando pacotes no sistema\e[0m"
+ # Pacotes pra instalar
+ pacotes=(
+'${1:aplicação1}'
+'${2:aplicação2}'
+'${3:aplicação3}'
+# Adicione mais aplicações conforme nescessidades
+)
+
+for prog in ${pacotes[@]}; do
+# Verificando os pacotes e instalando no sistema
+if  command -v ${prog} &>/dev/null; then
+    echo -e "\e[44;1;37m${prog}:\e[0m \e[1;33mpacote já instalado no sistema\e[0m" 
+
+else	
+echo -e "\e[44;1;37m${prog}:\e[0m \e[1;32mInstalando pacote no sistema\e[0m"
+apt install -y "${prog}"
+fi
+
+done
+endsnippet
+
+
+
+

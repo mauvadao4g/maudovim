@@ -1,0 +1,134 @@
+# VERIFICANDO HOST ONLINE
+
+
+snippet status "Verifica o status da conexao"
+# verificando o status da conexao
+# setando informações de proxy e servidor
+dom="${1:seu_dominio}"
+tempo="${2:1}"
+proxy="${3:timofertas.com}"
+porta="${4:80}"
+request="${5:PATCH}"
+# fazendo o request
+curl -m "$tempo" -s -o /dev/null -w '%{http_code}' -X GET "$dom" -H 'Websocket: Upgrade' -x "$proxy:$porta"
+endsnippet
+
+
+
+snippet check "Curl Status" b
+# checa o status do host
+curl -m ${1:0.60} -o /dev/null -w '%{http_code}' -X ${2:$request} "${3:\$dom}" -H "Websocket: Upgrade" -x "${4:$proxy}:${4:$porta}"
+endsnippet
+
+
+
+snippet check_host "Função de checar host online"
+# Função para verificar se o host está online
+check_host() {
+    host=\$1
+
+ domi="${1:dominio.xyz}"
+range=$host
+port=80
+tempo=2
+request=PATCH
+
+  try=$(curl -m $tempo -s -o /dev/null -w "%{http_code}" -X $request $domi -H "Upgrade: websocket" -x ${range}:$port)
+
+    if [[ $try = 101 ]]
+    then
+    echo -e "\e[01;33m$host\e[0m | \e[01;37mIP OK - STATUS $try\e[0m"
+
+    #Gravando no file OK.txt
+    echo "$host | $try" >> OK.txt
+
+        else
+    echo -e "$host | \e[01;31mSTATUS $try\e[0m"
+
+    fi
+}
+endsnippet
+
+
+# USER AGENT
+snippet firefox "User agente firefox"
+# User-Agent do Mozilla
+USER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+endsnippet
+
+# TESTES DE CONEXAO WEBSOCKT
+snippet websockt "Payload pra teste de cabeçalho websockt"
+# Cabeçalho WebSocket
+HOST="${1:dominio.xyz}"
+HEADER="GET / HTTP/1.1\r\nHost: $HOST\r\nConnection: Upgrade\r\nUpgrade: websocket\r\n\r\n"
+endsnippet
+
+snippet scan "scan de Proxy 101" b
+        # Formata a payload
+        formatted_payload=$(echo -e "$PAY" | limparPay "$servidor")
+
+        # Faz a busca pelo status usando curl
+        response=$(curl -m1 -s -o /dev/null -w "%{http_code}" --proxy "$ips:$porta" -X "$request" -d "$formatted_payload" "http://$servidor")
+
+        if [[ "$response" == "200" || "$response" == "101" ]]; then
+      # ONLINE
+            echo -ne "\e[1;32mPayload \e[1;37m[\e[1;32m$num\e[0m|\e[1;33m${#PAYLOADS[@]}\e[0m]: \033[1;37m"
+            echo -e "\e[1;30m$PAY\e[0m"
+            echo -ne '\e[0m'
+            echo -e "\033[1;33mResposta: \033[42;1;37m$response\033[0m"
+        else
+        # OFFLINE
+         echo -ne "\e[1;33mPayload \e[1;37m[\e[1;30m$num\e[0m|\e[1;33m${#PAYLOADS[@]}\e[0m]: \033[1;37m"
+            echo -ne "\033[1;41;37mOFFLINE"
+            echo -e '\e[0m'
+            echo "Resposta: $response"
+        fi
+endsnippet
+
+
+snippet chk "Curl Status"
+# Checar o status do host
+curl -m1 -o /dev/null -w '%{http_code}' -X ${1:$request} "${2:\$dom}" -H "Websocket: Upgrade" -x "${3:$proxy}:${4:$port}"
+endsnippet
+
+
+
+snippet offline "OFFLINE" b
+echo -ne "\033[1;41;37mOFFLINE"
+endsnippet
+
+snippet online "ONLINE" b
+echo -ne "\033[1;42;37mONLINE"
+endsnippet
+
+snippet payloads "PAYLOADS" b
+# payloads
+declare -A PAYLOADS=(
+    [PATCH]="GET / HTTP/1.1[crlf]Host: $servidor[crlf]Backend: app000[crlf]Upgrade: Websocket[crlf][crlf]"
+    [GET]="GET / HTTP/1.1[crlf]Host: timofertas.com[crlf][crlf]"
+
+[GRINGA1]="GET /cdn-cgi/trace HTTP/1.1[crlf]Host: tsel.me[crlf][crlf]CF-RAY / HTTP/1.1[crlf]Host: [host][crlf]Upgrade: Websocket[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
+)
+endsnippet
+
+
+
+
+
+snippet limparpay "Limpar payloads" b
+# LIMPA E FORMATA AS PAYLOADS
+limparPay() {
+    local server="$1"
+    sed 's/\[crlf\]/\r\n/g' | sed 's/\[lf\]/\n/g' | sed 's/\[host\]/'${server}'/g'
+}
+endsnippet
+
+
+
+
+
+
+
+
+
+

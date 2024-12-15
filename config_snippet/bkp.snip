@@ -1,0 +1,34 @@
+
+snippet filebkp "Cria um arquivo de backup"
+${1:fileBkp}_$DATA.txt
+endsnippet
+
+snippet dir? "Verifica se o diretório de origem existe"
+# Verifica se o diretório de origem existe
+if [ ! -d "${1:ORIGEM}" ]; then
+    echo "❌ O diretório de origem '${1:ORIGEM}' não existe."
+    exit 1
+fi
+endsnippet
+
+
+
+snippet bkp "Gera o nome do file de backup"
+# Gerando um file de backup
+file="$( echo ${1:file-}$(date '+%d%m%y_%H%M%S').bkp)"
+${2:COMANDOS PRA EXEXUTAR}
+[[ -f "$file" ]] && { echo "File criado com sucesso: $file"; }
+endsnippet
+
+
+
+
+snippet log "Cria um log"
+# Função de log
+log() {
+    local message="\$1"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $message" | tee -a "$LOG_FILE"
+}
+endsnippet
+
+

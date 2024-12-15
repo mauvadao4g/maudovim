@@ -1,0 +1,12 @@
+
+snippet tar "tar -czf <DESTINO> -C <ORIGEM>"
+tar -czf "${1:$DESTINO}" -C "${2:$ORIGEM}" .
+if [ $? -eq 0 ]; then
+    echo "✔️ Backup concluído com sucesso!"
+    echo "Arquivo de backup: ${1:$DESTINO}"
+else
+    echo "❌ Falha ao realizar o backup."
+    exit 1
+    fi
+
+endsnippet

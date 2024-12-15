@@ -1,0 +1,29 @@
+
+snippet menu "Cria um menu"
+    echo "===== MENU ====="
+    echo "1. ${1:opção 1}"
+    echo "2. ${2:opção 2}"
+    echo "3. ${3: opcao 3}"
+    echo "4. ${4: opção 4}"
+    echo "5. ${5: Sair}"
+    echo "================"
+    read -p "Escolha uma opção: " opcao
+
+endsnippet
+
+snippet casemenu "Cria um case pro menu"
+case $opcao in
+        1) ${1:funcao1} ;;
+        2) ${2:funcao2};;
+        3) ${3:funcao3};;
+        4) ${4:funcao4};;
+        5) echo "Saindo..."; exit 0 ;;
+        *) echo "❌ Opção inválida. Tente novamente." ;;
+    esac
+
+endsnippet
+
+snippet opcao  "Escolha uma opção"
+read -p "Escolha uma opção: " opcao
+
+endsnippet

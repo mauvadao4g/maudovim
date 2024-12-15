@@ -1,4 +1,16 @@
+snippet youtube "Download de video url"
+ytdown(){
+	# baixando videos da url.
+cookies="${1:cookies.txt}"
+video_url="${2:\$1}"
+yt-dlp --cookies "$cookies" \
+        --user-agent "$agente" \
+        -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]' \
+        "$video_url" 2>/dev/null
 
+}
+
+endsnippet
 
 snippet ytf "Formatos de video yt-dlp"
 # Baixando videos da url
@@ -8,7 +20,15 @@ medio='bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=
 formato="$fullhd"
 endsnippet
 
-
+snippet yt "Baixa videos do youtube"
+    # comando pra baixar videos do youtube
+    url=${1:\$1}
+    formato=mp4
+    yt-dlp  \
+--user-agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' \
+-f "$formato" \
+"$url" -o '%(title)s-%(id)s.%(ext)s'
+endsnippet
 
 snippet ytdlp "Baixar videos do youtube"
 # Baixar videos do youtube
@@ -38,3 +58,50 @@ formato="$fullhd"
 # comando pra baixar os videos
 yt-dlp -f $formato "$url" -o '%(title)s-%(id)s.%(ext)s'
 endsnippet
+
+
+
+
+snippet ytinf "Pegando informações do url do video"
+# Pegando informações do video
+# Gerar variáveis a partir do JSON recebido
+
+videoInfo() {
+        video_url="${1:$1}"
+        response=$(yt-dlp --cookies "$cookies" \
+        --user-agent "$agente" \
+        -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]' \
+        "$video_url" --print-json --no-warning  --skip-download 2>/dev/null)
+
+    nomeVideo="$(echo "$response" | jq -r '.title')"
+    urlVideo="$(echo "$response" | jq -r '.webpage_url')"
+    duracaoVideo="$(echo "$response" | jq -r '.duration')"
+    duracao="$(echo "$response" | jq -r '.duration_string')"
+    dataVideo="$(echo "$response" | jq -r '.upload_date')"
+    viewsVideo="$(echo "$response" | jq -r '.view_count')"
+    idCanal="$(echo "$response" | jq -r '.uploader_id')"
+    canalVideo="$(echo "$response" | jq -r '.uploader_url')"
+    resolucao="$(echo "$response" | jq -r '.resolution')"
+    postado="$dataVideo"
+  #  _passado="$(calcular_tempo_passado "$postado")"
+
+
+ # Exibir os dados
+ cat <<EOF
+Nome: $nomeVideo
+Url: $urlVideo
+Duração: $duracao
+Postado: $_passado
+Views: $viewsVideo
+Resolução: $resolucao
+Canal: $idCanal
+UrlCanal: $canalVideo
+EOF
+}
+
+endsnippet
+
+
+
+
+

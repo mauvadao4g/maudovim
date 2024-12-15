@@ -1,0 +1,92 @@
+
+# conectando ao ssh
+snippet ssh "SSH Command" b
+ssh ${1:root}@${2:host} -p ${3:22}
+endsnippet
+
+# conectando ao servidor sem nescecidade de colocar senhas.
+snippet sshpass "SSH usando senha"
+servidor="${1:servidor}"
+user="${2:root}"
+pass="${3:pass}"
+porta="${4:22}"
+sshpass -p "$pass" ssh -o StrictHostKeyChecking=no -o ConnectTimeout=2 "$user@$servidor" -p $porta
+endsnippet
+
+
+
+
+snippet scp "Envia um arquivo entre servidores"
+# FERRAMENTA DE UPLOAD E DOWNLOAD ENTRE SERVIDORES
+	arquivo="${1:file.txt}"
+	servidor="${2:servidor}"
+	porta=${3:22}
+	scp -P $porta "$arquivo" "$servidor"
+endsnippet
+
+
+
+#  FERRAMENTA DE DOWNLOAD E UPLOAD ENTRE SERVIDORES
+
+snippet scpfun  "upload e download entre servidores remotos"
+# Função para copiar diretório do servidor para local
+copiar_diretorio_servidor() {
+    local diretorio_servidor=\$1
+    scp -r -P $porta "$usuario@$ip:$diretorio_servidor" .
+}
+endsnippet
+
+snippet scpdir "Upload de todos arquivos de  um diretorio"
+# Função para enviar tudo do diretório atual
+enviar_tudo_diretorio_atual() {
+    scp -r -P $porta * "$SERVIDOR"
+}
+endsnippet
+
+snippet scpzip "Envia um rar ou zip ao servidor"
+# Função para enviar um arquivo .zip ou .rar
+enviar_arquivo_compactado() {
+    local arquivo=\$1
+    scp -P $porta "$arquivo" "$SERVIDOR"
+}
+endsnippet
+
+snippet scpfile  "Envia um arquivo ao servidor"
+# Função para enviar um arquivo
+enviar_arquivo() {
+
+SERVIDOR="${1:SERVIDOR}"
+porta="${1:22}"
+arquivo="${3:ARQUIVO}"
+
+scp -P $porta "$arquivo" "$SERVIDOR"
+}
+endsnippet
+
+snippet spcpasta "Envia uma  pasta ao servidor"
+# Função para enviar uma pasta
+enviar_pasta() {
+    local pasta=\$1
+    scp -r -P $porta "$pasta" "$SERVIDOR"
+}
+endsnippet
+
+snippet scprar "Compacta um diretorio e envia ao servidor"
+# Função para compactar diretório e enviar
+compactar_enviar() {
+    local diretorio=\$1
+	local SERVIDOR="${1:SERVIDOR_REMOTO}"
+    zip -r diretorio.zip "$diretorio"
+    scp -P $porta "diretorio.zip" "$SERVIDOR"
+    rm "diretorio.zip"
+}
+endsnippet
+
+snippet server "Array com servidores"
+# Array associativo com informações dos servidores
+declare -A servers=(
+    ["canada"]="{$1:IP_SERVIDOR}:root:{$2:22}:${3:SENHA_SERVIDOR}"
+    ["hostinger"]="${4:IP_SERVIDOR}:${5:USUARIO_SERVIDOR}:${6:65002}:${7:SENHA_SERVIDOR}"
+# Adicione mais servidores conforme nescessidades
+)
+endsnippet

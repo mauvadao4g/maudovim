@@ -1,0 +1,16 @@
+# lendo linhas de files.txt
+snippet readfile "Read File Line by Line" b
+while IFS= read -r line; do
+    echo "\$line"
+	${1:COMANDOS}
+done < "${2:filename}"
+endsnippet
+
+
+
+snippet true "while true; do  ....; done"
+while true; do
+${1:COMANDOS}
+
+done
+endsnippet

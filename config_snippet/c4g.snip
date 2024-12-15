@@ -1,0 +1,59 @@
+
+####################################################
+#  BAIXANDO CONFIGURAÇÕES DO APLICATIVO C4G
+####################################################
+# busca por nome na configuração Networks.
+snippet c4g_name "Busca em JSON de uma URL por redes com nome correspondente usando --arg"
+# Busca por nome na chave .Networks fintrando pelo campo .Name
+# Define a URL e o termo de busca
+url="\$1"
+search="\$2"
+
+# Faz a requisição à URL e utiliza jq para filtrar as redes com base no termo, usando --arg para passar variáveis
+curl -sL "$url" | jq --arg search "$search" '.Networks[] | select(.Name | test($search;"i"))'
+endsnippet
+
+# busca por Payloads.
+snippet c4g_payloads "Busca em JSON de uma URL por redes com nome correspondente usando --arg"
+# busca por Payloads.
+# Define a URL e o termo de busca
+url="\$1"
+# Faz a requisição à URL e utiliza jq para filtrar as redes com base no termo, usando --arg para passar variáveis
+curl -sL "$url" | jq '.Networks[] | .Payload' | sed 's/"/\n"/'
+
+endsnippet
+
+
+# Busca por Proxy
+snippet c4g_proxy "Busca em JSON de uma URL por redes com nome correspondente usando --arg"
+# Define a URL e o termo de busca
+url="\$1"
+curl -sL "$url" | jq '.Networks[] | .ProxyIP'
+
+endsnippet
+
+
+# Busca por UrlUpdate
+snippet c4g_urlupdate "Busca em JSON de uma URL por redes com nome correspondente usando --arg"
+# Define a URL e o termo de busca
+url="\$1"
+curl -sL "$url" | jq '.UrlUpdate'
+
+endsnippet
+
+# Busca por Sni
+snippet c4g_sni "Busca em JSON de uma url por .SNI"
+# Define a URL e o termo de busca
+url="\$1"
+curl -sL "$url" | jq '.Networks[] | .SNI'
+
+endsnippet
+
+
+# Busca por .Networks
+snippet c4g_networks "Busca em JSON de uma url por .Networks"
+# Define a URL e o termo de busca
+url="\$1"
+curl -sL "$url" | jq '.Networks[]'
+
+endsnippet

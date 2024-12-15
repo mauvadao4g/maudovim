@@ -1,0 +1,53 @@
+
+
+####################################################
+#    DATA E HORAS
+####################################################
+snippet data "Visualizar data"
+data=$(date '+%Y-%m-%d %H:%M:%S')
+echo "$data"
+endsnippet
+
+snippet hr "Visualizar o horario"
+horas=$(date '+%H:%M:%S')
+echo "$horas"
+endsnippet
+
+
+# Adicionando função de horario
+snippet horas "Obten o horario atual com saudação."
+_horas(){
+# Obtém a hora atual no fuso horário de São Paulo
+hora=$(TZ=America/Sao_Paulo date +%H)
+minuto=$(TZ=America/Sao_Paulo date +%M)
+
+# Define as saudações com base no horário
+if [ "$hora" -ge 0 -a "$hora" -lt 12 ]; then
+    saudacao="Bom Dia"
+elif [ "$hora" -ge 12 -a "$hora" -lt 18 ]; then
+    saudacao="Boa Tarde"
+else
+    saudacao="Boa Noite"
+fi
+}
+endsnippet
+
+
+
+
+# SAUDAÇÃO COM BASE NO HORARIO
+snippet saudacao "Saudação com base no horario"
+# Obtém a hora atual no fuso horário de São Paulo
+hora=$(TZ=America/Sao_Paulo date +%H)
+minuto=$(TZ=America/Sao_Paulo date +%M)
+
+# Define as saudações com base no horário
+if [ "$hora" -ge 0 -a "$hora" -lt 12 ]; then
+    saudacao="Bom Dia"
+elif [ "$hora" -ge 12 -a "$hora" -lt 18 ]; then
+    saudacao="Boa Tarde"
+else
+    saudacao="Boa Noite"
+fi
+endsnippet
+

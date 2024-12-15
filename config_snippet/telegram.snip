@@ -1,0 +1,250 @@
+
+
+# CHAT IDS TELEGRAM
+snippet chat "chat ids do telegram"
+#  CHAT_ID TELEGRA.
+declare -A chatIds=(
+
+["mauvadao"]="2050411579"
+["canal"]="-1001674207641"
+["grupo"]="-1001610311219"
+["secundario"]="-1001179008300"
+)
+endsnippet
+
+
+
+####################################################
+#             TELEGRAM MENSAGENS
+####################################################
+
+####################################################
+#   VISUALIZAÇÕES DE MENSAGENS
+####################################################
+# Snippet para obter as atualizações pendentes
+snippet getupdates "Obtém atualizações pendentes"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates"
+endsnippet
+
+# Snippet para obter atualizações com offset (evitar duplicidade)
+snippet getupdatesoffset "Obtém atualizações usando offset"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" \
+-d offset="${2:OFFSET}" \
+-d limit="${3:100}" \
+-d timeout="${4:0}"
+endsnippet
+
+# Snippet para extrair o chat_id de uma atualização
+snippet getchatid "Extrai o chat_id de uma atualização"
+echo "$(curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | jq '.result[0].message.chat.id')"
+endsnippet
+
+# Snippet para extrair o texto da mensagem de uma atualização
+snippet getmsg "Extrai o texto da mensagem"
+echo "$(curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | jq -r '.result[0].message.text')"
+endsnippet
+
+# Snippet para processar mensagens com loop
+snippet processupdates "Processa mensagens recebidas com loop"
+while true; do
+  updates=$(curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" -d offset="${2:OFFSET}" -d timeout=10)
+  echo "$updates" | jq -c '.result[]' | while read -r message; do
+    chat_id=$(echo "$message" | jq -r '.message.chat.id')
+    user_message=$(echo "$message" | jq -r '.message.text')
+    # Aqui você pode adicionar o código para responder ou processar a mensagem
+    echo "Mensagem recebida de $chat_id: $user_message"
+    # Atualiza o offset para evitar processar a mesma mensagem novamente
+    OFFSET=$(echo "$message" | jq '.update_id') && OFFSET=$((OFFSET+1))
+  done
+done
+endsnippet
+
+# Snippet para capturar mensagens enviadas em grupos
+snippet groupmsgs "Filtra mensagens enviadas em grupos"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[] | select(.message.chat.type == "group") | .message'
+endsnippet
+
+# Snippet para capturar mensagens de usuários específicos
+snippet usermsgs "Filtra mensagens de um usuário específico"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[] | select(.message.from.id == ${2:USER_ID}) | .message.text'
+endsnippet
+
+# Snippet para capturar mensagens com entidades (ex.: comandos ou links)
+snippet commandmsgs "Filtra mensagens com entidades"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[] | select(.message.entities != null) | .message'
+endsnippet
+
+# Snippet para capturar informações do usuário que enviou uma mensagem
+snippet getuserinfo "Extrai informações do usuário"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[0].message.from | {id, is_bot, first_name, username}'
+endsnippet
+
+# Snippet para obter mensagens com fotos anexadas
+snippet photomsgs "Filtra mensagens com fotos"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[] | select(.message.photo != null) | .message'
+endsnippet
+
+# Snippet para obter mensagens com localização
+snippet locmsgs "Filtra mensagens com localização"
+curl -s "https://api.telegram.org/bot${1:$TOKEN}/getUpdates" | \
+jq -r '.result[] | select(.message.location != null) | .message.location'
+endsnippet
+####################################################
+#         ENVIO DE MENSAGEMS
+####################################################
+
+
+snippet testt "apenas um teste"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendMessage" -d chat_id="${2:$CHAT_ID}" -d text="${3:$MENSAGEM}" -d parse_mode="${4:HTML}"
+endsnippet
+
+# Snippet para enviar uma mensagem de texto simples
+snippet sendmsg "Envia uma mensagem de texto"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendMessage" -d chat_id="${2:$CHAT_ID}" -d text="${3:$MENSAGEM}" -d parse_mode="${4:HTML}"
+endsnippet
+
+# Snippet para enviar uma foto
+snippet sendphoto "Envia uma foto com descrição"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendPhoto" -F chat_id="${2:$CHAT_ID}" -F photo="@${3:CAMINHO/DA/FOTO}" -F caption="${4:$DESCRICAO}" -F parse_mode="${5:HTML}"
+endsnippet
+
+# Snippet para enviar um documento
+snippet senddoc "Envia um documento com descrição"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendDocument" -F chat_id="${2:$CHAT_ID}" -F document="@${3:CAMINHO/DO/ARQUIVO}" -F caption="${4:$DESCRICAO}" -F parse_mode="${5:HTML}"
+endsnippet
+
+# Snippet para enviar uma mensagem com teclado inline
+snippet sendinline "Envia uma mensagem com botões inline"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendMessage" \
+-d chat_id="${2:$CHAT_ID}" \
+-d text="${3:$MENSAGEM}" \
+-d parse_mode="${4:HTML}" \
+-d reply_markup='{"inline_keyboard": [[{"text": "${5:NOME_DO_BOTÃO}", "url": "${6:URL_DO_BOTÃO}"}]]}'
+endsnippet
+
+# Snippet para enviar mensagem com teclado customizado
+snippet sendkeyb "Envia mensagem com teclado customizado"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendMessage" \
+-d chat_id="${2:$CHAT_ID}" \
+-d text="${3:$MENSAGEM}" \
+-d parse_mode="${4:HTML}" \
+-d reply_markup='{"keyboard": [["${5:BOTÃO1}"], ["${6:BOTÃO2}"]], "resize_keyboard": true, "one_time_keyboard": true}'
+endsnippet
+
+# Snippet para editar mensagem de texto
+snippet editmsg "Edita uma mensagem de texto enviada anteriormente"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/editMessageText" \
+-d chat_id="${2:$CHAT_ID}" \
+-d message_id="${3:$MESSAGE_ID}" \
+-d text="${4:NOVA_MENSAGEM}" \
+-d parse_mode="${5:HTML}"
+endsnippet
+
+# Snippet para deletar mensagem
+snippet delmsg "Deleta uma mensagem enviada"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/deleteMessage" \
+-d chat_id="${2:$CHAT_ID}" \
+-d message_id="${3:$MESSAGE_ID}"
+endsnippet
+
+####################################################
+#  FUNÇÕES TELEGRAM PARTE 2 (ADICIONAIS)
+####################################################
+# Snippet para enviar uma mensagem de localização
+snippet sendloc "Envia uma localização"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendLocation" \
+-d chat_id="${2:$CHAT_ID}" \
+-d latitude="${3:LATITUDE}" \
+-d longitude="${4:LONGITUDE}" \
+-d horizontal_accuracy="${5:HORIZONTAL_ACCURACY}"
+endsnippet
+
+# Snippet para enviar um áudio
+snippet sendaudio "Envia um arquivo de áudio com legenda"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendAudio" \
+-F chat_id="${2:$CHAT_ID}" \
+-F audio="@${3:CAMINHO/DO/AUDIO}" \
+-F caption="${4:$DESCRICAO}" \
+-F parse_mode="${5:HTML}" \
+-F performer="${6:ARTISTA}" \
+-F title="${7:TÍTULO}"
+endsnippet
+
+# Snippet para enviar um vídeo
+snippet sendvideo "Envia um vídeo com legenda"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendVideo" \
+-F chat_id="${2:$CHAT_ID}" \
+-F video="@${3:CAMINHO/DO/VIDEO}" \
+-F caption="${4:$DESCRICAO}" \
+-F parse_mode="${5:HTML}" \
+-F supports_streaming="${6:true}"
+endsnippet
+
+# Snippet para enviar uma mensagem de contato
+snippet sendcontact "Envia um contato"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendContact" \
+-d chat_id="${2:$CHAT_ID}" \
+-d phone_number="${3:NUMERO_DO_TELEFONE}" \
+-d first_name="${4:PRIMEIRO_NOME}" \
+-d last_name="${5:ULTIMO_NOME}"
+endsnippet
+
+# Snippet para enviar uma enquete
+snippet sendpoll "Envia uma enquete para o usuário"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendPoll" \
+-d chat_id="${2:$CHAT_ID}" \
+-d question="${3:PERGUNTA}" \
+-d options='["${4:OPCAO1}", "${5:OPCAO2}"]' \
+-d is_anonymous="${6:true}"
+endsnippet
+
+# Snippet para encaminhar uma mensagem
+snippet forwardmsg "Encaminha uma mensagem"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/forwardMessage" \
+-d chat_id="${2:$CHAT_ID_DESTINO}" \
+-d from_chat_id="${3:$CHAT_ID_ORIGEM}" \
+-d message_id="${4:$MESSAGE_ID}"
+endsnippet
+
+# Snippet para enviar uma animação (GIF)
+snippet sendanimation "Envia uma animação (GIF)"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendAnimation" \
+-F chat_id="${2:$CHAT_ID}" \
+-F animation="@${3:CAMINHO/DO/ARQUIVO}" \
+-F caption="${4:$DESCRICAO}" \
+-F parse_mode="${5:HTML}"
+endsnippet
+
+# Snippet para enviar uma ação de digitação
+snippet sendaction "Envia uma ação de digitação ou carregamento"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/sendChatAction" \
+-d chat_id="${2:$CHAT_ID}" \
+-d action="${3:typing}" # Opções: typing, upload_photo, record_video, upload_video, record_voice, upload_voice, upload_document, find_location, record_video_note, upload_video_note
+endsnippet
+
+# Snippet para fixar uma mensagem em um chat
+snippet pinmsg "Fixa uma mensagem em um chat"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/pinChatMessage" \
+-d chat_id="${2:$CHAT_ID}" \
+-d message_id="${3:$MESSAGE_ID}" \
+-d disable_notification="${4:false}"
+endsnippet
+
+# Snippet para desfixar uma mensagem em um chat
+snippet unpinmsg "Desfixa uma mensagem em um chat"
+curl -s -X POST "https://api.telegram.org/bot${1:$TOKEN}/unpinChatMessage" \
+-d chat_id="${2:$CHAT_ID}" \
+-d message_id="${3:$MESSAGE_ID}"
+endsnippet
+####################################################
+
+
+
+
+
+

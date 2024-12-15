@@ -1,0 +1,107 @@
+
+
+# -------------------------------------------
+# PRINT DE MENSAGENS COLORIDAS
+# -------------------------------------------
+
+
+
+# colorindo mensagens
+snippet paleta "Cria uma funçao contendo todas as cores"
+# FUNÇÃO PRA COLORIR AS MENSAGEM DO ECHO
+msg_cor(){
+case "\$1" in
+vm|vermelho)
+echo -e "\e[1;31m\$2\e[m"
+;;
+vd|verde)
+echo -e "\e[1;32m\$2\e[m"
+;;
+bd|bordo)
+echo -e "\e[1;35m\$2\e[m"
+;;
+am|amarelo)
+echo -e "\e[1;33m\$2\e[m"
+;;
+cy|cyano)
+echo -e "\e[1;36m\$2\e[m"
+;;
+az|azul)
+echo -e "\e[1;34m\$2\e[m"
+;;
+*)
+echo -e "\e[1;37m\$2\e[m"
+esac
+}
+# pra chamar a função exibindo as cores
+# msg_cor 'cyano' "$saudacao. Agora são $hora:$minuto"
+endsnippet
+
+
+
+
+
+snippet msg_cor "enviar mensagem colorida"
+# FUNÇÃO PRA COLORIR AS MENSAGEM DO ECHO
+msg_cor(){
+case "\$1" in
+vm|vermelho)
+echo -e "\e[1;31m\$2\e[m"
+;;
+vd|verde)
+echo -e "\e[1;32m\$2\e[m"
+;;
+bd|bordo)
+echo -e "\e[1;35m\$2\e[m"
+;;
+am|amarelo)
+echo -e "\e[1;33m\$2\e[m"
+;;
+cy|cyano)
+echo -e "\e[1;36m\$2\e[m"
+;;
+az|azul)
+echo -e "\e[1;34m\$2\e[m"
+;;
+*)
+echo -e "\e[1;37m\$2\e[m"
+esac
+}
+endsnippet
+
+snippet set_color "Escolhe as cores das mensagens"
+# Função para gerenciar cores
+set_color() {
+    case "\$1" in
+        "reset") echo -e "\e[0m" ;;
+        "pt") echo -en "\e[30m" ;;
+        "vm") echo -en "\e[31m" ;;
+        "vd") echo -en "\e[32m" ;;
+        "am") echo -en "\e[33m" ;;
+        "az") echo -en "\e[34m" ;;
+        "mg") echo -en "\e[35m" ;;
+        "cy") echo -en "\e[36m" ;;
+        "br") echo -en "\e[37m" ;;
+        "bold") echo -en "\e[1m" ;;
+        "underline") echo -en "\e[4m" ;;
+        "invert") echo -en "\e[7m" ;;
+        *) echo "" ;;
+    esac
+}
+endsnippet
+
+
+snippet cores "Cores Bash" b
+ vm='\e[1;31m'
+ vd='\e[1;32m'
+ am='\e[1;33m'
+ az='\e[1;34m'
+ mg=='\e[1;35m'
+ cy=='\e[1;36m'
+ fs='\e[1;30m'
+ rs='\e[0m'
+endsnippet
+
+
+
+

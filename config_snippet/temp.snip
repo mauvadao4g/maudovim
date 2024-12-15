@@ -1,0 +1,50 @@
+
+
+
+snippet tempfun "Cria um arquivo tempoario"
+criar_temp() {
+    local tipo="$1"   # "arquivo" ou "diretorio"
+    local prefixo="$2" # Prefixo opcional
+    local temp
+
+    if [[ "$tipo" == "diretorio" ]]; then
+        temp=$(mktemp -d "${prefixo:-/tmp/tempdir.XXXXXX}")
+        echo "Diretório temporário criado: $temp"
+    elif [[ "$tipo" == "arquivo" ]]; then
+        temp=$(mktemp "${prefixo:-/tmp/tempfile.XXXXXX}")
+        echo "Arquivo temporário criado: $temp"
+    else
+        echo "Uso: criar_temp <tipo> [prefixo]"
+        echo "  tipo: 'arquivo' ou 'diretorio'"
+        echo "  prefixo: (opcional) Exemplo: /tmp/meu_arquivo.XXXXXX"
+        return 1
+    fi
+
+    echo "$temp"
+}
+endsnippet
+
+snippet tempdir
+ temp=$(mktemp -d "${1:~/tmp/tempdir.XXXXXX}")
+endsnippet
+
+
+snippet tempfile
+ temp=$(mktemp "${1:~/tmp/tempdir.XXXXXX}")
+endsnippet
+
+snippet /fex?/ "if file exists" rb
+if [[ -e ${1:filename} ]]; then
+    echo "O arquivo '${1:filename}' existe."
+else
+    echo "O arquivo '${1:filename}' não existe."
+fi
+endsnippet
+
+snippet read "read -p" b
+        read -p ${1:MENSAGEM_PRINT}
+
+
+
+endsnippet
+

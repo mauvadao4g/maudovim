@@ -1,0 +1,22 @@
+
+
+# CABEÇALHOS
+snippet titulo "Print do titulo no topo"
+    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+    echo -e "\033[1;34m| \033[1;37m${1:PARAMETROS}             \033[1;34m|\033[0m"
+    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+    echo
+endsnippet
+
+
+snippet logo "MauDaVpn"
+echo -ne '\e[1;35m'
+figlet ${1:MauDaVpn}
+echo -ne '\e[0m'
+endsnippet
+
+snippet maudavpn "MauDaVpn"
+echo -ne '\e[1;34m'
+figlet ${1:MauDaVpn}
+echo -ne '\e[0m'
+endsnippet

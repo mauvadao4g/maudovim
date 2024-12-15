@@ -1,0 +1,16 @@
+
+snippet tutorial "Função tutorial com verificação" b
+# tutorial
+TUTORIAL(){
+   cat <<'TUTO' 
+${1:TEXTO_TUTORIAL}
+
+TUTO
+
+}
+# verifica se foi chamada a função tutorial
+if [[ "\$1" == *'code'* || "\$1" == *'h'* ]]; then
+    TUTORIAL
+    exit 0
+fi
+endsnippet

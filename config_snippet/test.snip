@@ -1,0 +1,113 @@
+
+####################################################
+#  CONDIÇÕES UTEIS
+####################################################
+# VERIFICAR URL
+snippet check_url "Verifica se a URL é um domínio ou um IPv4 válido"
+# Função para verificar se é um IPv4 válido
+is_ipv4() {
+  local ip=\$1
+  [[ $ip =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] && \
+  for octet in $(echo "$ip" | tr '.' ' '); do
+    [[ $octet -ge 0 && $octet -le 255 ]] || return 1
+  done && return 0 || return 1
+}
+
+# Função para verificar se é um domínio válido
+is_domain() {
+  local domain=\$1
+  [[ $domain =~ ^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$ ]]
+}
+
+# Verificar entrada
+check_url() {
+  local input=\$1
+  if is_ipv4 "$input"; then
+    echo "É um IPv4 válido."
+  elif is_domain "$input"; then
+    echo "É um domínio válido."
+  else
+    echo "Entrada inválida."
+  fi
+}
+
+endsnippet
+
+
+
+
+
+# verificar se programa existe
+snippet command "Visualizar se o programa esta instalado"
+# Verificação de dependências
+if ! command -v ${1:APLICAÇÃO} &> /dev/null; then
+    log "Erro: $1 não está instalado."
+    exit 1
+fi
+endsnippet
+
+
+snippet dire "Verificar se o diretório de origem existe"
+
+# Verificar se o diretório de origem existe
+if [[ ! -d "${1:$SOURCE_DIR}" ]]; then
+    log "Erro: Diretório de origem ${1:$SOURCE_DIR} não existe."
+    exit 1
+fi
+endsnippet
+
+snippet $? "Verificar o status do comando"
+# Verificar o status do backup
+if [ $? -eq 0 ]; then
+    echo -e "\e[1;32m${1:Sucesso}\e[0m"
+else
+    echo -e "\e[1;31m${2:Error}\e[0m"
+    exit 1
+fi
+endsnippet
+
+# Verificando se o .zip está legivel ou corrompido
+snippet testunzip "Testar se o .zip está legivel"
+file="${1:file.zip}"
+unzip -t "$file"
+endsnippet
+
+snippet test7z "Testar se o  .zip está legivel com 7z"
+file="${1:file.zip}"
+7z t "$file"
+endsnippet
+
+snippet testzip "Testar um .zip  se está legivel com zip -T"
+file=${1:file.zip}
+zip -T  "$file"
+endsnippet
+
+snippet test? "[[ $? == 0 ]]"
+    # Verificando uma condição
+    [[ $? == 0 ]] && { ${1:COMANDOS}; }
+endsnippet
+
+
+snippet test?| "[[ $? == 0 ]]"
+    # Verificando uma condição
+    [[ $? == 0 ]] && { ${1:COMANDOS}; } || { ${2:COMANDOS}; }
+endsnippet
+
+
+
+
+# VERIFICAÇOES 
+snippet vazio "Verificar se parâmetro está vazio" b
+[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
+endsnippet
+
+snippet -z "Verificar se parâmetro está vazio" b
+[[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
+endsnippet
+
+snippet -n "Verificar se parâmetro está em uso " b
+[[ -n "${1:\$1}" ]] && { ${2:COMANDOS}"; }
+endsnippet
+
+
+

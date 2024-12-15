@@ -1,0 +1,109 @@
+
+# ----------------------------
+# CRIAÇÃO DE USUARIO ALEATORIO
+# ----------------------------
+snippet usuario "Cria um usuario em random"
+usuario="teste$((RANDOM % 250 + 1))"
+endsnippet
+
+snippet user "Cria um usuario em random"
+usuario="teste$((RANDOM % 250 + 1))"
+endsnippet
+
+snippet user1 "Gerar um usuario aleatório de 5a6 caracteres (letras minusculas)"
+# Gerar um usuário aleatório de 5 a 6 caracteres (apenas letras minúsculas e números)
+usuario="mau$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 5 | head -n 1)"
+endsnippet
+
+snippet user2 "Gerar um usuário aleatório de 5 a 6 caracteres"
+# Gerar um usuário aleatório de 5 a 6 caracteres (letras minúsculas, números e base64)
+usuario="Mau$(head /dev/urandom | tr -dc 'a-z0-9' | head -c 5 ; echo '')$(head /dev/urandom | tr -dc 'A-Za-z0-9' | head -c 1)"
+endsnippet
+
+# ---------------------
+# CRIAR SENHA ALEATORIA
+# ---------------------
+snippet pass "Gerar uma senha aleatoria"
+# Gerar uma senha aleatorio
+senha="$((RANDOM % 99999 + 10))"
+endsnippet
+
+snippet senha "Cria uma  senha em random"
+# Gerar uma  senha aleatoria
+senha="$((RANDOM % 99999 + 10))"
+endsnippet
+
+snippet dias "Adiciona numero de dias na data"
+tuserdate=$(date '+%Y/%m/%d' -d "+${1:31} days")
+endsnippet
+
+snippet passvps "Criar login e pass na vps"
+# Verifica se a conexão SSH pode ser estabelecida
+    if sshpass -p "$senhaServer" ssh -p "$porta" -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ipServer echo "ok" 1>/dev/null 2>/dev/null; then
+        sshpass -p "$senhaServer" ssh -p "$porta" -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ipServer << EOF >/dev/null 2>&1
+./atlascreate.sh $usuario $senha 2 1
+EOF
+endsnippet
+
+
+snippet sshtest "Testar servidor ssh"
+# Verifica se a conexão SSH pode ser estabelecida
+usuario="${1:usuario_servidor}"
+senhasServer="${2:senha_servidor}"
+porta=${3:22}
+    if sshpass -p "$senhaServer" ssh -p "$porta" -o ConnectTimeout=2 -o StrictHostKeyChecking=no root@$ipServer echo "ok" 1>/dev/null 2>/dev/null; then
+	echo "Ssh Conectado"
+	else
+	echo "Impossivel Conectar"
+	fi
+endsnippet
+
+
+snippet operadoras "printa operadoras na tela"
+echo -e "🔴CLARO 🟣VIVO 🔵TIM 🟡Oi\n"
+endsnippet
+
+
+snippet servidores "Cria os servidores"
+# Definindo o array de servidores
+declare -A SERVIDORES=(
+    [servidor1]="${1:IP_SERVIDOR}:${2:22} malvadao"
+    [servidor2]="${3:IP_SERVIDOR}:${4:22} mauvadao"
+    # Adicione mais servidores aqui se necessário
+)
+
+# Extrai informações do servidor
+ipPorta="${SERVIDORES[$servidor]%% *}"
+senhaServer="${SERVIDORES[$servidor]#* }"
+# Extrai o IP e a porta do servidor
+ipServer="${ipPorta%:*}"
+porta="${ipPorta#*:}"
+
+endsnippet
+
+
+
+
+
+# -------------------------------------
+# MOSTRANDO MENSAGEM DE USUARIO E SENHA
+# -------------------------------------
+snippet verusuario "Mostra o usuario e senha na tela"
+    cat <<EOF
+
+🎉 CONTA CRIADA COM SUCESSO! 🎉
+
+🌍 Servidor: 𝐁𝐫𝐚𝐬𝐢𝐥𝐞𝐢𝐫𝐨
+👤 Login: <code>$usuario</code>
+🔑 Senha: <code>$senha</code>
+📲 Limite: 1
+🗓️ Expira em: $tempo Dia(s)
+
+*⚠️ ENTRAR COM INTERNET PARA ATUALIZAR APLICATIVO ⚠️*
+*🚫 PROIBIDO TORRENT 🚫*
+*🚀 USE SEM MEDO 🕹*
+
+Mais informações @mauvadao
+EOF
+
+endsnippet

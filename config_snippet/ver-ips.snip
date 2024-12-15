@@ -1,0 +1,85 @@
+
+###########################################################
+#      SNIPEETS PEGANDO INFORMAÇÕES DE IP EXTERNO E INTERNO
+###########################################################
+
+# Ver Ip externo
+snippet verip "Ver ip externo"
+IP=$(curl -s http://whatismyip.akamai.com/)
+endsnippet
+
+snippet verip1 "checkip.amazonaws.com"
+# Verificar ip externo
+IP=$(curl  http://checkip.amazonaws.com)
+endsnippet
+
+
+snippet verip2 "checkip.amazonaws.com"
+# Verificar ip externo
+IP=$(lynx -dump http://checkip.amazonaws.com)
+endsnippet
+
+
+snippet verip3 "api.ipify.org"
+# Verificar ip externo
+IP=$(curl https://api.ipify.org)
+endsnippet
+
+# Snippet para obter o IP externo do provedor
+snippet ipex "Verifica o ip externo da máquina"
+# Utiliza um serviço público para obter o IP externo da máquina
+IP_EXTERNO="$(curl -s https://api64.ipify.org || curl -s https://api.ipify.org)
+echo -e "\e[1;32mIP:\e[0m \e[1;33m$IP_EXTERNO\e[0m"
+endsnippet
+
+# Snippet para obter o IP interno da máquina
+snippet ipin "Verifica o ip interno da máquina"
+# Exibe o IP interno atribuído à interface de rede ativa
+IP_INTERNO=$(ip addr show | awk '/inet / {print $2}' | cut -d/ -f1 | grep -v "127.0.0.1")
+echo -e "\e[1;32mIP:\e[0m \e[1;33m$IP_INTERNO\e[0m"
+endsnippet
+
+snippet ipex_dig "Verifica o IP externo usando dig"
+# Obtém o IP externo consultando servidores de DNS do Google
+dig +short myip.opendns.com @resolver1.opendns.com
+endsnippet
+
+snippet ipex_wget "Verifica o IP externo usando wget"
+# Utiliza wget para consultar o IP externo
+wget -qO- https://api64.ipify.org || wget -qO- https://api.ipify.org
+endsnippet
+
+snippet ipex_http "Verifica o IP externo usando httpie"
+# Usa o httpie para consultar o IP externo
+http https://api64.ipify.org
+endsnippet
+
+snippet ipex_nslookup "Verifica o IP externo usando nslookup"
+# Resolve o IP externo consultando o serviço opendns
+nslookup myip.opendns.com resolver1.opendns.com | awk '/Address/ {print $2}' | tail -n1
+endsnippet
+
+snippet ipin_hostname "Verifica o IP interno usando hostname"
+# Mostra todos os IPs internos associados à máquina
+hostname -I | awk '{print $1}'
+endsnippet
+
+snippet ipin_ifconfig "Verifica o IP interno usando ifconfig"
+# Obtém o IP interno utilizando o ifconfig
+ifconfig | grep "inet " | awk '{print $2}' | grep -v "127.0.0.1"
+endsnippet
+
+snippet ipin_nmcli "Verifica o IP interno usando nmcli"
+# Exibe o IP interno associado à conexão ativa do NetworkManager
+nmcli -g IP4.ADDRESS device show | grep -v "127.0.0.1"
+endsnippet
+
+snippet ipin_simple "Verifica o IP interno usando ip e grep"
+# Mostra o IP interno da interface ativa
+ip -4 -o addr show | grep -v "127.0.0.1" | awk '{print $4}' | cut -d/ -f1
+endsnippet
+
+snippet ipin_python "Verifica o IP interno usando Python"
+# Obtem o IP interno utilizando Python
+python3 -c "import socket; print(socket.gethostbyname(socket.gethostname()))"
+endsnippet
