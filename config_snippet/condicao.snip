@@ -1,0 +1,57 @@
+
+snippet if "if [[ ]] ; then ; fi"
+# Condição se verdadeira
+if [[ ${1:CONDICAO} ]]; then
+	${2:COMANDOS}
+fi
+endsnippet
+
+
+snippet if| "if [[ ]] ; then ; else ; fi]]"
+# Condição se verdadeira, se não faz o seguinte
+if [[ ${1:CONDICAO} ]]; then
+	${2:COMANDOS}
+ else
+	${3:COMANDOS}
+fi
+endsnippet
+
+snippet else "else "
+ else
+${1:COMANDOS}
+
+endsnippet
+
+
+snippet if? "if [[ $? == 0 ]]"
+# Condição se for verdadeira
+if [[ $? == 0 ]]; then
+ ${1:COMANDOS}
+fi
+endsnippet
+
+
+snippet ifdir "if [[ -d DIR ]]; then"
+# Verificando se a pasta existe
+DIR="${1:LOCAL_DIR}"
+if [[ -d $DIR ]]; then
+ ${1:COMANDOS}
+fi
+endsnippet
+
+
+snippet iffile "if [[ -f FILE ]]; then"
+# Verificando se o file  existe
+FILE="${1:file.txt}"
+if [[ -d $FILE ]]; then
+ ${1:COMANDOS}
+fi
+
+snippet ife "if [[ -e FILE ]]; then"
+# Verificando
+FILE="${1:file.txt}"
+if [[ -e $FILE ]]; then
+ ${1:COMANDOS}
+endsnippet
+
+

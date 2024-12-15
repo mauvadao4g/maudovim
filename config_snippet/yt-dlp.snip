@@ -1,0 +1,40 @@
+
+
+snippet ytf "Formatos de video yt-dlp"
+# Baixando videos da url
+fullhd='bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]/mp4'
+hd='bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]/mp4'
+medio='bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/bestvideo[ext=mp4]/mp4'
+formato="$fullhd"
+endsnippet
+
+
+
+snippet ytdlp "Baixar videos do youtube"
+# Baixar videos do youtube
+url="${1:\$1}"
+fullhd='bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]/mp4'
+hd='bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]/mp4'
+medio='bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/bestvideo[ext=mp4]/mp4'
+formato="$fullhd"
+
+yt-dlp --cookies /bin/cookies.txt \
+--user-agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' \
+-f $formato \
+https://www.youtube.com/@ValentinaVictoria/videos \
+-o '%(title)s-%(id)s.%(ext)s'
+endsnippet
+
+
+
+
+snippet ytdown "Baixa videos da Url"
+# Baixando videos da url
+# formato de videos
+fullhd='bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]/mp4'
+hd='bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]/mp4'
+medio='bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480][ext=mp4]/bestvideo[ext=mp4]/mp4'
+formato="$fullhd"
+# comando pra baixar os videos
+yt-dlp -f $formato "$url" -o '%(title)s-%(id)s.%(ext)s'
+endsnippet
