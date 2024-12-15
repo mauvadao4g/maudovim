@@ -1,0 +1,87 @@
+snippet -a "Gerar uma chave SSH sem senha" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N ""
+endsnippet
+
+snippet -b "Gerar uma chave SSH com senha" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "sua_senha_segura"
+endsnippet
+
+snippet -c "Gerar uma chave SSH com algoritmo ed25519" b
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N ""
+endsnippet
+
+snippet -d "Gerar uma chave SSH em um caminho personalizado" b
+ssh-keygen -t rsa -b 2048 -f /caminho/personalizado/id_rsa -N ""
+endsnippet
+
+snippet -e "Gerar uma chave SSH com um comentário específico" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -C "comentario@dominio.com" -N ""
+endsnippet
+
+snippet -f "Gerar uma chave SSH com chave privada e pública em um diretório específico" b
+ssh-keygen -t rsa -b 2048 -f /caminho/para/diretorio/id_rsa -N ""
+endsnippet
+
+snippet -g "Gerar uma chave SSH com chave de 4096 bits" b
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+endsnippet
+
+snippet -h "Gerar uma chave SSH sem sobrescrever uma chave existente" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "" -o
+endsnippet
+
+snippet -i "Importar chave pública para o formato OpenSSH" b
+ssh-keygen -i -f chave_publica_rsa.pub
+endsnippet
+
+snippet -j "Gerar uma chave SSH sem prompt de confirmação" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "" -y
+endsnippet
+
+snippet -k "Gerar uma chave SSH com a opção de não usar senha para autenticação" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "senha_vazia"
+endsnippet
+
+snippet -l "Verificar a chave pública SSH gerada" b
+ssh-keygen -lf ~/.ssh/id_rsa.pub
+endsnippet
+
+snippet -m "Gerar uma chave SSH em formato PEM" b
+ssh-keygen -t rsa -b 2048 -m PEM -f ~/.ssh/id_rsa -N ""
+endsnippet
+
+snippet -n "Gerar chave SSH com identificação de chave personalizada" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -C "chave_personalizada@dominio.com" -N ""
+endsnippet
+
+snippet -o "Gerar chave SSH e usar a criptografia moderna de chave privada" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -o -N ""
+endsnippet
+
+snippet -p "Gerar chave SSH e proteger com senha" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "senha_segura"
+endsnippet
+
+snippet -q "Gerar chave SSH sem exibir saída" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "" -q
+endsnippet
+
+snippet -r "Gerar uma chave SSH com curva elíptica (ECC)" b
+ssh-keygen -t ecdsa -b 521 -f ~/.ssh/id_ecdsa -N ""
+endsnippet
+
+snippet -s "Gerar chave SSH com formato de chave específica para uso com GitHub" b
+ssh-keygen -t rsa -b 2048 -C "email@dominio.com" -f ~/.ssh/id_rsa_github -N ""
+endsnippet
+
+snippet -t "Gerar chave SSH para autenticação em servidor remoto com chave personalizada" b
+ssh-keygen -t rsa -b 2048 -f /caminho/chave_pessoal/id_rsa -N ""
+endsnippet
+
+snippet -u "Gerar chave SSH e configurar para uso com GitLab" b
+ssh-keygen -t rsa -b 2048 -C "usuario@gitlab.com" -f ~/.ssh/id_rsa_gitlab -N ""
+endsnippet
+
+snippet -v "Gerar chave SSH e verificar o tipo de chave gerada" b
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N "" -v
+endsnippet

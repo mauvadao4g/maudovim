@@ -1,0 +1,87 @@
+snippet -a "Copiar um arquivo para um servidor remoto" b
+scp arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -b "Copiar um arquivo de um servidor remoto para o diretório local" b
+scp usuario@servidor:/caminho/origem/arquivo.txt /caminho/destino/
+endsnippet
+
+snippet -c "Copiar um diretório inteiro para um servidor remoto" b
+scp -r /caminho/diretorio usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -d "Copiar um diretório inteiro de um servidor remoto para o diretório local" b
+scp -r usuario@servidor:/caminho/diretorio /caminho/destino/
+endsnippet
+
+snippet -e "Copiar um arquivo para um servidor remoto em uma porta personalizada" b
+scp -P 2222 arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -f "Copiar um arquivo para um servidor remoto e especificar uma chave SSH" b
+scp -i /caminho/para/chave.pem arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -g "Copiar um arquivo para um servidor remoto e usar a compressão" b
+scp -C arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -h "Copiar vários arquivos para um servidor remoto" b
+scp arquivo1.txt arquivo2.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -i "Copiar um arquivo para um servidor remoto com um nome diferente" b
+scp arquivo.txt usuario@servidor:/caminho/destino/novo_arquivo.txt
+endsnippet
+
+snippet -j "Copiar um arquivo de um servidor remoto para outro servidor remoto" b
+scp usuario1@servidor1:/caminho/arquivo.txt usuario2@servidor2:/caminho/destino/
+endsnippet
+
+snippet -k "Copiar um diretório de um servidor remoto para outro servidor remoto" b
+scp -r usuario1@servidor1:/caminho/diretorio usuario2@servidor2:/caminho/destino/
+endsnippet
+
+snippet -l "Copiar um arquivo para um servidor remoto com verificação de integridade" b
+scp -v arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -m "Copiar um arquivo para um servidor remoto e mostrar a barra de progresso" b
+scp -v arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -n "Copiar um arquivo de um servidor remoto para o diretório atual" b
+scp usuario@servidor:/caminho/arquivo.txt .
+endsnippet
+
+snippet -o "Copiar um arquivo com senha SSH fornecida durante a execução" b
+scp -o PasswordAuthentication=yes arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -p "Preservar permissões e timestamps ao copiar um arquivo para o servidor remoto" b
+scp -p arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -q "Copiar um arquivo sem exibir mensagens de progresso" b
+scp -q arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -r "Copiar um diretório inteiro com subdiretórios e arquivos" b
+scp -r /caminho/diretorio usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -s "Copiar um arquivo e exibir detalhes do processo" b
+scp -v arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -t "Copiar um arquivo e usar um endereço de IP em vez de um nome de domínio" b
+scp arquivo.txt usuario@192.168.1.100:/caminho/destino/
+endsnippet
+
+snippet -u "Copiar um arquivo e ignorar a verificação de autenticação da chave SSH" b
+scp -o StrictHostKeyChecking=no arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -v "Copiar um arquivo usando um servidor proxy" b
+scp -o ProxyCommand="ssh -q -W %h:%p usuario@proxy" arquivo.txt usuario@servidor:/caminho/destino/
+endsnippet

@@ -1,0 +1,155 @@
+snippet -a "Verificar o status do repositório Git" b
+git status
+endsnippet
+
+snippet -b "Inicializar um novo repositório Git" b
+git init
+endsnippet
+
+snippet -c "Clonar um repositório remoto para o diretório local" b
+git clone https://github.com/usuario/repositorio.git
+endsnippet
+
+snippet -d "Adicionar todos os arquivos ao stage" b
+git add .
+endsnippet
+
+snippet -e "Adicionar um arquivo específico ao stage" b
+git add nome_do_arquivo
+endsnippet
+
+snippet -f "Comitar as alterações com uma mensagem" b
+git commit -m "Mensagem do commit"
+endsnippet
+
+snippet -g "Comitar e pular o editor de mensagens" b
+git commit --amend --no-edit
+endsnippet
+
+snippet -h "Exibir o histórico de commits" b
+git log
+endsnippet
+
+snippet -i "Mostrar o histórico de commits com uma linha por commit" b
+git log --oneline
+endsnippet
+
+snippet -j "Mostrar o histórico de commits de um arquivo específico" b
+git log nome_do_arquivo
+endsnippet
+
+snippet -k "Criar uma nova branch" b
+git branch nome_da_branch
+endsnippet
+
+snippet -l "Listar todas as branches locais" b
+git branch
+endsnippet
+
+snippet -m "Mudar para uma branch específica" b
+git checkout nome_da_branch
+endsnippet
+
+snippet -n "Criar uma nova branch e mudar para ela" b
+git checkout -b nome_da_branch
+endsnippet
+
+snippet -o "Mesclar uma branch com a branch atual" b
+git merge nome_da_branch
+endsnippet
+
+snippet -p "Mostrar o que foi alterado entre commits ou na área de stage" b
+git diff
+endsnippet
+
+snippet -q "Buscar mudanças no repositório remoto" b
+git fetch
+endsnippet
+
+snippet -r "Puxar as alterações do repositório remoto para a branch atual" b
+git pull
+endsnippet
+
+snippet -s "Enviar commits para o repositório remoto" b
+git push
+endsnippet
+
+snippet -t "Configurar um repositório remoto" b
+git remote add origin https://github.com/usuario/repositorio.git
+endsnippet
+
+snippet -u "Verificar os repositórios remotos configurados" b
+git remote -v
+endsnippet
+
+snippet -v "Exibir o log de commit com detalhes em formato de árvore" b
+git log --graph --oneline
+endsnippet
+
+snippet -w "Excluir uma branch local" b
+git branch -d nome_da_branch
+endsnippet
+
+snippet -x "Excluir uma branch remota" b
+git push origin --delete nome_da_branch
+endsnippet
+
+snippet -y "Renomear uma branch local" b
+git branch -m nome_antigo nome_novo
+endsnippet
+
+snippet -z "Reverter o último commit, mantendo as mudanças no working directory" b
+git reset --soft HEAD~1
+endsnippet
+
+snippet -aa "Reverter o último commit e excluir as mudanças" b
+git reset --hard HEAD~1
+endsnippet
+
+snippet -bb "Verificar as diferenças entre a área de stage e o repositório local" b
+git diff --staged
+endsnippet
+
+snippet -cc "Criar um commit com todas as alterações, incluindo arquivos removidos" b
+git commit -a -m "Mensagem do commit"
+endsnippet
+
+snippet -dd "Exibir as alterações de um arquivo específico entre dois commits" b
+git diff commit1 commit2 -- nome_do_arquivo
+endsnippet
+
+snippet -ee "Reverter um commit específico" b
+git revert <commit_id>
+endsnippet
+
+snippet -ff "Aplicar alterações de um commit específico em outro branch" b
+git cherry-pick <commit_id>
+endsnippet
+
+snippet -gg "Verificar o status de arquivos de submódulos" b
+git submodule status
+endsnippet
+
+snippet -hh "Inicializar um submódulo Git" b
+git submodule add https://github.com/usuario/repositorio_submodulo.git caminho/do/submodulo
+endsnippet
+
+snippet -ii "Atualizar todos os submódulos" b
+git submodule update --remote
+endsnippet
+
+snippet -jj "Visualizar as branches remotas" b
+git branch -r
+endsnippet
+
+snippet -kk "Sincronizar o repositório local com o remoto" b
+git pull origin nome_da_branch
+endsnippet
+
+snippet -ll "Listar os commits em ordem inversa (mais recentes primeiro)" b
+git log --reverse
+endsnippet
+
+snippet -mm "Exibir informações sobre o repositório, como número de commits e branches" b
+git status -sb
+endsnippet

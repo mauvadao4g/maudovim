@@ -1,0 +1,87 @@
+snippet -a "Sincronizar um diretório local com um diretório remoto" b
+rsync -av /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -b "Sincronizar um diretório remoto com um diretório local" b
+rsync -av usuario@servidor:/caminho/diretorio/ /caminho/destino/
+endsnippet
+
+snippet -c "Sincronizar um diretório local com um diretório remoto, excluindo arquivos específicos" b
+rsync -av --exclude 'pasta_ou_arquivo' /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -d "Sincronizar arquivos entre dois diretórios locais" b
+rsync -av /caminho/diretorio1/ /caminho/diretorio2/
+endsnippet
+
+snippet -e "Sincronizar arquivos com compressão" b
+rsync -avz /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -f "Sincronizar arquivos e manter os atributos de permissões e timestamps" b
+rsync -avp /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -g "Sincronizar arquivos com a exclusão de arquivos no destino" b
+rsync -av --delete /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -h "Sincronizar arquivos apenas se houver mudanças" b
+rsync -av --ignore-existing /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -i "Sincronizar arquivos com verificação de checksum" b
+rsync -avc /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -j "Sincronizar arquivos, mostrando o progresso durante a transferência" b
+rsync -av --progress /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -k "Sincronizar arquivos e criar backups no destino" b
+rsync -av --backup --backup-dir=/caminho/destino/backup /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -l "Sincronizar arquivos e exibir estatísticas de transferência" b
+rsync -av --stats /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -m "Sincronizar diretórios com logs de execução" b
+rsync -av --log-file=rsync.log /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -n "Sincronizar arquivos sem criar diretórios no destino" b
+rsync -av --no-relative /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -o "Sincronizar arquivos em tempo real (usando inotify)" b
+rsync -av --inplace /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -p "Sincronizar arquivos com permissão de escrita somente para o proprietário" b
+rsync -av --chmod=ugo=r /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -q "Sincronizar arquivos com modo silencioso (sem exibir detalhes)" b
+rsync -aq /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -r "Sincronizar diretórios remotos entre dois servidores" b
+rsync -av usuario@servidor1:/caminho/diretorio/ usuario@servidor2:/caminho/destino/
+endsnippet
+
+snippet -s "Sincronizar diretórios locais com a exclusão de arquivos no destino que não existam mais no origem" b
+rsync -av --delete --ignore-errors /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -t "Sincronizar arquivos por meio de uma conexão SSH com chave privada" b
+rsync -av -e "ssh -i /caminho/para/chave.pem" /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -u "Sincronizar arquivos e só atualizar arquivos mais novos no destino" b
+rsync -av --update /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
+
+snippet -v "Sincronizar arquivos com verificação de segurança (usando SSH)" b
+rsync -avz -e ssh /caminho/diretorio/ usuario@servidor:/caminho/destino/
+endsnippet
