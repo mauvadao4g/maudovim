@@ -1,0 +1,122 @@
+snippet -a "Loop enquanto um arquivo existir" b
+while [[ -e "$1" ]]; do
+  echo "O arquivo $1 existe."
+  sleep 1
+done
+endsnippet
+
+snippet -b "Loop enquanto uma variável for vazia" b
+while [[ -z "$VAR" ]]; do
+  echo "A variável está vazia. Aguardando valor..."
+  sleep 1
+done
+endsnippet
+
+snippet -c "Loop até que um número seja menor que 10" b
+count=0
+while [[ $count -lt 10 ]]; do
+  echo "Contador: $count"
+  ((count++))
+done
+endsnippet
+
+snippet -d "Loop até o fim de um arquivo" b
+while read line; do
+  echo "Linha: $line"
+done < arquivo.txt
+endsnippet
+
+snippet -e "Loop para aguardar uma condição" b
+while [[ $(ps aux | grep "processo" | wc -l) -gt 1 ]]; do
+  echo "Aguardando o processo terminar..."
+  sleep 2
+done
+endsnippet
+
+snippet -f "Loop para esperar por uma entrada do usuário" b
+while true; do
+  read -p "Digite 's' para sair ou qualquer outra tecla para continuar: " input
+  if [[ "$input" == "s" ]]; then
+    echo "Saindo..."
+    break
+  else
+    echo "Continuando..."
+  fi
+done
+endsnippet
+
+snippet -g "Loop com controle de erro" b
+counter=0
+while [[ $counter -lt 5 ]]; do
+  if [[ $counter -eq 3 ]]; then
+    echo "Erro na iteração $counter, saindo."
+    exit 1
+  fi
+  echo "Contador: $counter"
+  ((counter++))
+done
+endsnippet
+
+snippet -h "Loop enquanto a variável for maior que 0" b
+value=10
+while [[ $value -gt 0 ]]; do
+  echo "Valor: $value"
+  ((value--))
+done
+endsnippet
+
+snippet -i "Loop para verificar a existência de arquivos e mover" b
+while read file; do
+  if [[ -e "$file" ]]; then
+    mv "$file" /novo/diretorio/
+    echo "Movido: $file"
+  fi
+done < arquivos.txt
+endsnippet
+
+snippet -j "Loop para monitorar uso de disco" b
+while true; do
+  usage=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+  if [[ $usage -gt 80 ]]; then
+    echo "Alerta: Uso do disco superior a 80%! Uso: $usage%"
+  fi
+  sleep 5
+done
+endsnippet
+
+snippet -k "Loop para fazer backup de arquivos até encontrar erro" b
+while cp "$1" /backup/diretorio/; do
+  echo "Backup de $1 realizado com sucesso."
+  shift
+  if [[ $# -eq 0 ]]; then
+    break
+  fi
+done
+endsnippet
+
+snippet -l "Loop para aguardar que um serviço seja iniciado" b
+while ! systemctl is-active --quiet $1; do
+  echo "Esperando o serviço $1 iniciar..."
+  sleep 2
+done
+echo "Serviço $1 está ativo."
+endsnippet
+
+snippet -m "Loop até que o número de tentativas seja alcançado" b
+attempts=0
+max_attempts=3
+while [[ $attempts -lt $max_attempts ]]; do
+  echo "Tentativa $((attempts + 1)) de $max_attempts"
+  ((attempts++))
+  if [[ $attempts -eq $max_attempts ]]; then
+    echo "Número máximo de tentativas alcançado."
+  fi
+done
+endsnippet
+
+snippet -n "Loop para exibir uma lista de processos em execução" b
+while ps aux; do
+  echo "Listando processos em execução..."
+  sleep 5
+done
+endsnippet

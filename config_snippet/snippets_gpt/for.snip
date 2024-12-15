@@ -1,0 +1,97 @@
+snippet -o "Loop sobre uma lista de itens" b
+for item in item1 item2 item3; do
+  echo "Processando: $item"
+done
+endsnippet
+
+snippet -p "Loop para iterar sobre arquivos de um diretório" b
+for file in /caminho/do/diretorio/*; do
+  echo "Arquivo encontrado: $file"
+done
+endsnippet
+
+snippet -q "Loop com números de 1 a 10" b
+for i in {1..10}; do
+  echo "Número: $i"
+done
+endsnippet
+
+snippet -r "Loop para mover arquivos" b
+for file in /caminho/do/diretorio/*; do
+  mv "$file" /novo/diretorio/
+done
+endsnippet
+
+snippet -s "Loop com incremento personalizado" b
+for i in $(seq 1 2 10); do
+  echo "Número: $i"
+done
+endsnippet
+
+snippet -t "Loop para verificar se o arquivo é diretório" b
+for file in /caminho/do/diretorio/*; do
+  if [[ -d "$file" ]]; then
+    echo "$file é um diretório"
+  fi
+done
+endsnippet
+
+snippet -u "Loop para executar um comando em cada arquivo" b
+for file in /caminho/dos/arquivos/*; do
+  cat "$file" | grep "termo"
+done
+endsnippet
+
+snippet -v "Loop com continue" b
+for i in {1..5}; do
+  if [[ $i -eq 3 ]]; then
+    continue  # Pula a iteração quando i é igual a 3
+  fi
+  echo "Número: $i"
+done
+endsnippet
+
+snippet -w "Loop com break" b
+for i in {1..5}; do
+  if [[ $i -eq 4 ]]; then
+    break  # Interrompe o loop quando i é igual a 4
+  fi
+  echo "Número: $i"
+done
+endsnippet
+
+snippet -x "Loop para ler um arquivo linha por linha" b
+for line in $(cat arquivo.txt); do
+  echo "Linha: $line"
+done
+endsnippet
+
+snippet -y "Loop para executar comando em múltiplos IPs" b
+for ip in 192.168.1.1 192.168.1.2 192.168.1.3; do
+  ssh user@"$ip" 'comando_a_ser_executado'
+done
+endsnippet
+
+snippet -z "Loop para criar múltiplos diretórios" b
+for dir in dir1 dir2 dir3; do
+  mkdir "$dir"
+  echo "Diretório $dir criado!"
+done
+endsnippet
+
+snippet -aa "Loop com exit em caso de erro" b
+for i in {1..5}; do
+  if [[ $i -eq 3 ]]; then
+    echo "Erro encontrado em $i, saindo!"
+    exit 1
+  fi
+  echo "Número: $i"
+done
+endsnippet
+
+snippet -bb "Loop para fazer backup de arquivos" b
+for file in /home/usuario/*; do
+  cp "$file" /backup/diretorio/
+  echo "Backup de $file realizado!"
+done
+endsnippet

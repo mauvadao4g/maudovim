@@ -1,0 +1,91 @@
+snippet -a "Criar um usuário simples" b
+sudo adduser nome_usuario
+endsnippet
+
+snippet -b "Criar um usuário e definir um diretório home personalizado" b
+sudo adduser --home /caminho/personalizado nome_usuario
+endsnippet
+
+snippet -c "Criar um usuário e adicionar a um grupo" b
+sudo adduser nome_usuario nome_grupo
+endsnippet
+
+snippet -d "Criar um usuário com shell específico" b
+sudo adduser --shell /bin/bash nome_usuario
+endsnippet
+
+snippet -e "Criar um usuário com senha especificada" b
+sudo adduser --gecos "Nome Completo,Telefone,Endereço" nome_usuario
+echo "senha_usuario" | sudo passwd --stdin nome_usuario
+endsnippet
+
+snippet -f "Criar um usuário com grupo específico" b
+sudo adduser --ingroup grupo_nome nome_usuario
+endsnippet
+
+snippet -g "Criar um usuário com a opção de senha desabilitada" b
+sudo adduser --disabled-password nome_usuario
+endsnippet
+
+snippet -h "Criar um usuário com o diretório home não sendo criado" b
+sudo adduser --no-create-home nome_usuario
+endsnippet
+
+snippet -i "Criar um usuário e definir um diretório home vazio" b
+sudo adduser --home /caminho/para/diretorio_vazio nome_usuario
+endsnippet
+
+snippet -j "Criar um usuário e definir o ID do grupo primário" b
+sudo adduser --gid 1001 nome_usuario
+endsnippet
+
+snippet -k "Criar um usuário com um diretório home não padrão" b
+sudo adduser --home /home/personalizado nome_usuario
+endsnippet
+
+snippet -l "Criar um usuário com comentários adicionais" b
+sudo adduser --comment "Usuário para teste" nome_usuario
+endsnippet
+
+snippet -m "Criar um usuário e gerar um diretório home automaticamente" b
+sudo adduser --create-home nome_usuario
+endsnippet
+
+snippet -n "Criar um usuário e especificar a expiração da conta" b
+sudo adduser --expiredate 2024-12-31 nome_usuario
+endsnippet
+
+snippet -o "Criar um usuário sem enviar e-mail de notificação" b
+sudo adduser --disabled-login --no-create-home nome_usuario
+endsnippet
+
+snippet -p "Criar um usuário com senha temporária" b
+sudo adduser nome_usuario
+echo "senha_temporal" | sudo passwd --stdin nome_usuario
+endsnippet
+
+snippet -q "Criar um usuário com permissões de administrador" b
+sudo adduser nome_usuario sudo
+endsnippet
+
+snippet -r "Criar um usuário e atribuir o grupo de root" b
+sudo adduser nome_usuario root
+endsnippet
+
+snippet -s "Criar um usuário e definir um diretório home em outro sistema de arquivos" b
+sudo adduser --home /mnt/external_disk/nome_usuario nome_usuario
+endsnippet
+
+snippet -t "Criar um usuário com uma senha complexa gerada" b
+password=$(openssl rand -base64 12)
+echo "Senha gerada para o usuário: $password"
+echo "$password" | sudo passwd nome_usuario --stdin
+endsnippet
+
+snippet -u "Criar um usuário com ID de usuário específico" b
+sudo adduser --uid 1234 nome_usuario
+endsnippet
+
+snippet -v "Criar um usuário com nome completo e outras informações" b
+sudo adduser --gecos "Nome Completo,Telefone,Endereço" nome_usuario
+endsnippet

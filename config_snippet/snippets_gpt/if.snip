@@ -1,0 +1,112 @@
+snippet -z "Verificar se parâmetro está vazio" b
+if [[ -z "$1" ]]; then
+  echo "Uso: \$0 <parametros>"
+  exit 1
+fi
+endsnippet
+
+snippet -n "Verificar se parâmetro não está vazio" b
+if [[ -n "$1" ]]; then
+  echo "Parâmetro recebido: $1"
+else
+  echo "Uso: \$0 <parametros>"
+  exit 1
+fi
+endsnippet
+
+snippet -z| "Verificar se variável existe e está vazia" b
+if [[ -z "${VAR}" ]]; then
+  echo "A variável VAR está vazia ou não definida."
+else
+  echo "A variável VAR tem o valor: $VAR"
+fi
+endsnippet
+
+snippet -e "Verificar se arquivo existe" b
+if [[ -e "$1" ]]; then
+  echo "Arquivo $1 existe."
+else
+  echo "Arquivo $1 não encontrado."
+fi
+endsnippet
+
+snippet -d "Verificar se diretório existe" b
+if [[ -d "$1" ]]; then
+  echo "Diretório $1 existe."
+else
+  echo "Diretório $1 não encontrado."
+fi
+endsnippet
+
+snippet -f "Verificar se é um arquivo regular" b
+if [[ -f "$1" ]]; then
+  echo "$1 é um arquivo regular."
+else
+  echo "$1 não é um arquivo regular."
+fi
+endsnippet
+
+snippet == "Verificar se parâmetros são iguais" b
+if [[ "$1" == "$2" ]]; then
+  echo "Os parâmetros são iguais."
+else
+  echo "Os parâmetros são diferentes."
+fi
+endsnippet
+
+snippet -gt "Verificar se número é maior que outro" b
+if [[ "$1" -gt "$2" ]]; then
+  echo "$1 é maior que $2."
+else
+  echo "$1 não é maior que $2."
+fi
+endsnippet
+
+snippet -lt "Verificar se número é menor que outro" b
+if [[ "$1" -lt "$2" ]]; then
+  echo "$1 é menor que $2."
+else
+  echo "$1 não é menor que $2."
+fi
+endsnippet
+
+snippet $? "Verificar se comando foi executado com sucesso" b
+if [[ $? -eq 0 ]]; then
+  echo "O comando foi executado com sucesso."
+else
+  echo "Houve um erro ao executar o comando."
+fi
+endsnippet
+
+snippet -zs "Verificar se variável é vazia e substituir com valor padrão" b
+if [[ -z "$VAR" ]]; then
+  VAR="valor_default"
+  echo "VAR estava vazia, agora tem o valor: $VAR"
+else
+  echo "VAR tem o valor: $VAR"
+fi
+endsnippet
+
+snippet -n| "Verificar múltiplas condições" b
+if [[ -n "$1" && -f "$1" ]]; then
+  echo "O parâmetro é um arquivo válido."
+else
+  echo "O parâmetro não é válido ou não é um arquivo."
+fi
+endsnippet
+
+snippet = "Verificar se variável contém um valor específico" b
+if [[ "$VAR" == "valor_especifico" ]]; then
+  echo "A variável tem o valor esperado."
+else
+  echo "A variável não tem o valor esperado."
+fi
+endsnippet
+
+snippet is-active "Verificar se serviço está em execução" b
+if systemctl is-active --quiet "$1"; then
+  echo "O serviço $1 está em execução."
+else
+  echo "O serviço $1 não está em execução."
+fi
+endsnippet

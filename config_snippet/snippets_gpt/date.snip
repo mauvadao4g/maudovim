@@ -1,0 +1,95 @@
+snippet -a "Exibir a data e hora atual no formato padrão" b
+date
+endsnippet
+
+snippet -b "Exibir a data e hora atual em formato personalizado" b
+date +"%Y-%m-%d %H:%M:%S"
+endsnippet
+
+snippet -c "Exibir apenas a data atual no formato 'dd/mm/yyyy'" b
+date +"%d/%m/%Y"
+endsnippet
+
+snippet -d "Exibir apenas a hora atual no formato 'hh:mm:ss'" b
+date +"%H:%M:%S"
+endsnippet
+
+snippet -e "Exibir a data atual em formato longo" b
+date +"%A, %B %d, %Y"
+endsnippet
+
+snippet -f "Exibir a data em um formato de timestamp Unix" b
+date +"%s"
+endsnippet
+
+snippet -g "Exibir a data e hora de um evento futuro (em 10 dias)" b
+date -d "+10 days"
+endsnippet
+
+snippet -h "Exibir a data e hora de um evento passado (em 5 dias atrás)" b
+date -d "-5 days"
+endsnippet
+
+snippet -i "Exibir a data e hora atual em UTC" b
+date -u
+endsnippet
+
+snippet -j "Exibir a data em formato RFC 2822" b
+date --rfc-2822
+endsnippet
+
+snippet -k "Exibir a data de um arquivo" b
+date -r arquivo.txt
+endsnippet
+
+snippet -l "Exibir a data e hora de uma data específica" b
+date -d "2024-12-31 23:59:59"
+endsnippet
+
+snippet -m "Exibir o dia da semana atual" b
+date +"%A"
+endsnippet
+
+snippet -n "Exibir o número do dia do ano" b
+date +"%j"
+endsnippet
+
+snippet -o "Exibir o nome do mês atual" b
+date +"%B"
+endsnippet
+
+snippet -p "Exibir a data com o nome do dia e mês abreviados" b
+date +"%a %b %d, %Y"
+endsnippet
+
+snippet -q "Exibir a data e hora formatada em outra zona horária" b
+TZ="America/Sao_Paulo" date
+endsnippet
+
+snippet -r "Exibir a data e hora a partir de um timestamp Unix específico" b
+date -d @1623150000
+endsnippet
+
+snippet -s "Definir a data e hora do sistema" b
+sudo date +"%Y-%m-%d %H:%M:%S" -s "2024-12-31 23:59:59"
+endsnippet
+
+snippet -t "Exibir a data de hoje em formato personalizado com dia da semana" b
+date +"%A, %d de %B de %Y"
+endsnippet
+
+snippet -u "Exibir a data e hora atual em UTC com formato customizado" b
+date -u +"%Y-%m-%d %H:%M:%S"
+endsnippet
+
+snippet -v "Exibir a data e hora do sistema em formato ISO 8601" b
+date --iso-8601=seconds
+endsnippet
+
+snippet -w "Exibir a data de ontem" b
+date -d "yesterday"
+endsnippet
+
+snippet -x "Exibir a data no formato Unix (seconds since 1970-01-01)" b
+date +%s
+endsnippet

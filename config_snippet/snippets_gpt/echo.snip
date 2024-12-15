@@ -1,0 +1,97 @@
+snippet -a "Exibir uma mensagem simples" b
+echo "Olá, Mundo!"
+endsnippet
+
+snippet -b "Exibir uma mensagem com uma nova linha" b
+echo -e "Mensagem com nova linha\nAqui está outra linha."
+endsnippet
+
+snippet -c "Exibir uma mensagem sem quebra de linha" b
+echo -n "Mensagem sem quebra de linha"
+endsnippet
+
+snippet -d "Exibir o conteúdo de uma variável" b
+VAR="Este é o valor da variável"
+echo "O valor da variável é: $VAR"
+endsnippet
+
+snippet -e "Exibir o conteúdo de um arquivo" b
+echo "Conteúdo do arquivo:"
+cat arquivo.txt
+endsnippet
+
+snippet -f "Exibir texto colorido (red)" b
+echo -e "\e[31mEste texto está em vermelho\e[0m"
+endsnippet
+
+snippet -g "Exibir texto colorido (green)" b
+echo -e "\e[32mEste texto está em verde\e[0m"
+endsnippet
+
+snippet -h "Exibir texto colorido (blue)" b
+echo -e "\e[34mEste texto está em azul\e[0m"
+endsnippet
+
+snippet -i "Exibir um número de linhas de um arquivo" b
+echo "O arquivo arquivo.txt tem $(wc -l < arquivo.txt) linhas."
+endsnippet
+
+snippet -j "Exibir a data atual" b
+echo "A data e hora atual é: $(date)"
+endsnippet
+
+snippet -k "Exibir mensagem de erro" b
+echo "Erro: Arquivo não encontrado!" >&2
+endsnippet
+
+snippet -l "Exibir mensagem com formatação de tabela" b
+echo -e "Nome\tIdade\tCidade\nJoão\t25\tSão Paulo\nMaria\t30\tRio de Janeiro"
+endsnippet
+
+snippet -m "Exibir comando com resultado de uma variável" b
+VAR="comando_exemplo"
+echo "O comando a ser executado é: $VAR"
+endsnippet
+
+snippet -n "Exibir o nome do script" b
+echo "O nome do script é: $(basename $0)"
+endsnippet
+
+snippet -o "Exibir uma variável de ambiente" b
+echo "O valor da variável PATH é: $PATH"
+endsnippet
+
+snippet -p "Exibir a saída de um comando" b
+echo "A lista de arquivos no diretório atual é:"
+echo $(ls)
+endsnippet
+
+snippet -q "Exibir mensagem com múltiplos argumentos" b
+echo "O nome é $1 e a idade é $2"
+endsnippet
+
+snippet -r "Exibir a quantidade de argumentos passados para o script" b
+echo "Número de argumentos passados: $#"
+endsnippet
+
+snippet -s "Exibir uma linha de separação" b
+echo "------------------------------------------"
+endsnippet
+
+snippet -t "Exibir um valor com formato de moeda" b
+valor=100
+echo "O valor é: R$ $(printf "%.2f" $valor)"
+endsnippet
+
+snippet -u "Exibir texto em maiúsculas" b
+texto="exemplo de texto"
+echo "Texto em maiúsculas: $(echo $texto | tr 'a-z' 'A-Z')"
+endsnippet
+
+snippet -v "Exibir texto com formatação de negrito" b
+echo -e "\e[1mEste texto está em negrito\e[0m"
+endsnippet
+
+snippet -w "Exibir texto com formatação sublinhada" b
+echo -e "\e[4mEste texto está sublinhado\e[0m"
+endsnippet

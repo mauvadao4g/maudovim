@@ -1,0 +1,92 @@
+snippet -a "Criar um arquivo temporário com nome aleatório" b
+tmp_file=$(mktemp)
+echo "Arquivo temporário criado: $tmp_file"
+endsnippet
+
+snippet -b "Criar um arquivo temporário com sufixo" b
+tmp_file=$(mktemp /tmp/arquivo_temp_XXXXXX)
+echo "Arquivo temporário criado com sufixo: $tmp_file"
+endsnippet
+
+snippet -c "Criar um diretório temporário" b
+tmp_dir=$(mktemp -d)
+echo "Diretório temporário criado: $tmp_dir"
+endsnippet
+
+snippet -d "Criar um arquivo temporário com prefixo personalizado" b
+tmp_file=$(mktemp /tmp/meuarquivo_temp_XXXXXX)
+echo "Arquivo temporário com prefixo: $tmp_file"
+endsnippet
+
+snippet -e "Criar um arquivo temporário e escrever nele" b
+tmp_file=$(mktemp)
+echo "Conteúdo para o arquivo temporário" > "$tmp_file"
+echo "Conteúdo gravado em: $tmp_file"
+endsnippet
+
+snippet -f "Criar um arquivo temporário e ler o conteúdo" b
+tmp_file=$(mktemp)
+echo "Este é um arquivo temporário!" > "$tmp_file"
+cat "$tmp_file"
+endsnippet
+
+snippet -g "Criar um arquivo temporário e apagar após o uso" b
+tmp_file=$(mktemp)
+echo "Este arquivo será apagado ao final."
+rm -f "$tmp_file"
+endsnippet
+
+snippet -h "Criar um arquivo temporário com permissões específicas" b
+tmp_file=$(mktemp)
+chmod 600 "$tmp_file"
+echo "Arquivo temporário criado com permissões 600: $tmp_file"
+endsnippet
+
+snippet -i "Criar um diretório temporário com um nome fixo" b
+tmp_dir=$(mktemp -d /tmp/meudiretorio_temp_XXXXXX)
+echo "Diretório temporário criado com nome fixo: $tmp_dir"
+endsnippet
+
+snippet -j "Criar vários arquivos temporários em um loop" b
+for i in {1..3}; do
+  tmp_file=$(mktemp /tmp/arquivo_temp_XXXXXX)
+  echo "Arquivo temporário $i criado: $tmp_file"
+done
+endsnippet
+
+snippet -k "Verificar a criação de arquivos temporários" b
+tmp_file=$(mktemp /tmp/arquivo_temp_XXXXXX)
+if [[ -f "$tmp_file" ]]; then
+  echo "Arquivo temporário criado com sucesso: $tmp_file"
+else
+  echo "Falha ao criar arquivo temporário."
+fi
+endsnippet
+
+snippet -l "Criar um arquivo temporário em um diretório específico" b
+tmp_file=$(mktemp /caminho/personalizado/arquivo_temp_XXXXXX)
+echo "Arquivo temporário criado no diretório especificado: $tmp_file"
+endsnippet
+
+snippet -m "Criar um arquivo temporário e verificar o nome gerado" b
+tmp_file=$(mktemp)
+echo "O nome do arquivo temporário gerado foi: $tmp_file"
+endsnippet
+
+snippet -n "Criar um diretório temporário e usá-lo" b
+tmp_dir=$(mktemp -d)
+echo "Diretório temporário criado: $tmp_dir"
+cd "$tmp_dir" && echo "Agora estamos no diretório temporário."
+endsnippet
+
+snippet -o "Criar um arquivo temporário e escrever dados nele" b
+tmp_file=$(mktemp)
+echo "Este é um exemplo de arquivo temporário" > "$tmp_file"
+cat "$tmp_file"
+endsnippet
+
+snippet -p "Criar arquivo temporário e utilizar com outras ferramentas" b
+tmp_file=$(mktemp)
+echo "Texto temporário" | tee "$tmp_file"
+cat "$tmp_file"
+endsnippet
