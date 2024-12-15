@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.3
+# VER: 3.0.4
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -47,15 +47,6 @@ echo "Vim removido do sistema"
 
 }
 
-pluginNvim(){
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
-
-pluginVim(){
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-}
 
 configurar_vim_neovim() {
     echo "Criando diretórios de configuração do Vim e Neovim..."
@@ -67,7 +58,6 @@ configurar_vim_neovim() {
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 
     echo "Configurando o Vim e Neovim..."
     cat > temp.vim << EOF
@@ -88,24 +78,14 @@ Plug 'SirVer/ultisnips'
 Plug 'zenorocha/dracula-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
+Plug 'Shougo/vimshell.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'mattn/emmet-vim'
 Plug 'Shougo/neocomplete.vim'
 Plug 'gmarik/Vundle.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Shougo/vimshell.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 call plug#end()
-"------------------------------------------------
-" Configurações do VimShell
-"------------------------------------------------
-" Define a tecla para abrir o VimShell
-nmap <Leader>st :VimShell<CR>
-
-" Use uma janela horizontal para o VimShell
-let g:vimshell_window_type = 'horizontal'
-
 
 "------------------------------------------------
 " Configurações do Airline
@@ -270,20 +250,6 @@ corrigir_erro_tema() {
     menu_principal
 }
 
-
-# Configurando o vimShell
-vimProc(){
- apt install -y build-essential
-# no nvim seria
-# cd $HOME/.local/share/nvim/plugged/vimproc.vim
-# make
-
-# no vim
-cd $HOME/.vim/plugged/vimproc.vim
-make
-}
-
-
 limpar_plugins() {
     echo "Limpando plugins antigos para garantir uma instalação limpa..."
     rm -rf ~/.vim/plugged/*
@@ -320,7 +286,7 @@ menu_principal() {
 
     case $opcao in
         1) instalar_dependencias ;;
-        2) configurar_vim_neovim; vimProc ;;
+        2) configurar_vim_neovim ;;
         3) corrigir_erro_tema ;;
         4) limpar_plugins ;; # Exclui pastas de plugin
         5) backup_configuracoes ;;
