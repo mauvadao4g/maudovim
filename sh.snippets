@@ -420,6 +420,14 @@ EOF
 
 endsnippet
 
+
+snippet ytdlp "Baixa videos do youtube"
+    # comando pra baixar videos do youtube
+    url=${1:\$1}
+    yt-dlp --cookies /bin/cookies.txt --user-agent 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' -f 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]/mp4' "$url" -o '%(title)s-%(id)s.%(ext)s'
+endsnippet
+
+
 # BAIXAR VIDEO DA URL
 snippet ytdown "Download de video url"
 ytdown(){
