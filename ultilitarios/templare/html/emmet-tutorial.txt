@@ -1,0 +1,267 @@
+site: https://docs.emmet.io/abbreviations/types/
+doc: https://docs.emmet.io/abbreviations/types/
+
+
+---
+
+Tutorial Completo do Emmet
+
+1. Estrutura HTML5 Básica
+Com Emmet, você pode criar rapidamente a estrutura básica de um documento HTML5. Use o comando abaixo:
+
+
+
+html:5
+
+Expande para:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+</html>
+
+
+---
+
+2. Criar Links e Referências (href)
+Crie links com o seguinte comando:
+
+
+
+a[href="https://exemplo.com"]{Clique aqui}
+
+Expande para:
+
+<a href="https://exemplo.com">Clique aqui</a>
+
+
+---
+
+3. Formulários
+Crie formulários simples rapidamente:
+
+
+
+form[action="/submit" method="POST"]>input[type="text" placeholder="Digite seu nome"]+input[type="email" placeholder="Digite seu email"]+button[type="submit"]{Enviar}
+
+Expande para:
+
+<form action="/submit" method="POST">
+    <input type="text" placeholder="Digite seu nome">
+    <input type="email" placeholder="Digite seu email">
+    <button type="submit">Enviar</button>
+</form>
+
+
+---
+
+4. Seletores e Listas Suspensas
+Adicione um dropdown (lista suspensa):
+
+
+
+select[name="opcoes"]>option[value="1"]{Opção 1}^option[value="2"]{Opção 2}
+
+Expande para:
+
+<select name="opcoes">
+    <option value="1">Opção 1</option>
+    <option value="2">Opção 2</option>
+</select>
+
+
+---
+
+5. Estruturas Complexas
+Você pode criar estruturas completas com apenas um comando:
+
+
+
+div.container>header>h1{Título}+main>p{Conteúdo}+footer>p{Rodapé}
+
+Expande para:
+
+<div class="container">
+    <header>
+        <h1>Título</h1>
+    </header>
+    <main>
+        <p>Conteúdo</p>
+    </main>
+    <footer>
+        <p>Rodapé</p>
+    </footer>
+</div>
+
+
+---
+
+6. Tabelas
+Crie tabelas rapidamente:
+
+
+
+table>thead>tr>th*3+tbody>tr*2>td*3
+
+Expande para:
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+---
+
+7. Campos de Upload
+Adicione um campo para upload de arquivos em formulários:
+
+
+
+input[type="file"]
+
+Expande para:
+
+<input type="file">
+
+
+---
+
+8. Labels para Formulários
+Inclua rótulos para os campos de formulário:
+
+
+
+label[for="nome"]{Nome:}+input[type="text" id="nome" name="nome"]
+
+Expande para:
+
+<label for="nome">Nome:</label>
+<input type="text" id="nome" name="nome">
+
+
+---
+
+Dicas Adicionais
+
+1. Vários Elementos ao Mesmo Tempo
+Use o operador + para adicionar elementos na mesma hierarquia e > para aninhar elementos:
+
+
+
+div>h1+p+ul>li*3
+
+Expande para:
+
+<div>
+    <h1></h1>
+    <p></p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+2. Multiplicação de Elementos
+Use * para criar vários elementos iguais:
+
+
+
+ul>li*5
+
+Expande para:
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+3. Adicionando IDs e Classes
+Adicione IDs com # e classes com .:
+
+
+
+div#main.container
+
+Expande para:
+
+<div id="main" class="container"></div>
+
+4. Texto Dentro dos Elementos
+Use {texto} para adicionar conteúdo:
+
+
+
+h1{Título Principal}
+
+Expande para:
+
+<h1>Título Principal</h1>
+
+5. Atributos Personalizados
+Inclua atributos personalizados entre colchetes []:
+
+
+
+input[placeholder="Digite aqui" type="text"]
+
+Expande para:
+
+<input placeholder="Digite aqui" type="text">
+
+
+---
+
+Como Usar o Emmet no Vim
+
+1. Instale um plugin do Emmet para o Vim, como o Emmet-vim.
+
+
+2. Após a instalação, ative o modo de inserção no Vim.
+
+
+3. Digite o comando Emmet que deseja expandir.
+
+
+4. Pressione Ctrl+y seguido de , para expandir o comando no editor.
+
+
+
+
+---
+
+Com este guia, você pode criar HTML de forma rápida e eficiente usando Emmet!
+
+
+---
+
+Esse texto agora pode ser copiado e colado diretamente no arquivo file.txt.
+
+
