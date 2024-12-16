@@ -1,0 +1,22 @@
+------------------------------------------------------------------------------
+Emmet é escrito em JavaScript puro e funciona em diferentes plataformas: navegador da web, Node.js, Microsoft WSH e Mozilla Rhino.
+------------------------------------------------------------------------------
+PÁGINA DO EMMET
+http://emmet.io/
+
+PÁGINA DE DOWNLOAD DO EMMET
+http://emmet.io/download/
+
+DOWNLOAD DO EMMET PARA O VIM
+https://github.com/mattn/emmet-vim
+
+DOCUMENTAÇÃO DO EMMET
+http://docs.emmet.io/
+------------------------------------------------------------------------------
+                      VIDEOS TUTORIAL
+------------------------------------------------------------------------------
+
+Comandos do Emmet - Caixa de Ferramentas para os desenvolvedores (VIM)
+https://www.youtube.com/watch?v=av9RXi1H1IA
+
+
