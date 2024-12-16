@@ -1,0 +1,18 @@
+<form action="/submit" method="POST">
+    <h2>Formulário de Contato</h2>
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" name="nome" required="">
+    <label for="email">E-mail:</label>
+    <input id="email" type="email" name="email" required="">
+    <label for="telefone">Telefone:</label>
+    <input id="telefone" type="tel" name="telefone">
+    <label for="assunto">Assunto:</label>
+    <select id="assunto" name="assunto">
+        <option value="duvida">Dúvida</option>
+    </select>
+    <option value="sugestao">Sugestão</option>
+</form>
+<option value="reclamacao">Reclamação</option>
+<label for="mensagem">Mensagem:</label>
+<textarea id="mensagem" name="mensagem" cols="30" rows="5" required=""></textarea>
+<button type="submit">Enviar</button>
