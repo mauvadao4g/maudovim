@@ -16,7 +16,15 @@ http://docs.emmet.io/
                       VIDEOS TUTORIAL
 ------------------------------------------------------------------------------
 
-Comandos do Emmet - Caixa de Ferramentas para os desenvolvedores (VIM)
+•Comandos do Emmet - Caixa de Ferramentas para os desenvolvedores (VIM)
 https://www.youtube.com/watch?v=av9RXi1H1IA
+
+•Cafeina & Vim - Aprende algunos hacks para maquetar HTML más rápido y ágil con el editor VIM
+https://www.youtube.com/watch?v=3gL1HvDVVCY
+
+•Emmet VIM Alterations
+https://www.youtube.com/watch?v=CKH7OV2EwTA
+
+
 
 
