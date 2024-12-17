@@ -1,0 +1,2 @@
+snippets=" $HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets"
+vimrc="$HOME/.vimrc"
