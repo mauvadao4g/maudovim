@@ -25,6 +25,13 @@ https://www.youtube.com/watch?v=3gL1HvDVVCY
 •Emmet VIM Alterations
 https://www.youtube.com/watch?v=CKH7OV2EwTA
 
+•Emmet Vim Tutorial: Building An HTML Webpage With Ease
+https://www.youtube.com/watch?v=FkbW39HDcTc
 
 
+•Configuração VIM para programação backend #vim #neovim
+https://www.youtube.com/watch?v=N68nyJcVTE8
+·Repo: https://github.com/HunnTeRUS/my-nvim-configuration
+Link para download da configuracao:
+https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbmJLUE5YZHU4ZzVyNng4RXJ5VmpjV2RManZWUXxBQ3Jtc0tuaFJ5Z09YY1dRN2FTelBvbjFBeEo4NXJJNk1CVzNUUUkxekNUS0M0UlBlNzRDMjhTZkpsQ0dLTmhrQW1mR3p0TFpQT08tTW9rWVFBWkVWQnN5QlJxQ3p1cW5lYUl4eko0R2FkN19YYS1McHVRZGJGQQ&q=https%3A%2F%2Fgithub.com%2FHunnTeRUS%2Fmy-nvim-configuration%2Farchive%2Frefs%2Fheads%2Fmaster.zip&v=N68nyJcVTE8
 

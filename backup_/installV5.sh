@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.6
+# VER: 3.0.5
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -71,11 +71,6 @@ configurar_vim_neovim() {
 
     echo "Configurando o Vim e Neovim..."
     cat > temp.vim << EOF
-"---------------------------------------------------------------
-" INICIANDO CONFIGURAÇÕES
-" Ver; 06
-" MAUVADAO
-"---------------------------------------------------------------
 "------------------------------------------------
 " Gerenciador de plugins
 "------------------------------------------------
@@ -100,27 +95,6 @@ Plug 'gmarik/Vundle.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Testando novos plugins
-" Used to comment whe whole line or select lines
-Plug 'preservim/nerdcommenter'
-
-" Viminspector to debug
-Plug 'puremourning/vimspector'
-
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-
-" Better Syntax Support
-Plug 'sheerun/vim-polyglot'
-
-" Git pluggin
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/gv.vim'
-
-" Used to shows icons on screen
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 "------------------------------------------------
@@ -242,71 +216,6 @@ inoremap <C-t> <Esc>:term<CR>
 " Ctrl+n: Abre o NERDTree
 inoremap <C-ç> <Esc>:NERDTreeToggle<CR>
 
-"----------------------------------------
-" novos mapeamentos testes
-"----------------------------------------
-" Use alt + hjkl to resize windows
-nnoremap <M-j>		:resize -2<CR>
-nnoremap <M-k>		:resize +2<CR>
-nnoremap <M-h>		:vertical resize -2<CR>
-nnoremap <M-l>		:vertical resize +2<CR>
-
-" EASY CAPS - Shift + u = upper case,  u =  lower case
-inoremap <c-u> <ESC>viwUi
-inoremap <c-u> viwU<Esc>
-
-" Save and exit easier way
-inoremap <C-s> <esc>:w<cr>
-inoremap <C-d> <esc>:wq!<cr>
-inoremap <C-q> <esc>:exit<cr>
-
-inoremap ;; <Esc>
-
-" Better tabbing
-vnoremap < <gv
-vnoremap > >gv
-
-" Better window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Open nerdTree with keyshortcut
-let mapleader = ","
-nmap <leader>ne :NERDTree<cr>
-
-
-" TABS
-noremap <Tab> :tabnext<CR>
-noremap <S-Tab> :tabprevious<CR>
-noremap <C-t> :tabnew <bar> :NERDTree<CR>
-noremap <C-e> :tabclose<CR>
-
-
-" No more Arrow Keys, deal hith it
-noremap <UP> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-noremap <S>k <NOP>
-
-
-" Mapeia ;; para sair do modo de inserção e ir para o modo normal
-inoremap ;; <Esc>
-
-" Mapeia ;; para sair do modo terminal  e ir para o modo normal
-tnoremap ;; <C-\><C-n>
-
-" Opens a new terminal in vertical split
-noremap <leader>t :vsplit term://zsh<CR>
-
-" Comment lines
-noremap <leader>cc
-
-"---------------------------------------------------------------
-" ENCERRANDO CONFIGURAÇÕES
-"---------------------------------------------------------------
 EOF
 
     mv temp.vim ~/.vimrc
