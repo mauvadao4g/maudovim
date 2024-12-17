@@ -473,17 +473,32 @@ limpar_plugins() {
 
 backup_configuracoes() {
     echo "Fazendo backup das configurações antigas..."
+    # Criando nomes e pastas
     timestamp=$(date +%Y%m%d_%H%M%S)
-    mkdir -p config_backup/vim_$timestamp
-    cp $HOME/.vimrc config_backup/vim_$timestamp/ 2>/dev/null
-    cp $HOME/.config/nvim/init.vim config_backup/vim_$timestamp/ 2>/dev/null
+    pasta="vim_$timestamp"
+    mkdir -p "$pasta"
 
+    cp $HOME/.vimrc  $pasta/vimrc 2>/dev/null
+    cp $HOME/.config/nvim/init.vim $pasta/init.vim 2>/dev/null
 
 # copiando o sh.snippets
-    cp $HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets config_backup/vim_$timestamp/ 2>/dev/null
+    cp $HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/sh.snippets $pasta/ 2>/dev/null
 
-    menu_principal
-
+    zip -r $pasta.zip $pasta
+    # Verificar o status do backup
+    if [ $? -eq 0 ]; then
+        echo -e "\e[1;32mCriado: $pasta.zip\e[0m"
+        clear
+        rm -rf $pasta
+        unzip -t $pasta.zip
+        mv $pasta.zip vimrc_bkp
+    else
+        echo -e "\e[1;31mError: $pasta.zip\e[0m"
+        exit 1
+    fi
+echo
+echo -e "\e[1;33mFinalizado: $pasta\e[0m"
+exit 0
 }
 
 menu_principal() {
