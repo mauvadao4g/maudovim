@@ -58,32 +58,33 @@
     # snippet 13
     form:post>(.group>label+input:text)+(.group>label+input:number)
 
+    # snippet 14
+    table>(th>tr*3)>(td>tr*3)>
+
+    # snippet 15
+    form>label+input[name="" id="" value=""]*5>
+    form>(label+input[name="" id="" value=""])*5>
+    form>(label{$}+input[name="" id="" value=""])*5>
 
 
 
-    
+    # snippet 16
+    select>option*4>
+    select>option{$}*4>
+
+
+    # snippet 17
+    label+input[type="checkbox" name="test" value=""]*3>
+    (label+input[type="checkbox" name="test" value=""])*3>
+
+
+    # snippet 18 => criando um formulario
+    h2{Formulário de Configuração} + form[action="/enviar" method="post"]>label[for="dominio"]{Domínio:}+input[type="text" id="dominio" name="dominio" placeholder="Digite o domínio" required] + label[for="porta"]{Porta:}+input[type="number" id="porta" name="porta" placeholder="Digite a porta" required] + label[for="ip"]{IP:}+input[type="text" id="ip" name="ip" placeholder="Digite o IP" required] + button[type="submit"]{Enviar}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    head
 
 
 
