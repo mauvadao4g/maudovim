@@ -1,0 +1,135 @@
+" Início da configuração dos plugins
+call plug#begin('~/.vim/plugged')
+
+" Tema Dracula
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Suporte ao live server para HTML/CSS/JS
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+
+" Snippets
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'SirVer/ultisnips'
+
+" Suporte ao Emmet
+Plug 'mattn/emmet-vim'
+
+" Auto fechamento de pares
+Plug 'jiangmiao/auto-pairs'
+
+" Status bar aprimorado
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Suporte a Python
+Plug 'vim-python/python-syntax'
+Plug 'dense-analysis/ale'
+
+" Melhor navegação entre arquivos
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Melhor navegação de código
+Plug 'preservim/nerdtree'
+Plug 'majutsushi/tagbar'
+
+" Suporte para controle de Git
+Plug 'tpope/vim-fugitive'
+
+" Plugins adicionais para suporte a PHP
+Plug 'StanAngeloff/php.vim'
+
+" Fim da configuração dos plugins
+call plug#end()
+
+"-------------------
+" Configurações gerais
+"-------------------
+syntax on
+filetype plugin indent on
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set background=dark
+set cursorline
+set wrap
+colorscheme dracula
+set clipboard=unnamedplus  " Habilita copiar/colar com clipboard do sistema
+
+" Salvamento automático ao perder o foco
+autocmd FocusLost * :wa
+
+" Melhor experiência de busca
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+"-------------------
+" Configurações de indentação específicas por linguagem
+"-------------------
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType html,css,php setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType sh setlocal tabstop=4 shiftwidth=4 noexpandtab
+
+"-------------------
+" Atalhos personalizados
+"-------------------
+" Alternar entre NerdTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Alternar entre Tagbar
+nnoremap <C-b> :TagbarToggle<CR>
+
+" FZF para busca de arquivos
+nnoremap <C-p> :Files<CR>
+
+" Salvar com Ctrl+s
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+
+" Fechar o buffer atual com Ctrl+q
+nnoremap <C-q> :bd<CR>
+
+" Copiar para o sistema usando Ctrl+y
+vnoremap <C-z> "+y
+
+"-------------------
+" Configuração do Airline
+"-------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dracula'
+
+"-------------------
+" Configuração do NERDTree
+"-------------------
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+
+"-------------------
+" Configuração do ALE (Linting)
+"-------------------
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'php': ['phpcs'],
+\   'html': ['htmlhint'],
+\   'css': ['stylelint'],
+\   'sh': ['shellcheck']
+\}
+let g:ale_fixers = {
+\   'python': ['black', 'isort'],
+\   'php': ['phpcbf'],
+\   'html': ['prettier'],
+\   'css': ['prettier'],
+\   'sh': ['shfmt']
+\}
+let g:ale_fix_on_save = 1
+
+"-------------------
+" Configuração do Emmet
+"-------------------
+let g:user_emmet_leader_key = '<C-t>'

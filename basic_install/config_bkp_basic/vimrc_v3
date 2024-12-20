@@ -1,0 +1,222 @@
+"-------------------------------------
+" MAUVADAO
+" VER: 1.0.3
+"-------------------------------------
+" Início da configuração dos plugins
+call plug#begin('~/.vim/plugged')
+
+" Tema Dracula
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Suporte ao live server para HTML/CSS/JS
+Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+
+" Snippets
+Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'SirVer/ultisnips'
+
+" Suporte ao Emmet
+Plug 'mattn/emmet-vim'
+
+" Auto fechamento de pares
+Plug 'jiangmiao/auto-pairs'
+
+" Status bar aprimorado
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Suporte a Python
+Plug 'vim-python/python-syntax'
+Plug 'dense-analysis/ale'
+
+" Melhor navegação entre arquivos
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Melhor navegação de código
+Plug 'preservim/nerdtree'
+Plug 'majutsushi/tagbar'
+
+" Suporte para controle de Git
+Plug 'tpope/vim-fugitive'
+
+" Plugins adicionais para suporte a PHP
+Plug 'StanAngeloff/php.vim'
+
+" Fim da configuração dos plugins
+call plug#end()
+
+"-------------------
+" Configurações gerais
+"-------------------
+syntax on
+filetype plugin indent on
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set background=dark
+set cursorline
+set wrap
+colorscheme dracula
+set clipboard=unnamedplus  " Habilita copiar/colar com clipboard do sistema
+
+" Salvamento automático ao perder o foco
+autocmd FocusLost * :wa
+
+" Melhor experiência de busca
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+"-------------------
+" Configurações de indentação específicas por linguagem
+"-------------------
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType html,css,php setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType sh setlocal tabstop=4 shiftwidth=4 noexpandtab
+
+"-------------------
+" Atalhos personalizados
+"-------------------
+" Alternar entre NerdTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Alternar entre Tagbar
+nnoremap <C-b> :TagbarToggle<CR>
+
+" FZF para busca de arquivos
+nnoremap <C-p> :Files<CR>
+
+" Salvar com Ctrl+s
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>
+
+" Fechar o buffer atual com Ctrl+q
+nnoremap <C-q> :bd<CR>
+
+" Copiar para o sistema usando Ctrl+y
+vnoremap <C-z> "+y
+
+"-------------------
+" Configuração do Airline
+"-------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dracula'
+
+"-------------------
+" Configuração do NERDTree
+"-------------------
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
+
+"-------------------
+" Configuração do ALE (Linting)
+"-------------------
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'php': ['phpcs'],
+\   'html': ['htmlhint'],
+\   'css': ['stylelint'],
+\   'sh': ['shellcheck']
+\}
+let g:ale_fixers = {
+\   'python': ['black', 'isort'],
+\   'php': ['phpcbf'],
+\   'html': ['prettier'],
+\   'css': ['prettier'],
+\   'sh': ['shfmt']
+\}
+let g:ale_fix_on_save = 1
+
+"-------------------
+" Configuração do Emmet
+"-------------------
+let g:user_emmet_leader_key = '<C-Y>'
+
+" Expandir abreviação com Ctrl+y
+imap <C-y>, <Plug>(emmet-expand-abbr)
+nmap <C-y>, <Plug>(emmet-expand-word)
+
+" Navegar entre pontos de edição
+imap <C-y>n <Plug>(emmet-next-edit-point)
+imap <C-y>p <Plug>(emmet-prev-edit-point)
+
+" Envolver seleção com tag (modo visual)
+vmap <C-y>, <Plug>(emmet-wrap-with-abbreviation)
+
+" Outros atalhos úteis do Emmet
+" Mover uma tag ao redor do texto
+imap <C-y>d <Plug>(emmet-balance-tag-outward)
+imap <C-y>D <Plug>(emmet-balance-tag-inward)
+
+" Incrementar e decrementar números em atributos
+imap <C-y>+ <Plug>(emmet-increment-number)
+imap <C-y>- <Plug>(emmet-decrement-number)
+
+" Atualizar uma tag com atributos
+imap <C-y>u <Plug>(emmet-update-tag)
+
+" Dividir ou mesclar tags
+imap <C-y>s <Plug>(emmet-split-join-tag)
+
+" Gerar lorem ipsum rápido
+imap <C-y>l lorem
+
+" Exemplo: Expansão do Emmet (html:5 gera um HTML básico)
+" digite: html:5 e pressione <C-y>, para expandir a estrutura HTML.
+
+"-------------------
+" Configuração do Bracey
+"-------------------
+let g:bracey_auto_start_browser = 1  " Inicia automaticamente o navegador
+let g:bracey_browser_command = 'firefox'  " Define o navegador como Firefox
+let g:bracey_server_port = 3000  " Define a porta do servidor
+let g:bracey_auto_refresh = 1  " Habilita o auto-refresh automático
+
+" Atalhos personalizados para Bracey
+" Iniciar o Bracey com Ctrl+b
+nnoremap <C-b> :Bracey<CR>
+" Atualizar o Bracey manualmente com Ctrl+u
+nnoremap <C-u> :BraceyReload<CR>
+" Parar o servidor do Bracey com Ctrl+q
+nnoremap <C-q> :BraceyStop<CR>
+
+" Auto-inicialização do Bracey ao abrir arquivos HTML/CSS/JS
+autocmd FileType html,css,js silent! :Bracey
+
+"-------------------
+" Outras Configurações do Emmet
+"-------------------
+" Habilitar automaticamente Emmet em tipos de arquivo suportados
+autocmd FileType html,css,javascript,php EmmetInstall
+let g:user_emmet_settings = {
+\   'html' : {
+\       'filters' : 'html,css,js',
+\   },
+\   'css' : {
+\       'filters' : 'bem',
+\   },
+\   'js' : {
+\       'filters' : 'js',
+\   }
+\}
+
+" Personalização de abreviações
+" Adicione customizações úteis para projetos recorrentes
+let g:user_emmet_custom_snippets = {
+\   'html' : {
+\       'navheader' : '<nav><ul><li><a href=""></a></li></ul></nav>',
+\       'footerlinks' : '<footer><ul><li><a href=""></a></li></ul></footer>',
+\   },
+\   'css' : {
+\       'clearfix' : '&:after { content: ""; display: block; clear: both; }',
+\   }
+\}
+
+" Auto-expandir "!" para estrutura básica HTML
+autocmd FileType html inoremap ! html:5<C-y>,
