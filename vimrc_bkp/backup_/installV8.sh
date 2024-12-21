@@ -84,11 +84,6 @@ call plug#begin('~/.vim/autoload/plug/start')
 " Plugins essenciais
 
 Plug 'dracula/vim', { 'as': 'dracula' }
-
-" Suporte ao live server para HTML/CSS/JS
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
@@ -167,36 +162,6 @@ Plug 'ryanoasis/vim-devicons'
     Plug 'hrsh7th/vim-vsnip-integ'
 
 
-
-
-" Suporte a Python
-Plug 'vim-python/python-syntax'
-Plug 'dense-analysis/ale'
-
-" Melhor navegação entre arquivos
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Melhor navegação de código
-Plug 'preservim/nerdtree'
-Plug 'majutsushi/tagbar'
-
-" Suporte para controle de Git
-Plug 'tpope/vim-fugitive'
-
-" Plugins adicionais para suporte a PHP
-Plug 'StanAngeloff/php.vim'
-
-
-" Suporte a Python
-Plug 'vim-python/python-syntax'
-Plug 'dense-analysis/ale'
-
-" Melhor navegação entre arquivos
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-
 call plug#end()
 "------------------------------------------------
 " Configurações do VimShell
@@ -272,40 +237,6 @@ imap <C-y>p <Plug>(emmet-prev-edit-point)
 " Envolver seleção com tag do Emmet (modo visual)
 vmap <C-y>, <Plug>(emmet-wrap-with-abbreviation)
 
-"-------------------
-" Outras Configurações do Emmet
-"-------------------
-" Habilitar automaticamente Emmet em tipos de arquivo suportados
-autocmd FileType html,css,javascript,php EmmetInstall
-let g:user_emmet_settings = {
-\   'html' : {
-\       'filters' : 'html,css,js',
-\   },
-\   'css' : {
-\       'filters' : 'bem',
-\   },
-\   'js' : {
-\       'filters' : 'js',
-\   }
-\}
-
-" Personalização de abreviações
-" Adicione customizações úteis para projetos recorrentes
-let g:user_emmet_custom_snippets = {
-\   'html' : {
-\       'navheader' : '<nav><ul><li><a href=""></a></li></ul></nav>',
-\       'footerlinks' : '<footer><ul><li><a href=""></a></li></ul></footer>',
-\   },
-\   'css' : {
-\       'clearfix' : '&:after { content: ""; display: block; clear: both; }',
-\   }
-\}
-
-" Auto-expandir "!" para estrutura básica HTML
-autocmd FileType html inoremap ! html:5<C-y>,
-
-
-
 " Outros atalhos úteis
 " Mover uma tag ao redor do texto
 imap <C-y>d <Plug>(emmet-balance-tag-outward)
@@ -315,70 +246,6 @@ imap <C-y>D <Plug>(emmet-balance-tag-inward)
 imap <C-y>+ <Plug>(emmet-increment-number)
 imap <C-y>- <Plug>(emmet-decrement-number)
 
-
-" ###################
-"-------------------
-" Configurações de indentação específicas por linguagem
-"-------------------
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType html,css,php setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType sh setlocal tabstop=4 shiftwidth=4 noexpandtab
-
-"-------------------
-" Atalhos personalizados
-"-------------------
-" Alternar entre NerdTree
-nnoremap <C-n> :NERDTreeToggle<CR>
-
-" Alternar entre Tagbar
-nnoremap <C-b> :TagbarToggle<CR>
-
-" FZF para busca de arquivos
-nnoremap <C-p> :Files<CR>
-
-
-
-"-------------------
-" Configuração do ALE (Linting)
-"-------------------
-let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
-\   'php': ['phpcs'],
-\   'html': ['htmlhint'],
-\   'css': ['stylelint'],
-\   'sh': ['shellcheck']
-\}
-let g:ale_fixers = {
-\   'python': ['black', 'isort'],
-\   'php': ['phpcbf'],
-\   'html': ['prettier'],
-\   'css': ['prettier'],
-\   'sh': ['shfmt']
-\}
-let g:ale_fix_on_save = 1
-
-
-"-------------------
-" Configuração do Bracey
-"-------------------
-let g:bracey_auto_start_browser = 1  " Inicia automaticamente o navegador
-let g:bracey_browser_command = 'firefox'  " Define o navegador como Firefox
-let g:bracey_server_port = 3000  " Define a porta do servidor
-let g:bracey_auto_refresh = 1  " Habilita o auto-refresh automático
-
-" Atalhos personalizados para Bracey
-" Iniciar o Bracey com Ctrl+b
-nnoremap <C-b> :Bracey<CR>
-" Atualizar o Bracey manualmente com Ctrl+u
-nnoremap <C-u> :BraceyReload<CR>
-" Parar o servidor do Bracey com Ctrl+q
-nnoremap <C-q> :BraceyStop<CR>
-
-" Auto-inicialização do Bracey ao abrir arquivos HTML/CSS/JS
-autocmd FileType html,css,js silent! :Bracey
-
-
-"####----||------#######
 
 "------------------------------------------------
 " Mapeamentos personalizados no modo de inserção
