@@ -1,6 +1,9 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.8
+# VER: 3.0.9
+# Adicionado o bracey pra live web
+# Adicionado novas configurações de atalhos
+# Adicionado configuraçõs de plugins
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -302,7 +305,7 @@ let g:user_emmet_custom_snippets = {
 \}
 
 " Auto-expandir "!" para estrutura básica HTML
-autocmd FileType html inoremap ! html:5<C-y>,
+" "autocmd FileType html inoremap ! html:5<C-y>,
 
 
 
