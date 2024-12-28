@@ -85,14 +85,20 @@ configurar_vim_neovim() {
 call plug#begin('~/.vim/autoload/plug/start')
 
 " Plugins essenciais
-Plug 'sainnhe/sonokai' " Tema de cores
+Plug 'sainnhe/sonokai' " Tema sonokai
 " Tema dracula
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'zenorocha/dracula-theme'
+" Tema gruvbox
+Plug 'morhetz/gruvbox'
 
 
 " Suporte ao live server para HTML/CSS/JS
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
+
+" Mostrar paleta de cores nos codigos Exe; #fff
+Plug 'ap/vim-css-color'
+
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -114,6 +120,8 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "------------------------
 " Used to comment whe whole line or select lines
 Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
+
 
 " Viminspector to debug
 Plug 'puremourning/vimspector'
@@ -219,6 +227,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dracula'
 
 
+
+
 "------------------------------------------------
 " Configurações gerais
 "------------------------------------------------
@@ -254,8 +264,18 @@ set signcolumn=yes
 "------------------------------------------------
 " Configuração do auto-pairs
 "------------------------------------------------
+let g:AutoPairsShortcutToggle = '<C-p>'
 let g:AutoPairsMapBS = 1  " Habilitar backspace para apagar pares automaticamente
 let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitação rápida
+
+
+" Configurações do Vim-Commentary
+nnoremap <C-c> :Commentary<CR>
+
+" Configurações do Fugitive
+nnoremap <Leader>gs :Git<CR>
+nnoremap <Leader>gc :Git commit<CR>
+nnoremap <Leader>gp :Git push<CR>
 
 
 "------------------------------------------------
