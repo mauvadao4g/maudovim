@@ -264,7 +264,7 @@ set signcolumn=yes
 "------------------------------------------------
 " Configuração do auto-pairs
 "------------------------------------------------
-let g:AutoPairsShortcutToggle = '<C-p>'
+" let g:AutoPairsShortcutToggle = '<C-p>'
 let g:AutoPairsMapBS = 1  " Habilitar backspace para apagar pares automaticamente
 let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitação rápida
 
@@ -554,6 +554,9 @@ nnoremap <silent> mm <cmd>lua vim.lsp.buf.rename()<CR>
 "---------------------------------------------------------------
 EOF
 
+
+
+	# CONFIGURAÇÕES DE SNIPPETS E ARQUIVOS PRINCIPAIS
     mv temp.vim ~/.vimrc
     cp ~/.vimrc ~/.config/nvim/init.vim
 
@@ -568,6 +571,16 @@ EOF
        [[ $? == 0 ]] && { echo "Snippets configurado com sucesso"; }
 
      }
+
+	# CONFIGURANDO O CSS SNIPPETS
+	htmlsnip="/home/everton-rozendo/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
+	cp html.snippets "$HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
+	[[ -f "$htmlsnip" ]] && {
+		# Verificando se foi copiado corretamente.
+       [[ $? == 0 ]] && { echo "html.nippets configurado com sucesso"; }
+	    }
+
+		#  FIM DAS CONFIGURAÇÕES DE ARQUIVOS E SNIPPETS
 
 
 }
