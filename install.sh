@@ -85,12 +85,14 @@ configurar_vim_neovim() {
 call plug#begin('~/.vim/autoload/plug/start')
 
 " Plugins essenciais
-
+Plug 'sainnhe/sonokai' " Tema de cores
+" Tema dracula
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'zenorocha/dracula-theme'
+
 
 " Suporte ao live server para HTML/CSS/JS
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
-
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -98,7 +100,6 @@ Plug 'honza/vim-snippets'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'SirVer/ultisnips'
-Plug 'zenorocha/dracula-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
