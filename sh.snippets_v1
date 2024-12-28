@@ -924,7 +924,7 @@ endsnippet
 snippet command "Visualizar se o programa esta instalado"
 # Verificação de dependências
 if ! command -v ${1:APLICAÇÃO} &> /dev/null; then
-    log "Erro: $1 não está instalado."
+    echo -e "\033[1;31mErro: $1 não está instalado.\033[0m"
     exit 1
 fi
 endsnippet
