@@ -544,11 +544,26 @@ snippet .global "CSS Global"
         }
 endsnippet
 
+
+snippet .fundo "Body -> Background com imagem"
+	.fundo {
+	height: 300px;
+	background-color: gray;
+	background-image:url("img/fundo.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:top;
+}
+
+endsnippet
+
+
 snippet .dark "Body -> Tema em dark"
 	        /* Fundo e tema dark */
         body {
-            background: url('<?php echo $fundo; ?>') no-repeat center center fixed;
+            background: url("${1:img/foto.jpg}") no-repeat center center fixed;
             background-size: cover;
+			background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -560,7 +575,7 @@ snippet .dark "Body -> Tema em dark"
 
 endsnippet
 
-snippet body "body[01]: body com foto"
+snippet .body "body[01]: body com foto"
         body {
             background-image: url('${1:image.jpg}');
             background-size: cover;
