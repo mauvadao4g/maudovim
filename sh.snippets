@@ -1839,6 +1839,120 @@ snippet test?| "[[ $? == 0 ]]"
     # Verificando uma condição
     [[ $? == 0 ]] && { ${1:COMANDOS}; } || { ${2:COMANDOS}; }
 endsnippet
+
+snippet rename "Renomeia os arquivos"
+# Função para renomear os arquivos com a extensão fornecida
+_rename() {
+    # Verifica se o parâmetro foi fornecido
+    if [ -z "\$1" ]; then
+        echo "Por favor, forneça uma extensão (exemplo: jpg, json)."
+        return 1
+    fi
+
+    # Extensão fornecida pelo usuário
+    extension=\$1
+
+    # Contador inicial
+    count=1
+
+    # Loop pelos arquivos com a extensão fornecida
+    for file in *.$extension; do
+        # Verifica se o arquivo realmente existe
+        if [ -f "$file" ]; then
+            # Formatar o novo nome com a extensão
+            new_name=$(printf "file-%02d.%s" "$count" "$extension")
+            
+            # Renomear o arquivo
+            mv "$file" "$new_name"
+            
+            # Incrementar o contador
+            count=$((count + 1))
+        fi
+    done
+}
+
+# Exemplo de uso
+# _rename jpg
+# _rename json
+endsnippet
+
+
+snippet ren "Renomeando os arquivos"
+# Função para renomear arquivos
+_rename() {
+    local extension="\$1"
+    local count=1
+
+    # Verifica se a extensão foi fornecida
+    if [[ -z "$extension" ]]; then
+        echo "Uso: _rename <extensão>"
+        return 1
+    fi
+
+    # Loop pelos arquivos da extensão fornecida
+    for file in *."$extension"; do
+        # Verifica se há arquivos com a extensão
+        if [[ ! -e "$file" ]]; then
+            echo "Nenhum arquivo com extensão .$extension encontrado."
+            return 1
+        fi
+
+        # Gera o novo nome
+        local new_name=$(printf "fundo-%02d.%s" "$count" "$extension")
+        
+        # Renomeia o arquivo
+        mv "$file" "$new_name"
+        
+        # Incrementa o contador
+        count=$((count + 1))
+    done
+
+    echo "Arquivos .$extension renomeados com sucesso!"
+}
+
+# Exemplo de uso direto no script
+# _rename jpg
+endsnippet
+
+snippet renjpg "Renomeia os arquivos jpg"
+	count=1; for file in *-m.jpg; do new=$(printf "fundo-%02d.jpg" "$count");  echo "mv $file $new"; count=$((count + 1));  sleep 1; done
+endsnippet
+
+
+snippet  renfiles "Renomeia files"
+#  RENOMEAR ARQUIVOS
+nome="\$1"
+ext="\$2"
+contador=1
+
+# verificar se foi passado algum parametro
+[[ -z \$1 ]] && { echo "Uso: bash \$0 <novo-nome> <extensao>"; exit 0; }
+
+while read file; do
+
+novo_nome="${nome}-${contador}.${ext}"
+
+echo "$file" | sed -rn "s/(.*).${ext}/mv & ${novo_nome}/gp"
+
+
+((contador++))
+
+ done <<<$(ls *.${ext})
+endsnippet
+
+snippet txtforjson "Move tudo .txt para .json"
+	# Renomeia *.txt para *.json
+	ls *.txt  | sort -uV| sed -rn 's/(.*).txt$/mv "&" \1.json/gp' | xargs -I {} bash -c {}
+endsnippet
+
+
+snippet jsonfortxt "Move tudo .json para .txt"
+	# Renomeia *.json para *.txt
+	ls *.json  | sort -uV| sed -rn 's/(.*).json$/mv "&" \1.txt/gp' | xargs -I {} bash -c {}
+endsnippet
+
+
+
 ####################################################
 # vim:ft=snippets:
 
