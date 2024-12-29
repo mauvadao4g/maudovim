@@ -37,6 +37,24 @@ Plug 'tomasr/molokai'
 
 call plug#end()
 
+"------------------------------------------------
+" Mapeamentos personalizados no modo de inserção
+"------------------------------------------------
+" Ctrl+e: Vai para o final da linha e continua editando
+inoremap <C-e> <Esc>A
+
+" Ctrl+a: Vai para o início da linha e continua editando
+inoremap <C-a> <Esc>I
+
+" Ctrl+l: Vai pra linha de baixo
+inoremap <C-j> <Esc>o
+
+" Ctrl+k: Vai pra linha de cima
+inoremap <C-k> <Esc>k
+
+" Ctrl+L: Apaga a próxima palavra no modo de inserção
+inoremap <C-l> <Esc>S
+
 
 " Define o mapleader
 let mapleader=","
