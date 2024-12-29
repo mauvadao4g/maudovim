@@ -1,13 +1,9 @@
 #!/bin/bash
 # MAUVADAO
-# Versão: 1.0.4
+# Versão: 1.0.5
 # Script para adicionar, commitar e enviar alterações ao Git
 
-
 # Função Bash para Verificar Conexão SSH com o GitHub:
-#!/bin/bash
-
-# função pra verificar status com o ssh do git hub
 function verificar_ssh_github() {
     echo "Verificando conexão SSH com o GitHub..."
     if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
