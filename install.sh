@@ -683,6 +683,7 @@ menu_principal() {
     echo "5. Fazer backup das configurações atuais"
     echo "6. Desinstalar  vim+nvim"
     echo "7. Backup HOME/.vimrc"
+	echo "l. Lite Vim Install."
     echo "0. Sair"
     echo "========================"
     read -p "Escolha uma opção: " opcao
@@ -703,6 +704,7 @@ menu_principal() {
         5) backup_configuracoes ;;
         6) _uninstall ;; # Remove os programas e configurações
         7) _bkp ;; # Backup $HOME/.vimrc
+		l) bash lite_vim_install.sh;; # INSTALAÇÃO LITE
         0) echo "Saindo..."; exit 0 ;;
 
         *) echo "Opção inválida!"; menu_principal ;;
