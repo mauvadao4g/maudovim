@@ -2171,6 +2171,36 @@ endsnippet
 
 
 
+snipet curl_dow "Baixar arquivos de uma url"
+# Função para baixar um arquivo de uma URL
+baixar_arquivo() {
+    local url=\$1
+    local destino=\${2:-$(basename "$url")}
+
+    # Verificar se curl está instalado
+    if ! command -v curl &> /dev/null; then
+        echo "Erro: curl não está instalado."
+        return 1
+    fi
+
+    echo "Baixando: $url"
+    echo "Salvando em: $destino"
+
+    # Usar curl com suporte a recomeçar downloads e mostrar progresso
+    curl -C - -# -o "$destino" "$url"
+
+    # Verificar se o download foi bem-sucedido
+    if [[ $? -eq 0 ]]; then
+        echo "Download concluído com sucesso!"
+    else
+        echo "Erro durante o download. Verifique sua conexão ou a URL."
+    fi
+}
+
+# Exemplo de uso
+# baixar_arquivo "https://example.com/arquivo.zip" "arquivo_baixado.zip"
+endsnippet
+
 ####################################################
 # vim:ft=snippets:
 
