@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+# Verificar se o dbus está instalado no sistema.
+if ! command -v dbus-x11 >/dev/null 2>&1
+then
+sudo apt install dbus-x11
+fi
+
 # Nome da Nerd Font que será instalada
 FONT_NAME="Hack"
 FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.zip"
@@ -22,6 +29,9 @@ function verificar_sistema() {
     exit 1
   fi
 }
+
+
+
 
 # Baixa e instala a fonte
 function instalar_fonte() {
@@ -52,6 +62,19 @@ function atualizar_cache() {
   fi
 }
 
+# Configura a fonte no GNOME Terminal
+function configurar_gnome_terminal() {
+  mensagem "Configurando GNOME Terminal para usar a Nerd Font..."
+  PROFILE=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
+  if [ -z "$PROFILE" ]; then
+    echo "Não foi possível encontrar o perfil padrão do GNOME Terminal!"
+    exit 1
+  fi
+
+  gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE/" font "${FONT_NAME} Nerd Font 12"
+  mensagem "Fonte configurada automaticamente no GNOME Terminal!"
+}
+
 # Define a fonte no Termux
 function configurar_termux() {
   mensagem "Configurando Termux para usar a Nerd Font..."
@@ -63,7 +86,11 @@ function configurar_termux() {
 
 # Define a fonte no Linux
 function configurar_linux() {
-  mensagem "Por favor, configure manualmente a fonte no terminal (ex.: GNOME Terminal ou Konsole)."
+  if command -v gsettings &>/dev/null; then
+    configurar_gnome_terminal
+  else
+    mensagem "Por favor, configure manualmente a fonte no terminal (ex.: GNOME Terminal ou Konsole)."
+  fi
 }
 
 # Limpeza temporária
