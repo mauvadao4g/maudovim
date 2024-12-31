@@ -2043,6 +2043,132 @@ echo -e  "\e[1;31m[ERRO] Falha ao enviar o arquivo para '$SERVER_NAME'.\e[0m"
 fi
 endsnippet
 
+snippet server_info "Informações do servidor"
+# Configuração do servidor
+declare -A SERVERS
+SERVERS["${1:SERVER_NAME}"]="${2:SERVER_IP}:${3:SERVER_USER}:${4:SERVER_PORTA}:${5:PASSWORD}"
+
+# Nome do servidor para envio
+SERVER_NAME="${6:SERVER_NAME}"
+
+# Obter informações do servidor
+IFS=":" read -r HOST USER PORT PASSWORD <<< "${SERVERS[$SERVER_NAME]}"
+endsnippet
+
+
+snippet rsync "Enviar arquivos ao servidor"
+# Enviando arquivo pro servidor remoto
+rsync -havv -e "ssh -p 22"   ${1:/pasta/local} ${3:usuario@ip_servidor:/pasta/destino}
+endsnippet
+
+snippet server?  "Testar a conectividade com o servidor"
+
+# Função para testar a conectividade com o servidor
+testar_conectividade() {
+    local servidor="\$1"
+    local porta="\$2"
+
+    # Verifica se o endereço do servidor foi informado
+    if [[ -z "$servidor" ]]; then
+        echo "Erro: É necessário informar o endereço do servidor."
+        return 1
+    fi
+
+    # Testa conectividade com ping
+    echo "Testando conectividade com $servidor..."
+    if ping -c 3 "$servidor" > /dev/null 2>&1; then
+        echo "✅ Ping bem-sucedido para $servidor."
+    else
+        echo "❌ Não foi possível alcançar o servidor $servidor via ping."
+        return 2
+    fi
+
+    # Testa conexão com a porta, se especificada
+    if [[ -n "$porta" ]]; then
+        echo "Testando conexão na porta $porta..."
+        if nc -z -v -w 5 "$servidor" "$porta" > /dev/null 2>&1; then
+            echo "✅ Conexão bem-sucedida na porta $porta de $servidor."
+        else
+            echo "❌ Não foi possível conectar na porta $porta de $servidor."
+            return 3
+        fi
+    fi
+
+    echo "Conectividade testada com sucesso."
+    return 0
+}
+
+# Exemplo de uso da função
+testar_conectividade "192.168.1.1" "22"
+endsnippet
+
+snippet ssh? "Testar a conexao co o ssh"
+# Função para testar conexão SSH
+testar_ssh() {
+    local servidor="\$1"
+    local usuario="\$2"
+    local porta="\${3:-22}"  # Porta padrão 22
+
+    # Verifica se o servidor e usuário foram informados
+    if [[ -z "$servidor" || -z "$usuario" ]]; then
+        echo "Erro: Informe o servidor e o usuário para testar a conexão SSH."
+        echo "Uso: testar_ssh <servidor> <usuario> [porta]"
+        return 1
+    fi
+
+    echo "Testando conexão SSH com $usuario@$servidor na porta $porta..."
+    
+    # Tenta se conectar ao servidor via SSH
+    ssh -q -o ConnectTimeout=5 -p "$porta" "$usuario@$servidor" exit
+
+    if [[ $? -eq 0 ]]; then
+        echo "✅ Conexão SSH bem-sucedida com $usuario@$servidor na porta $porta."
+        return 0
+    else
+        echo "❌ Falha ao conectar via SSH com $usuario@$servidor na porta $porta."
+        return 2
+    fi
+}
+
+# Exemplo de uso da função
+testar_ssh "192.168.1.1" "seu_usuario" "22"
+endsnippet
+
+
+snippet speedtest "Testar velocidade da internet"
+#!/bin/bash
+
+# Função para testar a velocidade da conexão
+testar_velocidade() {
+    # Verifica se o speedtest-cli está instalado
+    if ! command -v speedtest-cli &> /dev/null; then
+        echo "❌ O speedtest-cli não está instalado. Instalando agora..."
+        # Tenta instalar o speedtest-cli
+        if command -v apt &> /dev/null; then
+            sudo apt update && sudo apt install -y speedtest-cli
+        elif command -v yum &> /dev/null; then
+            sudo yum install -y speedtest-cli
+        else
+            echo "❌ Gerenciador de pacotes não suportado. Instale manualmente o speedtest-cli."
+            return 1
+        fi
+    fi
+
+    echo "✅ speedtest-cli encontrado. Iniciando o teste de velocidade..."
+
+    # Executa o teste de velocidade
+    speedtest-cli --simple
+    if [[ $? -eq 0 ]]; then
+        echo "✅ Teste de velocidade concluído com sucesso."
+    else
+        echo "❌ Falha ao executar o teste de velocidade."
+    fi
+}
+
+# Exemplo de uso da função
+testar_velocidade
+endsnippet
+
 
 
 ####################################################
