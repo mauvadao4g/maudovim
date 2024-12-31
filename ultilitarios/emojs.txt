@@ -1,0 +1,44 @@
+--------------------------------------
+❤️ Corações Clássicos
+Emoji	Nome	Código Unicode
+--------------------------------------
+❤️	Coração vermelho	U+2764
+🩷	Coração rosa	U+1FA77
+💔	Coração partido	U+1F494
+🩵	Coração azul-claro	U+1FA75
+💖	Coração brilhando	U+1F496
+💗	Coração crescente	U+1F497
+💓	Coração pulsante	U+1F493
+💞	Corações girando	U+1F49E
+💝	Coração com laço	U+1F49D
+
+
+--------------------------------------
+💕 Corações Românticos e Estilizados
+Emoji	Nome	Código Unicode
+--------------------------------------
+💕	Dois corações	U+1F495
+💟	Decoração de coração	U+1F49F
+❣️	Coração de exclamação	U+2763
+🖤	Coração preto	U+1F5A4
+💜	Coração roxo	U+1F49C
+💙	Coração azul	U+1F499
+💚	Coração verde	U+1F49A
+💛	Coração amarelo	U+1F49B
+
+
+--------------------------------------
+🩶 Corações Modernos
+Emoji	Nome	Código Unicode
+--------------------------------------
+🩶	Coração cinza	U+1FA76
+🩸	Gota de sangue (coração relacionado)	U+1FA78
+
+--------------------------------------
+Usando os Códigos Unicode
+No terminal ou Vim, você pode inserir emojis pelo código Unicode:
+
+Pressione Ctrl + Shift + U.
+Digite o código Unicode (ex.: 2764 para ❤️).
+Pressione Enter.
+--------------------------------------
