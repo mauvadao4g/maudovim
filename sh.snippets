@@ -451,9 +451,16 @@ endsnippet
 
 
 # PRINTAR  MENSAGENS
+# echo -e "\e[1;34m• \e[0m"
+snippet echo* "•Printa a mensagem na tela"
+echo -e "\e[1;${1:37}m• ${2:$MENSAGEM}\e[0m"
+endsnippet
+
+
 snippet echo "Printa a mensagem na tela"
 echo -e "\e[1;${1:37}m${2:$MENSAGEM}\e[0m"
 endsnippet
+
 
 
 snippet echsz "Printa a mensagem na tela na cor sinza"
@@ -2171,7 +2178,7 @@ endsnippet
 
 
 
-snipet curl_dow "Baixar arquivos de uma url"
+snippet curl_dow "Baixar arquivos de uma url"
 # Função para baixar um arquivo de uma URL
 baixar_arquivo() {
     local url=\$1
