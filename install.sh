@@ -84,12 +84,19 @@ configurar_vim_neovim() {
 "------------------------------------------------
 call plug#begin('~/.vim/autoload/plug/start')
 
-" Plugins essenciais
-Plug 'sainnhe/sonokai' " Tema sonokai
-" Tema dracula
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Temas
+Plug 'dracula/vim', { 'as': 'dracula' }    " tema dracula
+Plug 'arcticicestudio/nord-vim'           " tema nord
+Plug 'joshdick/onedark.vim'               " tema onedark
+Plug 'sainnhe/everforest'                 " tema everforest
+Plug 'sainnhe/gruvbox-material'           " tema material basado en gruvbox
+Plug 'sainnhe/sonokai'                    " tema sonokai
+Plug 'folke/tokyonight.nvim'              " tema tokyo night
+Plug 'glepnir/zephyr-nvim'                " tema zephyr
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'tomasr/molokai'
 Plug 'zenorocha/dracula-theme'
-" Tema gruvbox
 Plug 'morhetz/gruvbox'
 
 

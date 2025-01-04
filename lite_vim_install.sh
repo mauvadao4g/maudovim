@@ -48,9 +48,15 @@ Plug 'dense-analysis/ale'      " Verificação de sintaxe em tempo real
 Plug 'vim-scripts/bash-support.vim'
 
 " Temas
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', { 'as': 'dracula' }    " tema dracula
+Plug 'arcticicestudio/nord-vim'           " tema nord
+Plug 'joshdick/onedark.vim'               " tema onedark
+Plug 'sainnhe/everforest'                 " tema everforest
+Plug 'sainnhe/gruvbox-material'           " tema material basado en gruvbox
+Plug 'sainnhe/sonokai'                    " tema sonokai
+Plug 'folke/tokyonight.nvim'              " tema tokyo night
+Plug 'glepnir/zephyr-nvim'                " tema zephyr
 Plug 'morhetz/gruvbox'
-Plug 'sainnhe/sonokai'
 Plug 'ayu-theme/ayu-vim'
 Plug 'tomasr/molokai'
 
