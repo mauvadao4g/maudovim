@@ -3,7 +3,6 @@
 # VER: 1.0.0
 #  CONECTAR AO SERVIDOR SSH E FAZER UM GIT PULL  PRA ATUALIZA O REPOSITORIO 
 
-
 # Dados do servidor
 _dadosServer(){
 # Definir variáveis
