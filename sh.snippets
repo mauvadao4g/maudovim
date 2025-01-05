@@ -2265,7 +2265,7 @@ sort -uV \
 )
 endsnippet
 
-snippet formatos "Formatos yt-dlp"
+snippet formato "Formatos yt-dlp"
 # Formatos de videos
 	f720="bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]"
 	f1080="bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]"
@@ -2273,7 +2273,6 @@ endsnippet
 
 
 snippet yt "Comando pra baixar os videos yt-dlp"
-	# Baixar video de uma url
 	yt-dlp --cookies "$HOME/Downloads/cookies.txt" --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" -f "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]" "${1:http://youtube.com/watch=}" -o "%(title)s-%(id)s.%(ext)s" '
 endsnippet
 
