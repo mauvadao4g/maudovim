@@ -1721,24 +1721,28 @@ endsnippet
 
 
 # VERIFICAÇOES 
+# Verifica se um parametro está vazio
 snippet vazio "Verificar se parâmetro está vazio" b
 [[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
 endsnippet
 
 snippet -z "Verificar se parâmetro está vazio" b
+# Verifica se um paratro está vazio
 [[ -z "${1:\$1}" ]] && { echo "Uso: :\$0 ${2:<parametros>}"; exit 0; }
 endsnippet
 
 snippet -n "Verificar se parâmetro está em uso " b
+# Verifica se uma variavel está em uso
 [[ -n "${1:\$1}" ]] && { ${2:COMANDOS}"; }
 endsnippet
 
 # CABEÇALHOS
 snippet titulo "Print do titulo no topo"
-    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
-    echo -e "\033[1;34m| \033[1;37m${1:PARAMETROS}             \033[1;34m|\033[0m"
-    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
-    echo
+# Printa um cabeçalho
+echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+echo -e "\033[1;34m| \033[1;37m${1:PARAMETROS}             \033[1;34m|\033[0m"
+echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+echo
 endsnippet
 
 
@@ -1758,17 +1762,17 @@ endsnippet
 
 # mostrar Linhas
 snippet lin "Mostrando linhas" b
-        echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
+echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
 endsnippet
 
 # mostrar Linhas
 snippet lin1 "Mostrando linhas" b
-        echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
+echo -e "\n\033[0;34m═════════════════════════════════════════════════\033[0m"
 endsnippet
 
 
 snippet lin2 "Cria uma linha  ----" b
-    echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
+echo -e "\033[1;34m+-------------------------------------------------------+\033[0m"
 endsnippet
 
 snippet kirito "script kirito" b
@@ -2207,6 +2211,72 @@ baixar_arquivo() {
 # Exemplo de uso
 # baixar_arquivo "https://example.com/arquivo.zip" "arquivo_baixado.zip"
 endsnippet
+
+
+snippet baixando "Mostra total de videos sendo baixado" 
+echo -e "\e[1;31m[\e[1;44;33m$num\e[0m||\e[1;44;32m$total\e[0m\e[1;31m]\e[1;34mBaixando:\e[0m \e[1;33m$line\e[0m" 
+endsnippet
+
+snippet lista "Le uma lista.txt"
+# Lendo as linhas de um file.txt
+lista="\${1:-lista.txt}"
+num=1
+total=$(cat $lista | sort -u | wc -l)
+while read line
+do
+echo -e "\e[1;31m[\e[1;44;33m$num\e[0m||\e[1;44;32m$total\e[0m\e[1;31m]\e[1;34mLinha:\e[0m \e[1;33m$line\e[0m"; echo
+
+${1:COMANDOS}
+sleep 1
+((num++))
+done < "$lista"
+endsnippet
+
+
+
+snippet _baixar "Função pra downloads com yt-dlp"
+# função pra downloads de videos url com yt-dlp
+_baixar(){
+	formato="\$1"
+	url="\$2"
+	cookies="$HOME/Downloads/cookies.txt "
+	agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+	# comando pra download
+	yt-dlp --cookies $cookies --user-agent "$agent"  -f "$formato" "$url" -o '%(title)s-%(id)s.%(ext)s'
+}
+endsnippet
+
+
+snippet _qualidade "Funçao pra formatos do yt-dlp"
+_qualidade(){
+# echo "Listando formatos de videos"
+# echo
+qualidade="\$1"
+url="\$2"
+# BAIXA O JSON COM AS INFORMAÇÕES DE VIDEOS
+# yt-dlp --no-warnings  "$url" -j | jq '.fulltitle, .webpage_url, .filesize_approx, .format, .format_id , .format_note, ._type, .height, .resolution'
+
+# BAIXA A LISTA DE FORMATOS DO ARQUIVO
+lista=$(yt-dlp -F --no-warnings  "$url" | \
+awk '{print $\1, \$2, \$3,  $NF}' | \
+grep mp4 | \
+grep "$qualidade" | \
+sort -uV \
+)
+endsnippet
+
+snippet formatos "Formatos yt-dlp"
+# Formatos de videos
+	f720="bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]"
+	f1080="bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]/bestvideo[ext=mp4]"
+endsnippet
+
+
+snippet yt "Comando pra baixar os videos yt-dlp"
+	# Baixar video de uma url
+	yt-dlp --cookies "$HOME/Downloads/cookies.txt" --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" -f "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/bestvideo[ext=mp4]" "${1:http://youtube.com/watch=}" -o "%(title)s-%(id)s.%(ext)s" '
+endsnippet
+
 
 ####################################################
 # vim:ft=snippets:
