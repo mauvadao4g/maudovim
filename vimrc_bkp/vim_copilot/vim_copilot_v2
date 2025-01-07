@@ -1,0 +1,97 @@
+" Início do arquivo .vimrc
+
+" ============================
+" Configurações Básicas
+" ============================
+syntax on                        " Habilita destaque de sintaxe
+set number                       " Exibe números das linhas
+set relativenumber               " Exibe números relativos
+set tabstop=4                    " Define o tamanho do TAB para 4 espaços
+set shiftwidth=4                 " Define a indentação para 4 espaços
+set expandtab                    " Converte TABs em espaços
+set cursorline                   " Destaca a linha atual
+set wildmenu                     " Habilita menu interativo no comando :
+set clipboard=unnamedplus        " Habilita compartilhamento de clipboard
+set background=dark              " Define tema com fundo escuro
+set encoding=utf-8               " Usa codificação UTF-8
+
+" ============================
+" Gerenciador de Plugins: vim-plug
+" ============================
+" Baixar e configurar plugins
+call plug#begin('~/.vim/plugged')
+
+" Plugin do GitHub Copilot
+Plug 'github/copilot.vim'
+
+" Plugin Emmet para desenvolvimento web
+Plug 'mattn/emmet-vim'
+
+" Temas populares
+Plug 'sainnhe/sonokai'           " Tema principal
+Plug 'joshdick/onedark.vim'      " OneDark
+Plug 'morhetz/gruvbox'           " Gruvbox
+Plug 'arcticicestudio/nord-vim'  " Nord
+Plug 'dracula/vim', { 'as': 'dracula' } " Dracula
+Plug 'ayu-theme/ayu-vim'         " Ayu
+
+call plug#end()
+
+" ============================
+" Configurações de Temas
+" ============================
+" Define Sonokai como tema principal
+let g:sonokai_style = 'andromeda' " Opções: default, andromeda, shusia, maia, espresso, atlantis
+colorscheme sonokai
+
+" ============================
+" Configurações do Emmet
+" ============================
+" Teclas para expandir abreviações Emmet
+let g:user_emmet_expandabbr_key = '<C-y>,'      " Expandir abreviação com Ctrl + y seguido de vírgula
+let g:user_emmet_expandword_key = '<C-y>;'      " Expandir palavra com Ctrl + y seguido de ponto e vírgula
+let g:user_emmet_update_tag = '<C-y>u'          " Atualizar uma tag com Ctrl + y seguido de 'u'
+
+" Ativar Emmet automaticamente em arquivos de HTML, CSS, etc.
+autocmd FileType html,css,php,javascript EmmetInstall
+
+" Ativar Emmet em modos específicos
+let g:user_emmet_mode = 'a'                     " 'a' = Ativar em modos de Inserção e Normal
+
+" ============================
+" Configurações do GitHub Copilot
+" ============================
+" Habilitar Copilot para todos os tipos de arquivo
+let g:copilot_filetypes = {'*': v:true}
+
+" Mapeamento para aceitar sugestões do Copilot
+imap <silent><script><expr> <Tab> copilot#Accept("\<CR>")
+
+" Desabilitar Copilot para arquivos de texto ou Markdown
+let g:copilot_filetypes = {
+      \ 'markdown': v:false,
+      \ 'text': v:false,
+      \ }
+
+" ============================
+" Configurações Extras
+" ============================
+" Ativar Copilot automaticamente
+autocmd VimEnter * Copilot enable
+
+" Mapear Ctrl-n e Ctrl-p para navegar entre sugestões
+nmap <silent> <C-n> :call copilot#NextSuggestion()<CR>
+nmap <silent> <C-p> :call copilot#PreviousSuggestion()<CR>
+
+" ============================
+" Atalhos Úteis
+" ============================
+" Salvar com Ctrl-s
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" Fechar buffer com Ctrl-q
+nnoremap <C-q> :q<CR>
+
+" ============================
+" Fim do arquivo .vimrc

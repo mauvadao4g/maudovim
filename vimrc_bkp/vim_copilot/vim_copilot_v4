@@ -1,0 +1,220 @@
+" Início do arquivo .vimrc
+
+" ============================
+" Configurações Básicas
+" ============================
+syntax on                        " Habilita destaque de sintaxe
+set number                       " Exibe números das linhas
+set relativenumber               " Exibe números relativos
+set tabstop=4                    " Define o tamanho do TAB para 4 espaços
+set shiftwidth=4                 " Define a indentação para 4 espaços
+set expandtab                    " Converte TABs em espaços
+set cursorline                   " Destaca a linha atual
+set wildmenu                     " Habilita menu interativo no comando :
+set clipboard=unnamedplus        " Habilita compartilhamento de clipboard
+set background=dark              " Define tema com fundo escuro
+set encoding=utf-8               " Usa codificação UTF-8
+
+"------------------------------------------------
+" Melhor visualização
+"------------------------------------------------
+set cursorline
+set termguicolors
+" highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray
+highlight CursorLine cterm=bold ctermbg=235 guibg=#1e1e1e
+
+
+
+
+" ============================
+" Gerenciador de Plugins: vim-plug
+" ============================
+" Baixar e configurar plugins
+call plug#begin('~/.vim/plugged')
+
+" Plugin do GitHub Copilot
+Plug 'github/copilot.vim'
+
+" Plugin Emmet para desenvolvimento web
+Plug 'mattn/emmet-vim'
+
+" Plugin AutoPairs para fechamento automático de pares
+Plug 'jiangmiao/auto-pairs'
+
+" Mostrar paleta de cores nos codigos Exe; #fff
+Plug 'ap/vim-css-color'
+
+" Plugin para exibir o nome do arquivo no rodapé
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Used to comment whe whole line or select lines
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
+
+
+
+" Temas populares
+Plug 'arcticicestudio/nord-vim'  " Nord
+Plug 'dracula/vim', { 'as': 'dracula' }    " tema dracula
+Plug 'arcticicestudio/nord-vim'           " tema nord
+Plug 'joshdick/onedark.vim'               " tema onedark
+Plug 'sainnhe/everforest'                 " tema everforest
+Plug 'sainnhe/gruvbox-material'           " tema material basado en gruvbox
+Plug 'sainnhe/sonokai'                    " tema sonokai
+Plug 'folke/tokyonight.nvim'              " tema tokyo night
+Plug 'glepnir/zephyr-nvim'                " tema zephyr
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'tomasr/molokai'
+Plug 'zenorocha/dracula-theme'
+Plug 'morhetz/gruvbox'
+
+
+
+
+call plug#end()
+
+" ============================
+" Configurações de Temas
+" ============================
+" Define Sonokai como tema principal
+let g:sonokai_style = 'andromeda' " Opções: default, andromeda, shusia, maia, espresso, atlantis
+colorscheme sonokai
+
+" ============================
+" Configurações do Emmet
+" ============================
+" Ativar o Emmet apenas em arquivos HTML, CSS, etc.
+let g:user_emmet_leader_key='<C-Z>'
+
+" Expandir a abreviação do Emmet com Ctrl+y,
+" que é a combinação padrão sugerida pelo plugin
+imap <C-y>, <Plug>(emmet-expand-abbr)
+nmap <C-y>, <Plug>(emmet-expand-word)
+
+" Navegar entre os pontos de edição do Emmet
+imap <C-y>n <Plug>(emmet-next-edit-point)
+imap <C-y>p <Plug>(emmet-prev-edit-point)
+
+" Envolver seleção com tag do Emmet (modo visual)
+vmap <C-y>, <Plug>(emmet-wrap-with-abbreviation)
+
+"-------------------
+" Outras Configurações do Emmet
+"-------------------
+" Habilitar automaticamente Emmet em tipos de arquivo suportados
+autocmd FileType html,css,javascript,php EmmetInstall
+let g:user_emmet_settings = {
+\   'html' : {
+\       'filters' : 'html,css,js',
+\   },
+\   'css' : {
+\       'filters' : 'bem',
+\   },
+\   'js' : {
+\       'filters' : 'js',
+\   }
+\}
+
+
+" Personalização de abreviações
+" Adicione customizações úteis para projetos recorrentes
+let g:user_emmet_custom_snippets = {
+\   'html' : {
+\       'navheader' : '<nav><ul><li><a href=""></a></li></ul></nav>',
+\       'footerlinks' : '<footer><ul><li><a href=""></a></li></ul></footer>',
+\   },
+\   'css' : {
+\       'clearfix' : '&:after { content: ""; display: block; clear: both; }',
+\   }
+\}
+
+" Auto-expandir "!" para estrutura básica HTML
+" "autocmd FileType html inoremap ! html:5<C-y>,
+
+" Outros atalhos úteis
+" Mover uma tag ao redor do texto
+imap <C-y>d <Plug>(emmet-balance-tag-outward)
+imap <C-y>D <Plug>(emmet-balance-tag-inward)
+
+" Incrementar ou decrementar números
+imap <C-y>+ <Plug>(emmet-increment-number)
+imap <C-y>- <Plug>(emmet-decrement-number)
+" ###################
+
+let g:user_emmet_update_tag = '<C-y>u'          " Atualizar uma tag com Ctrl + y seguido de 'u'
+
+" Ativar Emmet em modos específicos
+let g:user_emmet_mode = 'a'                     " 'a' = Ativar em modos de Inserção e Normal
+
+
+" ============================
+" Configurações do GitHub Copilot
+" ============================
+" Habilitar Copilot para todos os tipos de arquivo
+let g:copilot_filetypes = {'*': v:true}
+
+" Mapeamento para aceitar sugestões do Copilot
+imap <silent><script><expr> <Tab> copilot#Accept("\<CR>")
+
+" Desabilitar Copilot para arquivos de texto ou Markdown
+let g:copilot_filetypes = {
+      \ 'markdown': v:false,
+      \ 'text': v:false,
+      \ }
+
+" ============================
+" Configurações Extras
+" ============================
+" Ativar Copilot automaticamente
+autocmd VimEnter * Copilot enable
+
+" Mapear Ctrl-n e Ctrl-p para navegar entre sugestões
+nmap <silent> <C-n> :call copilot#NextSuggestion()<CR>
+nmap <silent> <C-p> :call copilot#PreviousSuggestion()<CR>
+
+" ============================
+" Atalhos Úteis
+" ============================
+" Salvar com Ctrl-s
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" Fechar buffer com Ctrl-q
+nnoremap <C-q> :q<CR>
+
+
+" ============================
+" Configurações do AutoPairs
+" ============================
+if exists('g:loaded_auto_pairs')
+    let g:AutoPairsMapCR = 1              " Ativar AutoPairs
+    let g:AutoPairsMultilineClose = 1     " Fechar pares automaticamente em múltiplas linhas
+    " let g:AutoPairsShortcutToggle = '<C-p>'
+let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitação rápida
+
+    let g:AutoPairsMapBS = 1              " Permitir Backspace para apagar pares automaticamente
+    " Configurações desnecessárias comentadas:
+    " let g:AutoPairsFlyMode = 1
+    " let g:AutoPairsShortcutToggle = ''
+endif
+
+
+" Configurações do Vim-Commentary
+nnoremap <C-c> :Commentary<CR>
+
+
+
+
+
+"------------------------------------------------
+" Configurações do Airline
+"------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dracula'
+
+
+" ============================
+" Fim do arquivo .vimrc
+
