@@ -42,7 +42,7 @@ endsnipet
 endsnippet
 
 # Jogando a saida pro dev/null
-snippet /dev " >/dev/null 2>&1" b
+snippet > " >/dev/null 2>&1" b
  >/dev/null 2>&1
 endsnippet
 
@@ -50,10 +50,24 @@ snippet dev " >/dev/null 2>&1" b
 ${1:COMANDOS} >/dev/null 2>&1
 endsnippet
 
+snippet /dev ">dev/null 2>&1"
+>/dev/null 2>&1
+endsnippet
+
+
 snippet 2> ">dev/null 2>&1"
 >/dev/null 2>&1
 endsnippet
 
+
+snippet /dev/null ">dev/null 2>&1"
+>/dev/null 2>&1
+endsnippet
+
+
+snippet null ">dev/null"
+>/dev/null
+endsnippet
 
 # Verificar conexao com o git
 snippet testgit "Verifica conexao com o ssh do github"
@@ -945,8 +959,9 @@ endsnippet
 snippet dire "Verificar se o diretório de origem existe"
 
 # Verificar se o diretório de origem existe
-if [[ ! -d "${1:$SOURCE_DIR}" ]]; then
-    log "Erro: Diretório de origem ${1:$SOURCE_DIR} não existe."
+${1:SOURCE_DIR}="${2:/caminho/do/diretório}"
+if [[ ! -d "${3:$SOURCE_DIR}" ]]; then
+    log "Erro: Diretório de origem ${4:$SOURCE_DIR} não existe."
     exit 1
 fi
 endsnippet
