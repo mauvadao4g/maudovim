@@ -2292,6 +2292,30 @@ snippet yt "Comando pra baixar os videos yt-dlp"
 endsnippet
 
 
+
+snippet colors "Cores em bash script"
+##################### Colours ############################
+TITLE=$(echo -e "\033[1;44m")
+ON_BLUE=$(echo -e "\033[44m")
+RED=$(echo -e "\033[1;31m")
+GREEN=$(echo -e "\033[1;32m")
+YELLOW=$(echo -e "\033[1;33m")
+BLUE=$(echo -e "\033[1;34m")
+MAGENTA=$(echo -e "\033[1;35m")
+CYAN=$(echo -e "\033[1;36m")
+WHITE=$(echo -e "\033[1;37m")
+BLACK=$(echo -e "\033[1;30m")
+STD=$(echo -e "\033[0m") # Clear colour
+# Exemplo de uso
+echo "${RED} Message${STD}"
+##############################################################
+endsnippet
+
+
+
+
+
+
 ####################################################
 # vim:ft=snippets:
 
