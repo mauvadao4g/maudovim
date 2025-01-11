@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 4.0.1
+# VER: 3.0.9
 # Adicionado o bracey pra live web
 # Adicionado novas configurações de atalhos
 # Adicionado configuraçõs de plugins
@@ -76,7 +76,7 @@ configurar_vim_neovim() {
     cat > temp.vim << EOF
 "---------------------------------------------------------------
 " INICIANDO CONFIGURAÇÕES
-" Ver: 11
+" Ver: 09
 " MAUVADAO
 "---------------------------------------------------------------
 "------------------------------------------------
@@ -453,8 +453,8 @@ nnoremap <c-u> viwU<Esc>
 " Save and exit easier way 
 inoremap <C-s> <esc>:w<cr>                 " save files
 nnoremap <C-s> :w<cr>
-" inoremap <C-d> <esc>:wq!<cr>               " save and exit
-" nnoremap <C-d> :wq!<cr>
+inoremap <C-d> <esc>:wq!<cr>               " save and exit
+nnoremap <C-d> :wq!<cr>
 inoremap <C-q> <esc>:exit<cr>               " quit discarding changes
 nnoremap <C-q> :exit<cr>
 
@@ -491,10 +491,8 @@ noremap <S>k <NOP>
 tnoremap ;; <C-\><C-n>
 
 " Opens a new terminal in vertical split
-" noremap <Leader>t :vsplit term://zsh<CR>
+noremap <Leader>t :vsplit term://zsh<CR>
 
-" Abrr uma nova aba
-noremap <Leader>t :vsplit <CR>
 
 " Mapear <Leader>cc para comentar a linha atual
 noremap <Leader>cc <Esc>
@@ -564,8 +562,6 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 nnoremap <silent> mm <cmd>lua vim.lsp.buf.rename()<CR>
 " close rename win use <C-c> in insert mode or  in noremal mode or 
-
-
 
 "---------------------------------------------------------------
 " ENCERRANDO CONFIGURAÇÕES
