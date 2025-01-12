@@ -1,6 +1,9 @@
 #!/bin/bash
 # MAUVADAO
-# VER: 3.0.8
+# VER: 3.0.9
+# Adicionado o bracey pra live web
+# Adicionado novas configurações de atalhos
+# Adicionado configuraçõs de plugins
 
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
@@ -71,11 +74,14 @@ configurar_vim_neovim() {
 
     echo "Configurando o Vim e Neovim..."
     cat > temp.vim << EOF
-"--------------------------------------------------------
-             SE CODIGO VIMRC AQUI
-"--------------------------------------------------------
+=======================================
+SEU CODIGO AQUI
+=======================================
 EOF
 
+
+
+	# CONFIGURAÇÕES DE SNIPPETS E ARQUIVOS PRINCIPAIS
     mv temp.vim ~/.vimrc
     cp ~/.vimrc ~/.config/nvim/init.vim
 
@@ -90,6 +96,16 @@ EOF
        [[ $? == 0 ]] && { echo "Snippets configurado com sucesso"; }
 
      }
+
+	# CONFIGURANDO O CSS SNIPPETS
+	htmlsnip="/home/everton-rozendo/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
+	cp html.snippets "$HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
+	[[ -f "$htmlsnip" ]] && {
+		# Verificando se foi copiado corretamente.
+       [[ $? == 0 ]] && { echo "html.nippets configurado com sucesso"; }
+	    }
+
+		#  FIM DAS CONFIGURAÇÕES DE ARQUIVOS E SNIPPETS
 
 
 }
@@ -192,6 +208,8 @@ menu_principal() {
     echo "5. Fazer backup das configurações atuais"
     echo "6. Desinstalar  vim+nvim"
     echo "7. Backup HOME/.vimrc"
+	echo "v. Lite VIM Install."
+	echo "n. Lite NVIM Install."
     echo "0. Sair"
     echo "========================"
     read -p "Escolha uma opção: " opcao
@@ -212,6 +230,8 @@ menu_principal() {
         5) backup_configuracoes ;;
         6) _uninstall ;; # Remove os programas e configurações
         7) _bkp ;; # Backup $HOME/.vimrc
+		v) bash lite_vim_install.sh;; # INSTALAÇÃO LITE VIM
+		n) bash lite_nvim_install.sh ;; # INSTALAÇÃO LITE NVIM
         0) echo "Saindo..."; exit 0 ;;
 
         *) echo "Opção inválida!"; menu_principal ;;
