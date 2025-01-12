@@ -4,4 +4,5 @@
 
 echo 'Instalando vim fugitive.'
 echo ...
-
+echo ...
+echo 'Iniciando git push'
