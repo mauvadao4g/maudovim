@@ -336,6 +336,11 @@ nnoremap <C-q> :BraceyStop<CR>
 "------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='gruvbox'
+
+"------------------------------------------------
+" ADICIONANDO ATALHO PRO SCRIPT subGit.sh
+nnoremap <leader>sg :!bash /bin/subGit.sh<CR>
+"------------------------------------------------
 EOF
 }
 
