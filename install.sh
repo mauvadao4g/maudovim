@@ -584,7 +584,9 @@ nnoremap <silent> mm <cmd>lua vim.lsp.buf.rename()<CR>
 " close rename win use <C-c> in insert mode or  in noremal mode or
 
 
-# ADICIONANDO ATALHO PRO SCRIPT subGit.sh
+"---------------------------------------------------------------
+" ADICIONANDO ATALHO PRO SCRIPT subGit.sh
+"---------------------------------------------------------------
 nnoremap <leader>sg :!bash /bin/subGit.sh<CR>
 
 "---------------------------------------------------------------
