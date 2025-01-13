@@ -81,14 +81,16 @@ configurar_vim_neovim() {
 "---------------------------------------------------------------
 "------------------------------------------------
 " Gerenciador de plugins
+" Install VimPlug from - https://github.com/junegunn/vim-plug
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "------------------------------------------------
+
 call plug#begin('~/.vim/autoload/plug/start')
 
 " COMPILOT -> GITHUB
 Plug  'github/copilot.vim'
 
 " Temas
-Plug 'dracula/vim', { 'as': 'dracula' }    " tema dracula
 Plug 'arcticicestudio/nord-vim'           " tema nord
 Plug 'joshdick/onedark.vim'               " tema onedark
 Plug 'sainnhe/everforest'                 " tema everforest
@@ -101,7 +103,10 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'tomasr/molokai'
 Plug 'zenorocha/dracula-theme'
 Plug 'morhetz/gruvbox'
-
+" temas Novos.
+Plug 'rakr/vim-one' " For mac
+" Plug 'sonph/onehalf', { 'rtp': 'vim' } "preferred on linux server
+Plug 'dracula/vim', { 'as': 'dracula' }    " tema dracula
 
 " Suporte ao live server para HTML/CSS/JS
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
@@ -238,8 +243,8 @@ let g:vimshell_window_type = 'horizontal'
 " Configurações do Airline
 "------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
+highlight Comment gui=none cterm=none
 let g:airline_theme='dracula'
-
 
 
 
@@ -285,12 +290,6 @@ let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitaç�
 
 " Configurações do Vim-Commentary
 nnoremap <C-c> :Commentary<CR>
-
-" Configurações do Fugitive
-nnoremap <Leader>gs :Git<CR>
-nnoremap <Leader>gc :Git commit<CR>
-nnoremap <Leader>gp :Git push<CR>
-
 
 "------------------------------------------------
 " Configuração do emmet
@@ -458,7 +457,6 @@ nnoremap <C-s> :w<cr>
 inoremap <C-q> <esc>:exit<cr>               " quit discarding changes
 nnoremap <C-q> :exit<cr>
 
-inoremap ;; <Esc>
 
 " Better tabbing
 vnoremap < <gv
@@ -469,12 +467,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" Open nerdTree with keyshortcut
-let mapleader = ","
-nmap <leader>g :normal! ggVG<CR> "Seleciona todas as linhas"
-nmap <leader>ne :NERDTree<cr> "Abre o NerdTree
-
 
 " TABS
 noremap <Tab> :tabnext<CR>
@@ -490,13 +482,37 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <S>k <NOP>
 
+"----------------------
 tnoremap ;; <C-\><C-n>
+inoremap ;; <Esc>
+"----------------------
 
-" Opens a new terminal in vertical split
-" noremap <Leader>t :vsplit term://zsh<CR>
+" Open nerdTree with keyshortcut
+let mapleader = ","
+" nmap <leader>g :normal! ggVG<CR> "Seleciona todas as linhas
+nmap <leader>ne :NERDTree<cr> "Abre o NerdTree
 
-" Abrr uma nova aba
-noremap <Leader>t :vsplit <CR>
+"-------------------------------
+" Configurações do Fugitive
+" nnoremap <Leader>gs :Git<CR>
+" nnoremap <Leader>gc :Git commit<CR>
+" nnoremap <Leader>gp :Git push<CR>
+"-------------------------------
+" Git fugitive mappings
+noremap <leader>gl :G log<CR>
+noremap <leader>gc :G commit<CR>
+noremap <leader>gp :G push<CR>
+
+" Equivalent to git status
+noremap <leader>gs :G <CR>
+
+"open github url on web browser
+noremap <leader>gb :GBrowse <CR> 
+"-------------------------------
+
+" Mapeamento para abrir o terminal
+ noremap <Leader>t :vsplit term://zsh<CR>
+
 
 " Mapear <Leader>cc para comentar a linha atual
 noremap <Leader>cc <Esc>
