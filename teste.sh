@@ -2,7 +2,11 @@
 # MAUVADAO
 # VER: 1.0.0
 
+echo 'upando arquivo para o git'
+echo 'linha 2 upando para o github'
 
-echo 'Teste'
-echo -e "\e[1;33mOla, vamos tesar\e[0m"
+
+
+
+
 
