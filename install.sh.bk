@@ -625,30 +625,13 @@ EOF
 }
 
 instalar_dependencias() {
- echo -e "\e[1;36mInstalando pacotes no sistema\e[0m"
- # Pacotes pra instalar
- pacotes=(
-'curl'
-'vim-gtk'
-'neovim'
-'python3'
-'python3-pip'
-'nodejs'
-'npm'
-)
 
-for prog in ${pacotes[@]}; do
-# Verificando os pacotes e instalando no sistema
-if  command -v ${prog} &>/dev/null; then
-    echo -e "\e[44;1;37m${prog}:\e[0m \e[1;33mpacote já instalado no sistema\e[0m" 
-# read x
-else	
-echo -e "\e[44;1;37m${prog}:\e[0m \e[1;32mInstalando pacote no sistema\e[0m"
-apt install -y "${prog}" || pkg  install -y "${prog}"
-fi
 
-done
 
+
+    echo "Instalando dependências..."
+     apt update &&  apt install -y vim-gtk neovim git curl nodejs npm python3 python3-pip || pkg install -y vim-gtk  git curl nodejs npm python3 python3-pip      
+     
     pip3 install pynvim
     verPython
     menu_principal

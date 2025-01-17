@@ -2,8 +2,8 @@
 # MAUVADAO
 # VER: 1.0.0
 
-echo -e "\e[1;33m$MENSAGEM\e[0m"
 
+echo -e "\e[1;33mOla mundo\e[0m"
 
 # Verificar o status do backup
 if [ $? -eq 0 ]; then
