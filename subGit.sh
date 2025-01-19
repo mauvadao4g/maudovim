@@ -15,6 +15,10 @@ function verificar_ssh_github() {
 }
 # chamando a função pra verificar status com ssh do git hub
 verificar_ssh_github
+# Adicionar local ao git
+git config --global --add safe.directory $(pwd)
+
+
 _new() {
     local commit="$1"
     data=$(date '+%Y-%m-%d %H:%M:%S')
