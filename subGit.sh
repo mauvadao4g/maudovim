@@ -1,6 +1,6 @@
 #!/bin/bash
 # MAUVADAO
-# Versão: 1.0.5
+# Versão: 1.0.6
 # Script para adicionar, commitar e enviar alterações ao Git
 
 # Função Bash para Verificar Conexão SSH com o GitHub:
