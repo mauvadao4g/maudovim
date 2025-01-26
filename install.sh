@@ -76,7 +76,7 @@ configurar_vim_neovim() {
     cat > temp.vim << EOF
 "---------------------------------------------------------------
 " INICIANDO CONFIGURAÇÕES
-" Ver: 10
+" Ver: 11
 " MAUVADAO
 "---------------------------------------------------------------
 "------------------------------------------------
@@ -115,21 +115,25 @@ Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 Plug 'ap/vim-css-color'
 
 
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" SNIPPETS
 Plug 'honza/vim-snippets'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neosnippet.vim'
 Plug 'SirVer/ultisnips'
+
+Plug 'mattn/emmet-vim'
+
+Plug 'Shougo/neocomplete.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Shougo/vimshell.vim'
+
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
-Plug 'mattn/emmet-vim'
-Plug 'Shougo/neocomplete.vim'
 Plug 'gmarik/Vundle.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 "------------------------
 " TESTANDO NOVOS PLUGINS
@@ -290,6 +294,14 @@ let g:AutoPairsFlyMode = 1  " Adicionar fechamento automático durante digitaç�
 
 " Configurações do Vim-Commentary
 nnoremap <C-c> :Commentary<CR>
+
+"----------------------------------------------------------------
+" Configurações do Ultisnips
+"----------------------------------------------------------------
+let g:UltiSnipsEditSplit = 'vertical'
+let g:UltiSnipsSnippetDir = '~/.vim/plugged/ultisnips/'
+
+
 
 "------------------------------------------------
 " Configuração do emmet
