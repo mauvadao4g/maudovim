@@ -2,6 +2,22 @@
 
 # Nome do arquivo de script: script.sh
 
+# Verifica a conexão SSH com o GitHub
+echo "Verificando conexão SSH com o GitHub..."
+ssh -T git@github.com
+
+# Verifica se a conexão SSH foi bem-sucedida
+if [ $? -eq 1 ]; then
+  echo "Conexão SSH com o GitHub está OK."
+else
+  echo "Erro: Falha na conexão SSH com o GitHub."
+  echo "Certifique-se de que:"
+  echo "1. Sua chave SSH está configurada corretamente."
+  echo "2. A chave SSH está adicionada ao ssh-agent."
+  echo "3. A chave SSH está associada à sua conta do GitHub."
+  exit 1
+fi
+
 # Verifica se o diretório atual é um repositório Git
 if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
   echo "Erro: Este diretório não é um repositório Git."
