@@ -1,4 +1,8 @@
 #!/bin/bash
+# MAUDAVPN
+# VER 1.0.1
+#
+clear
 
 # Nome do arquivo de script: script.sh
 
