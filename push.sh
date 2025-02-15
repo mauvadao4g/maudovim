@@ -28,8 +28,15 @@ fi
 git add .
 
 # Solicita uma mensagem de commit ao usuário
-echo "Digite a mensagem do commit:"
-read commit_message
+# echo "Digite a mensagem do commit:"
+# read commit_message
+
+timetamp=$(date '+%Y-%m-%d %H:%M:%S')
+commit_message="Update:  $timetamp"
+
+
+
+
 
 # Verifica se a mensagem do commit foi fornecida
 if [ -z "$commit_message" ]; then
@@ -46,6 +53,10 @@ git push origin main
 # Verifica se o push foi bem-sucedido
 if [ $? -eq 0 ]; then
   echo "Push realizado com sucesso!"
+
+echo "$commit_message"
+
+
 else
   echo "Erro: Falha ao fazer push."
   exit 1
