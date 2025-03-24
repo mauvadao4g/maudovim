@@ -35,4 +35,5 @@ rm -f "$CURSOR_DEB"
 echo -e "\e[32mCursor AI foi instalado com sucesso!\e[0m"
 
 # Executa o Cursor AI
-cursor &
+# cursor &
+cursor --no-sandbox &
