@@ -29,6 +29,7 @@ _new() {
     else
         num=$(echo "$file" | grep -Eo '[0-9]+')
         ((num++))
+		export	version=$num
         rm -f "$file"
     fi
 
@@ -103,3 +104,8 @@ echo "$COMMIT"
 echo -ne '\e[1;30m'
 cat ver[0-9]* 2>/dev/null
 echo -ne '\e[0m'
+
+# Verifica se a versão foi criada corretamente
+[[ $(ls | grep ver*) == "ver${version}" ]] && { echo  -e "\e[1;41;33mAtualizado\e[0m: \e[1;48;37m$version\e[0m"; } || { msg red "Erro: A versão não foi criada corretamente.";  }
+
+
