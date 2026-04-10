@@ -1,8 +1,11 @@
 #!/bin/bash
 # MAUVADAO
-# Versão: 1.0.6
+# Versão: 1.0.7
 # Script para adicionar, commitar e enviar alterações ao Git
+# Adicinado verificação denpasta Git
 
+
+clear
 # Função para verificar conexão SSH com o GitHub
 verificar_ssh_github() {
     echo "Verificando conexão SSH com o GitHub..."
@@ -14,8 +17,30 @@ verificar_ssh_github() {
     fi
 }
 
+
+
+# Verifica se é um repositorio Git
+_verificar_git(){
+        # Detecta branch
+        BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+        if [ -z "$BRANCH" ]; then
+            echo -e  "\e[1;31m[!] Não conseguiu detectar branch.\e[0m"
+            exit 0
+        else
+            echo -e "\e[1;34m[*] Branch: $BRANCH\e[0m"
+        fi
+
+}
+
+# Verifica se é um repositorio git.
+_verificar_git
+
 # Verifica a conexão SSH antes de continuar
 verificar_ssh_github
+
+
+
 
 # Função para criar nova versão
 _new() {
@@ -80,29 +105,34 @@ texto=$(cat ver[0-9]* 2>/dev/null)
 msg green "Adicionando arquivos ao repositório..."
 git add -A || { msg red "Erro ao adicionar arquivos."; exit 1; }
 
+# Verifica se a algum commit
+git diff --cached --quiet && { echo -e "\e[1;31mNada para commitar\e[0m"; exit 0; }
+
+
 # Exibe o status do repositório
-msg green "Verificando o status do repositório..."
-git status || { msg red "Erro ao verificar o status."; exit 1; }
+# msg green "Verificando o status do repositório..."
+# git status || { msg red "Erro ao verificar o status."; exit 1; }
 
 # Realiza commit com mensagem personalizada
 commit_msg="$(date +%d%m%y_%H:%M)\n$commit\n\n$texto"
-msg green "Realizando commit com a mensagem:"
-echo -e "$commit_msg"
-git commit -m "$commit_msg" || { msg red "Erro ao realizar commit."; exit 1; }
+# msg green "Realizando commit com a mensagem:"
+# echo -e "$commit_msg"
+git commit -m "$commit_msg" >/dev/null 2>&1 || { msg red "Erro ao realizar commit."; exit 1; }
 
 # Envia alterações para o repositório remoto
 msg green "Enviando alterações para o repositório remoto..."
 DIR="$(pwd)"
-git config --global --add safe.directory "$DIR"
-git push || { msg red "Erro ao enviar alterações."; exit 1; }
+git config --global --add safe.directory "$DIR" >/dev/null 2>&1
+git push >/dev/null 2>&1 || { msg red "Erro ao enviar alterações."; exit 1; }
 
 # Mensagem de sucesso
-msg green "Processo concluído com sucesso!"
-echo -ne "\e[1;33mCommit:\e[0m "
-COMMIT="$(git log --oneline | head -n1)"
+# msg green "Processo concluído com sucesso!"
+echo -ne "\e[38;5;122mProcesso concluido com sucesso!\e[0m "
+echo -ne "\e[38;5;188mCommit:\e[0m "
+ COMMIT="$(git log --oneline | head -n1)"
 echo "$COMMIT"
 echo -ne '\e[1;30m'
-cat ver[0-9]* 2>/dev/null
+# cat ver[0-9]* 2>/dev/null
 echo -ne '\e[0m'
 
 # Verifica se a versão foi criada corretamente
