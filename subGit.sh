@@ -8,7 +8,7 @@
 clear
 
 # Verifica se ha modificacoes.
-[ -z "$(git status --porcelain)" ] && { echo "limpo"; exit 0; } || echo "modificado"
+[ -z "$(git status --porcelain)" ] && { echo "limpo"; exit 0; } || echo -e "\e[1;33mAlteracoes encontradas\e[0m"
 # ou
 # git diff --quiet && git diff --cached --quiet && { echo "limpo"; exit 0; } || echo "modificado"
 
