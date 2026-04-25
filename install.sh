@@ -8,6 +8,15 @@
 clear
 # Script de configuração avançada do Vim/Neovim com plugins, temas e layouts personalizados
 
+_nodeUpdate(){
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+nvm install 20
+nvm use 20
+
+}
+
+
 _bkp(){
     timestamp=$(date +%Y%m%d%H%M%S)
     mkdir -p vimrc_$timestamp
@@ -637,7 +646,7 @@ EOF
 }
 
 instalar_dependencias() {
- echo -e "\e[1;36mInstalando pacotes no sistema\e[0m"
+ echo -e "\e[1;38;5;51mInstalando pacotes no sistema\e[0m"
  # Pacotes pra instalar
  pacotes=(
 'curl'
@@ -661,6 +670,7 @@ fi
 
 done
 
+	_nodeUpdate
     pip3 install pynvim
     verPython
     menu_principal
