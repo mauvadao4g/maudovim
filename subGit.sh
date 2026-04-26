@@ -7,6 +7,34 @@
 
 clear
 
+#!/bin/bash
+
+_maudavpn(){
+  local palavra="$1"
+
+  # captura o banner
+  local banner
+  banner=$(figlet "$palavra")
+
+  # pega a largura máxima
+  local largura
+  largura=$(echo "$banner" | awk '{ if (length > max) max = length } END { print max }')
+
+  # cria linha do tamanho certo
+  local linha
+  linha=$(printf '%*s' "$largura" '' | tr ' ' '-')
+
+  # saída
+  echo -e "\e[1;37m $linha\e[0m"
+  echo -e "\e[1;38;5;153m$banner\e[0m"
+  echo -e "\e[1;37m $linha\e[0m"
+}
+
+pasta="$(pwd)"
+_maudavpn "${1:-$(basename "$pasta")}"
+
+
+
 # Verifica se ha modificacoes.
 [ -z "$(git status --porcelain)" ] && { echo "limpo"; exit 0; } || echo -e "\e[1;33mAlteracoes encontradas: \e[1;36m$(basename $(pwd))\e[0m"
 # ou
