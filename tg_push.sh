@@ -1,6 +1,5 @@
 #!/bin/bash
 
-TOKEN='7706533902:AAGV3kRqwABn9dcGYe-wZIqZ3o5tPpgSWpM'
 chat_id='2050411579'
 
 send1(){
