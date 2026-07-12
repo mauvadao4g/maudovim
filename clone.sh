@@ -1,4 +1,7 @@
 #!/bin/bash
+# MAUVADAO
+# VER: 1.0.1
+# DATA: dom 12 jul 2026 19:29:08 -03
 
 
 _cp1(){
