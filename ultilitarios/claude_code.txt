@@ -1,0 +1,51 @@
+1. Requisitos
+Vim compilado com suporte a +terminal (a maioria das distros modernas já vem assim — confere com vim --version | grep terminal)
+Python3 (o plugin usa pra algumas coisas)
+Claude Code CLI instalado (npm install -g @anthropic-ai/claude-code)
+
+
+call plug#begin()
+
+Plug 'rishi-opensource/vim-claude-code'
+
+call plug#end()
+
+" Ativa automaticamente ao abrir o Vim (registra hooks em .claude/settings.local.json)
+" Opcional - só se você quiser que ative sozinho em todo projeto
+
+let mapleader = " "
+
+" Posição e tamanho do painel do Claude
+let g:claude_code_position = 'vertical'
+let g:claude_code_split_ratio = 0.4
+
+
+
+
+
+3. Instalar: :PlugInstall
+
+
+
+4. Como usar
+Ctrl + \ → abre/fecha o painel do Claude (toggle rápido)
+Ctrl+w z dentro do painel → maximiza tela cheia (estilo tmux), aperta de novo pra voltar
+Ele detecta a raiz do projeto Git automaticamente e mantém sessão separada por repositório
+Comandos por seleção (visual mode)
+
+Seleciona um trecho de código (v ou V) e usa:
+
+<Leader>ce → explica o código selecionado
+<Leader>cf → corrige (fix)
+<Leader>cr → refatora
+<Leader>ct → gera testes
+<Leader>cd → gera documentação
+
+Sem seleção, ele detecta a função atual sozinha.
+
+
+
+
+
+
+
