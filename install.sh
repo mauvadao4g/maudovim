@@ -96,6 +96,10 @@ configurar_vim_neovim() {
 
 call plug#begin('~/.vim/autoload/plug/start')
 
+" CLAUDE -> PlugIn Claude-Code -> Usa o claudecode-cli ja instalado
+Plug 'rishi-opensource/vim-claude-code'
+
+
 " COMPILOT -> GITHUB
 Plug  'github/copilot.vim'
 
@@ -239,6 +243,17 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 
+"------------------------------------------------
+" Configurações do vim-claude-code
+"------------------------------------------------
+" Ativa automaticamente ao abrir o Vim (registra hooks em .claude/settings.local.json)
+" Opcional - só se você quiser que ative sozinho em todo projeto
+
+let mapleader = " "
+
+" Posição e tamanho do painel do Claude
+let g:claude_code_position = 'vertical'
+let g:claude_code_split_ratio = 0.4
 
 
 
