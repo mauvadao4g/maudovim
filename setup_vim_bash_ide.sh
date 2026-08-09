@@ -36,7 +36,7 @@ let mapleader=" "
 
 " ========= PLUGINS =========
 call plug#begin('~/.vim/plugged')
-
+Plug 'rishi-opensource/vim-claude-code'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
@@ -50,6 +50,18 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+"---------------------------------------------------------
+" Configurações do claude-code > Usa o claude-cli ja instalado
+"---------------------------------------------------------
+" Ativa automaticamente ao abrir o Vim (registra hooks em .claude/settings.local.json)
+" Opcional - só se você quiser que ative sozinho em todo projeto
+
+let mapleader = " "
+
+" Posição e tamanho do painel do Claude
+let g:claude_code_position = 'vertical'
+let g:claude_code_split_ratio = 0.4
 
 " ========= TEMA =========
 colorscheme gruvbox
