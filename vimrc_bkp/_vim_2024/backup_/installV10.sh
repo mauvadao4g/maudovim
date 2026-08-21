@@ -586,7 +586,7 @@ EOF
      }
 
 	# CONFIGURANDO O CSS SNIPPETS
-	htmlsnip="/home/everton-rozendo/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
+	htmlsnip="$HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
 	cp html.snippets "$HOME/.vim/autoload/plug/start/vim-snippets/UltiSnips/html.snippets"
 	[[ -f "$htmlsnip" ]] && {
 		# Verificando se foi copiado corretamente.
